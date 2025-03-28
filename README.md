@@ -21,7 +21,7 @@ apt install stow
 First,
 
 ```
-$ git clone https://github.com/ribeiro-ian/dotfiles
+$ git clone https://github.com/ribeiro-ian/.dotfiles
 $ cd .dotfiles
 ```
 
