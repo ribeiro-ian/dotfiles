@@ -1,0 +1,22 @@
+swipe:
+  3:
+    up:
+      sendkey: 'LEFTMETA+LEFTALT+DOWN' # Navegar para a frente no navegador
+    down:
+      sendkey: 'LEFTMETA+LEFTALT+UP' # Navegar para trás no navegador
+    right:
+      sendkey: 'LEFTMETA+D' # Abrir overview do GNOME
+    left:
+      sendkey: 'LEFTMETA+A' # Fechar overview do GNOME
+# pinch:
+#   in:
+#     sendkey: 'LEFTCTRL+plus' # Zoom in
+#   out:
+#     sendkey: 'LEFTCTRL+minus' # Zoom out
+
+threshold:
+  swipe: 0.7
+  pinch: 0.3
+interval:
+  swipe: 1
+  pinch: 0.3
