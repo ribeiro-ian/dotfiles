@@ -40,6 +40,7 @@ sudo apt install zsh
 
 # Install fzf
 sudo apt install fzf
+
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -47,6 +48,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ### Apps
 ```
-apt update && apt upgrade -y
-apt install btop micro fusuma flameshot
+sudo apt update && apt upgrade -y
+sudo apt install btop micro fusuma flameshot
 ```
