@@ -54,5 +54,5 @@ curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
 ### Apps
 ```
 sudo apt update && sudo apt upgrade -y
-sudo apt install btop micro fusuma flameshot
+sudo apt install btop micro
 ```
