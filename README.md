@@ -7,13 +7,13 @@ This repo contains the dotfiles for my system
 ### Git
 
 ```
-apt install git
+sudo apt install git
 ```
 
 ### Stow
 
 ```
-apt install stow
+sudo apt install stow
 ```
 
 ## Installation
@@ -36,10 +36,10 @@ $ stow -v .
 
 ```
 # Install ZSH
-apt install zsh
+sudo apt install zsh
 
 # Install fzf
-
+sudo apt install fzf
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
