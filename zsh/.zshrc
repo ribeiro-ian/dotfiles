@@ -36,6 +36,11 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=142,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=142,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=142,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=142,bold'
+
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init --cmd cd zsh)"
@@ -43,6 +48,7 @@ eval "$(zoxide init --cmd cd zsh)"
 # Aliases
 alias ls='ls --color'
 alias lsa='ls -A'
+alias cd='z'
 
 # History settings
 HISTSIZE=5000
@@ -58,24 +64,13 @@ setopt hist_ignore_dups hist_find_no_dups
 export PATH=$PATH:/home/ian/.spicetify
 
 # Keypad
-# 0 . Enter
-#bindkey -s "^[Op" "0"
-#bindkey -s "^[Ol" "."
-#bindkey -s "^[OM" "^M"
-# 1 2 3
-#bindkey -s "^[Oq" "1"
-#bindkey -s "^[Or" "2"
-#bindkey -s "^[Os" "3"
-# 4 5 6
-#bindkey -s "^[Ot" "4"
-#bindkey -s "^[Ou" "5"
-#bindkey -s "^[Ov" "6"
-# 7 8 9
-#bindkey -s "^[Ow" "7"
-#bindkey -s "^[Ox" "8"
-#bindkey -s "^[Oy" "9"
 # + -  * /
 bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
+
+# TIME
+TIMEFMT='real	%E
+user	%U
+sys	%S'
