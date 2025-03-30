@@ -22,8 +22,8 @@ First
 
 ```
 cd ~
-git clone https://github.com/ribeiro-ian/.dotfiles
-cd .dotfiles
+git clone https://github.com/ribeiro-ian/dotfiles
+cd dotfiles
 ```
 
 use GNU stow to create symlinks
