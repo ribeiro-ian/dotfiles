@@ -10,6 +10,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Optimized plugins
 plugins=(
+	sudo
+	ubuntu
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
