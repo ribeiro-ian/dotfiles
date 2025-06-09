@@ -13,11 +13,13 @@ plugins=(
 )
 
 # Fast completion initialization
+export ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump"
+
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-    compinit
+if [[ -s "$ZSH_COMPDUMP" && "$ZSH_COMPDUMP" -nt "$ZSH_COMPDUMP".zwc ]]; then
+    compinit -d "$ZSH_COMPDUMP"
 else
-    compinit -C
+    compinit -C -d "$ZSH_COMPDUMP"
 fi
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -32,6 +34,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
@@ -49,7 +52,7 @@ alias logout='gnome-session-quit --logout --no-prompt'
 # History settings
 HISTSIZE=5000
 SAVEHIST=5000
-HISTFILE=~/.zsh_history
+HISTFILE=~/.cache/zsh/.zsh_history
 setopt appendhistory sharehistory hist_ignore_space
 setopt hist_ignore_all_dups hist_save_no_dups
 setopt hist_ignore_dups hist_find_no_dups
