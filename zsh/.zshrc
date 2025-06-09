@@ -1,22 +1,15 @@
-# Powerlevel10k Instant Prompt - MUST come first
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Optimized plugins
 plugins=(
 	sudo
 	ubuntu
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zoxide
-    fzf-tab
+	fzf-tab
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	zoxide
 )
 
 # Fast completion initialization
@@ -38,10 +31,10 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=142,bold'
-ZSH_HIGHLIGHT_STYLES[command]='fg=142,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=142,bold'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=142,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
 
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -51,6 +44,7 @@ eval "$(zoxide init --cmd cd zsh)"
 alias ls='ls --color'
 alias lsa='ls -A'
 alias cd='z'
+alias logout='gnome-session-quit --logout --no-prompt'
 
 # History settings
 HISTSIZE=5000
@@ -59,9 +53,6 @@ HISTFILE=~/.zsh_history
 setopt appendhistory sharehistory hist_ignore_space
 setopt hist_ignore_all_dups hist_save_no_dups
 setopt hist_ignore_dups hist_find_no_dups
-
-# Powerlevel10k config
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH=$PATH:/home/ian/.spicetify
 
@@ -76,3 +67,5 @@ bindkey -s "^[Oo" "/"
 TIMEFMT='real	%E
 user	%U
 sys	%S'
+
+eval "$(starship init zsh)"
