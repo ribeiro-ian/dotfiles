@@ -8,7 +8,7 @@ $time
 $character
 """
 
-palette = 'Monokai'
+palette = 'Gruvbox'
 
 # Define custom colors
 [palettes.Monokai]
@@ -20,6 +20,16 @@ dot = '#3e3d33'
 dir = '#a6e22e'
 time = '#e6db74'
 user = '#f92672'
+
+[palettes.Gruvbox]
+red = '#fb4934'
+green = '#b8bb26'
+blue = '#83a598'
+yellow = '#fabd2f'
+dot = '#3c3836'
+dir = '#458588'
+time = '#fabd2f'
+user = '#fe8019'
 
 [directory]
 read_only = " 󰌾"
