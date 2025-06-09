@@ -1,0 +1,157 @@
+/* === REQUIRES OLD LIKE BUTTON EXTENSION === */
+
+:root {
+	--spice-tab-active: unset !important;
+}
+
+/* REMOVE WINDOW CONTROL BUTTONS */
+.CCIGxtpAreSdwWRo14FE, .B9lb86gGqGGFcSZZ95bA {width: unset;}
+.B9lb86gGqGGFcSZZ95bA, .Kgjmt7IX5samBYUpbkBu {display: none;}
+
+/* IMPROVE SCROLLBAR */
+.os-theme-spotify.os-scrollbar {
+    --os-size: 8px;
+    --os-handle-bg: rgba(var(--spice-rgb-selected-row), .1);
+    --os-handle-bg-hover: rgba(var(--spice-rgb-selected-row), .5);
+    --os-handle-bg-active: rgba(var(--spice-rgb-selected-row), 1);
+}
+
+/* RIGHT SIDERBAR ROUNDED CORNERS FIX */
+/* .Root__right-sidebar {
+    border-radius: 8px;
+    overflow: hidden;
+} */
+/* FIX RIGHT SIDER BAR TEXT COLOR */
+.IkRGajTjItEFQkRMeH6v {
+    --text-subdued: var(--spice-subtext);
+}
+.E08D6ucrHuPJYzzGO7HG{
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* IMPROVE QUEUE TAB TOP SHADOW */
+.mdMUqcSHFw1lZIcYEblu {box-shadow: 0 6px 10px rgba(var(--spice-rgb-shadow), 1);}
+/* REMOVE QUEUE TAB BACKGROUND GRADIENT */
+.main-nowPlayingView-contextItemInfo::before{background: none;}
+/* REMOVE "COPY SONG LINK" FROM NOW PLAYING VIEW HOVER */
+[aria-label="Copy Song Link"] {display: none;}
+/* REMOVE DOWNLOAD BUTTON */
+[aria-label="Download"], [data-encore-id="popoverTrigger"] {display: none;}
+
+/* FIX FRIENDS TAB TEXT COLOR */
+.OemaZktMXaRcYQ5bcfLZ {
+    --spice-rgb-selected-row: var(--spice-rgb-text) !important;
+}
+
+/* FIX DEFAULT SPICETIFY COLOR VARIABLES */
+.encore-dark-theme, .encore-dark-theme .encore-base-set {
+    --background-tinted-base: var(--spice-highlight-elevated);
+    --background-tinted-highlight: rgba(255, 255, 255, 0.1);
+    --background-elevated-base: var(--spice-main);
+}
+
+/* FIX GRADIENT */
+.playlist-playlist-playlistContent {
+    background: unset;
+    isolation: unset;
+}
+.main-actionBarBackground-background {
+    background-image: linear-gradient(rgba(var(--spice-rgb-shadow),.5) 0,
+    var(--background-base) 100%),
+    var(--background-noise);
+}
+/* FIX PLAYLIST/ALBUM PAGE GRADIENT */
+.Bdcf5g__Rug3TGqSdbiy {--background-base-70: var(--background-base) !important;}
+.Bdcf5g__Rug3TGqSdbiy ~ .contentSpacing {
+    --background-base: ;
+    background: var(--background-base);
+}
+
+/* FIX PLAYLIST DESC COLOR */
+.playlist-playlist-whiteOpacity {
+    color: var(--spice-text);
+}
+/* FIX SEARCH BOX ICONS COLORS */
+.playlist-playlist-searchBoxContainer,
+.x-sortBox-sortDropdown,
+.x-filterBox-filterInputContainer,
+.ig17e2GN63Tgv3JeRoJF {
+    --spice-rgb-selected-row: var(--spice-subtext);
+}
+/* FIX ROW HOVER/SELECTION COLOR */
+.main-trackList-trackListRow.main-trackList-selected,
+.main-trackList-trackListRow.main-trackList-selected:hover{
+	background-color: var(--spice-hover-selected-row);
+}
+/* FIX HOVER COLOR FOR LISTS */
+.main-trackList-trackListRow:focus-within,
+.main-trackList-trackListRow:hover,
+.main-contextMenu-menuItemButton:hover {
+    background-color: var(--spice-selected-row);
+}
+/* REMOVE UGLY ASF "ADD TO PLAYLIST" BUTTON */
+[aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
+/* REMOVE OPTIONS BUTTON */
+[aria-haspopup="menu"] {display: none;}
+
+/* FIX PLAYBAR TRACK INFO COLOR */
+.main-trackInfo-artists {
+    text-shadow: none !important;
+    color: var(--spice-text) !important;
+    --text-subdued: var(--spice-text);
+}
+/* PLAYBAR TRACK PROGRESS COLORED */
+.playback-bar .x-progressBar-progressBarBg {
+    --fg-color: var(--spice-button);
+}
+.progress-bar {
+    --fg-color: var(--spice-subtext);
+}
+/* COLOR PLAYBAR PAUSE/PLAY BUTTON */
+[data-testid="control-button-playpause"] {
+    --spice-text: var(--spice-button-active);
+}
+[data-testid="control-button-playpause"]:hover > * {
+    background-color: var(--spice-button-active) !important;
+}
+/* FIX PLAYBAR BUTTONS COLOR */
+.main-genericButton-button {
+    color: var(--spice-subtext);
+}
+
+/* FIX LIKE BUTTON */
+.main-nowPlayingBar-left {
+    display: flex;
+    align-items: center;
+}
+
+/* === ARTIST PAGE === */
+.EmeHQXR87mUskYK6xEde > .Bdcf5g__Rug3TGqSdbiy {
+    background-image: none;
+}
+.artist-popularTrackList-seeMore {
+    --spice-rgb-selected-row: var(--spice-subtext);
+}
+
+/* MISC */
+.main-entityHeader-metaDataText{
+    --spice-rgb-selected-row: var(--spice-rgb-text) !important;
+}
+
+#context-menu svg svg{
+	color: var(--text-subdued);
+}
+
+.main-trackCreditsModal-container{
+    background-color: var(--spice-main-elevated);
+    border-radius: 8px;
+}
+
+/* REMOVE PLAYLIST HEADER */
+/* .main-trackList-trackListHeader {
+    display: none;
+    } */
+    /* .main-trackList-rowSectionVariable[aria-colindex="4"] {
+        display: none;
+} */
