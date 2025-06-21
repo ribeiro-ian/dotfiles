@@ -7,11 +7,7 @@ This repo contains the dotfiles for my system
 ### Git
 
 ```
-sudo apt install git
-```
-
-```
-sudo apt install stow
+sudo apt install git stow curl
 ```
 
 ## Installation
