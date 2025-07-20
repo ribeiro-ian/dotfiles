@@ -21,6 +21,7 @@
     border-radius: 8px;
     overflow: hidden;
 } */
+
 /* FIX RIGHT SIDER BAR TEXT COLOR */
 .IkRGajTjItEFQkRMeH6v {
     --text-subdued: var(--spice-subtext);
@@ -32,10 +33,13 @@
 
 /* IMPROVE QUEUE TAB TOP SHADOW */
 .mdMUqcSHFw1lZIcYEblu {box-shadow: 0 6px 10px rgba(var(--spice-rgb-shadow), 1);}
+
 /* REMOVE QUEUE TAB BACKGROUND GRADIENT */
 .main-nowPlayingView-contextItemInfo::before{background: none;}
+
 /* REMOVE "COPY SONG LINK" FROM NOW PLAYING VIEW HOVER */
 [aria-label="Copy Song Link"] {display: none;}
+
 /* REMOVE DOWNLOAD BUTTON */
 [aria-label="Download"], [data-encore-id="popoverTrigger"] {display: none;}
 
@@ -61,6 +65,7 @@
     var(--background-base) 100%),
     var(--background-noise);
 }
+
 /* FIX PLAYLIST/ALBUM PAGE GRADIENT */
 .Bdcf5g__Rug3TGqSdbiy {--background-base-70: var(--background-base) !important;}
 .Bdcf5g__Rug3TGqSdbiy ~ .contentSpacing {
@@ -72,6 +77,7 @@
 .playlist-playlist-whiteOpacity {
     color: var(--spice-text);
 }
+
 /* FIX SEARCH BOX ICONS COLORS */
 .playlist-playlist-searchBoxContainer,
 .x-sortBox-sortDropdown,
@@ -79,19 +85,23 @@
 .ig17e2GN63Tgv3JeRoJF {
     --spice-rgb-selected-row: var(--spice-subtext);
 }
+
 /* FIX ROW HOVER/SELECTION COLOR */
 .main-trackList-trackListRow.main-trackList-selected,
 .main-trackList-trackListRow.main-trackList-selected:hover{
 	background-color: var(--spice-hover-selected-row);
 }
+
 /* FIX HOVER COLOR FOR LISTS */
 .main-trackList-trackListRow:focus-within,
 .main-trackList-trackListRow:hover,
 .main-contextMenu-menuItemButton:hover {
     background-color: var(--spice-selected-row);
 }
+
 /* REMOVE UGLY ASF "ADD TO PLAYLIST" BUTTON */
 [aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
+
 /* REMOVE OPTIONS BUTTON */
 [aria-haspopup="menu"] {display: none;}
 
@@ -101,6 +111,7 @@
     color: var(--spice-text) !important;
     --text-subdued: var(--spice-text);
 }
+
 /* PLAYBAR TRACK PROGRESS COLORED */
 .playback-bar .x-progressBar-progressBarBg {
     --fg-color: var(--spice-button);
@@ -108,6 +119,7 @@
 .progress-bar {
     --fg-color: var(--spice-subtext);
 }
+
 /* COLOR PLAYBAR PAUSE/PLAY BUTTON */
 [data-testid="control-button-playpause"] {
     --spice-text: var(--spice-button-active);
@@ -115,6 +127,7 @@
 [data-testid="control-button-playpause"]:hover > * {
     background-color: var(--spice-button-active) !important;
 }
+
 /* FIX PLAYBAR BUTTONS COLOR */
 .main-genericButton-button {
     color: var(--spice-subtext);
@@ -140,7 +153,7 @@
 }
 
 #context-menu svg svg{
-	color: var(--text-subdued);
+    color: var(--text-subdued);
 }
 
 .main-trackCreditsModal-container{
@@ -148,10 +161,19 @@
     border-radius: 8px;
 }
 
+.e-9890-button-primary:hover .e-9890-button-primary__inner {
+    background-color: var(--spice-button);
+}
+
 /* REMOVE PLAYLIST HEADER */
 /* .main-trackList-trackListHeader {
     display: none;
-    } */
-    /* .main-trackList-rowSectionVariable[aria-colindex="4"] {
-        display: none;
 } */
+/* .main-trackList-rowSectionVariable[aria-colindex="4"] {
+    display: none;
+} */
+
+/* === CONFIG PAGE === */
+.main-dropDown-dropDown {
+    color: var(--spice-subtext);
+}

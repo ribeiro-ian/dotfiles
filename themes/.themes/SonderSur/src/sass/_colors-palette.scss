@@ -1,52 +1,52 @@
-//
-// Monokai Color Palette
-//
+// //
+// // Monokai Color Palette
+// //
 
-// Dark Background
-$dark_bg1: #1E1F1C;
-$dark_bg1-hard: #1E1F1C;
-$dark_bg1-soft: #32332C;
-$dark_bg2: #272822;
-$dark_bg3: #3B3C35;
+// // Dark Background
+// $dark_bg1: #1E1F1C;
+// $dark_bg1-hard: #1E1F1C;
+// $dark_bg1-soft: #32332C;
+// $dark_bg2: #272822;
+// $dark_bg3: #3B3C35;
 
-// Dark Foreground
-$dark_fg1: #F8F8F2;
-$dark_fg2: #919289;
-$dark_fg3: #75715E;
+// // Dark Foreground
+// $dark_fg1: #F8F8F2;
+// $dark_fg2: #919289;
+// $dark_fg3: #75715E;
 
-// Light Background
-$light_bg1: #EBE2DC;
-$light_bg1-soft: #DBD1CD;
-$light_bg1-hard: #F8EEE6;
-$light_bg2: #DBD1CD;
-$light_bg3: #998E94;
+// // Light Background
+// $light_bg1: #EBE2DC;
+// $light_bg1-soft: #DBD1CD;
+// $light_bg1-hard: #F8EEE6;
+// $light_bg2: #DBD1CD;
+// $light_bg3: #998E94;
 
-// Light Foreground
-$light_fg1: #657B83;
-$light_fg2: #93A1A1;
-$light_fg3: #93A1A1;
+// // Light Foreground
+// $light_fg1: #657B83;
+// $light_fg2: #93A1A1;
+// $light_fg3: #93A1A1;
 
-// Colors
-$theme_color_default: #8BE9FD;
-$theme_color_blue:    #8BE9FD;
-$theme_color_green:   #a8e24a;
-$theme_color_purple:  #AE81FF;
-$theme_color_pink:    #C0888B;
-$theme_color_red:     #F92672;
-$theme_color_orange:  #FD971F;
-$theme_color_yellow:  #E6DB74;
-$theme_color_grey:    #90908A;
+// // Colors
+// $theme_color_default: #8BE9FD;
+// $theme_color_blue:    #8BE9FD;
+// $theme_color_green:   #a8e24a;
+// $theme_color_purple:  #AE81FF;
+// $theme_color_pink:    #C0888B;
+// $theme_color_red:     #F92672;
+// $theme_color_orange:  #FD971F;
+// $theme_color_yellow:  #E6DB74;
+// $theme_color_grey:    #90908A;
 
-// Dark Colors
-$theme_color_dark_default:  #8BE9FD;
-$theme_color_dark_blue:     #8BE9FD;
-$theme_color_dark_green:    #a8e24a;
-$theme_color_dark_purple:   #AE81FF;
-$theme_color_dark_pink:     #C0888B;
-$theme_color_dark_red:      #F92672;
-$theme_color_dark_orange:   #FD971F;
-$theme_color_dark_yellow:   #E6DB74;
-$theme_color_dark_gray:     #90908A;
+// // Dark Colors
+// $theme_color_dark_default:  #8BE9FD;
+// $theme_color_dark_blue:     #8BE9FD;
+// $theme_color_dark_green:    #a8e24a;
+// $theme_color_dark_purple:   #AE81FF;
+// $theme_color_dark_pink:     #C0888B;
+// $theme_color_dark_red:      #F92672;
+// $theme_color_dark_orange:   #FD971F;
+// $theme_color_dark_yellow:   #E6DB74;
+// $theme_color_dark_gray:     #90908A;
 
 // //
 // // Dracula Color Palette
@@ -98,56 +98,56 @@ $theme_color_dark_gray:     #90908A;
 // $theme_color_dark_yellow:   #F1FA8C;
 // $theme_color_dark_gray:     #44475A;
 
-// //
-// // Tokyo Night Color Palette
-// //
+//
+// Omni Color Palette
+//
 
-// // Dark Background
-// $dark_bg1: #1A1B26;
-// $dark_bg1-hard: #13141C;
-// $dark_bg1-soft: #24283B;
-// $dark_bg2: #292E42;
-// $dark_bg3: #343B58;
+// Dark Background
+$dark_bg1: #191622;
+$dark_bg1-hard: #15121d;
+$dark_bg1-soft: #44475a;
+$dark_bg2: #44475a;
+$dark_bg3: #1e1d26;
 
-// // Dark Foreground
-// $dark_fg1: #C0CAF5;
-// $dark_fg2: #A9B1D6;
-// $dark_fg3: #565F89;
+// Dark Foreground
+$dark_fg1: #E1E1E6;
+$dark_fg2: #939295;
+$dark_fg3: #483C67;
 
-// // Light Background
-// $light_bg1: #C0CAF5;
-// $light_bg1-soft: #D6D8DF;
-// $light_bg1-hard: #FFFFFF;
-// $light_bg2: #E6E7ED;
-// $light_bg3: #DCDEE3;
+// Light Background
+$light_bg1: #C0CAF5;
+$light_bg1-soft: #D6D8DF;
+$light_bg1-hard: #FFFFFF;
+$light_bg2: #E6E7ED;
+$light_bg3: #DCDEE3;
 
-// // Light Foreground
-// $light_fg1: #343B58;
-// $light_fg2: #40434F;
-// $light_fg3: #6C6E75;
+// Light Foreground
+$light_fg1: #343B58;
+$light_fg2: #40434F;
+$light_fg3: #6C6E75;
 
-// // Colors
-// $theme_color_default: #007AFF;
-// $theme_color_blue:    #007AFF;
-// $theme_color_green:   #62BA46;
-// $theme_color_purple:  #A550A7;
-// $theme_color_pink:    #F74F9E;
-// $theme_color_red:     #FF5257;
-// $theme_color_orange:  #F7821C;
-// $theme_color_yellow:  #FBB927;
-// $theme_color_grey:    #CFC9C2;
+// Colors
+$theme_color_default: #78D1E1;
+$theme_color_blue:    #78D1E1;
+$theme_color_green:   #67E480;
+$theme_color_purple:  #5A4C7F;
+$theme_color_pink:    #FF79C6;
+$theme_color_red:     #E96379;
+$theme_color_orange:  #E89E64;
+$theme_color_yellow:  #E7DE79;
+$theme_color_grey:    #CFC9C2;
 
-// // Dark Colors
-// $theme_color_dark_default:  #0F4B6E;
-// $theme_color_dark_blue:     #0F4B6E;
-// $theme_color_dark_green:    #385F0D;
-// $theme_color_dark_purple:   #5A3E8E;
-// $theme_color_dark_pink:     #5A3E8E;
-// $theme_color_dark_red:      #8C4351;
-// $theme_color_dark_orange:   #965027;
-// $theme_color_dark_yellow:   #8F5E15;
-// $theme_color_dark_gray:     #40434F;
-
+// Dark Colors
+$theme_color_dark_default:  #0F4B6E;
+$theme_color_dark_blue:     #0F4B6E;
+$theme_color_dark_green:    #385F0D;
+$theme_color_dark_purple:   #5A3E8E;
+$theme_color_dark_pink:     #5A3E8E;
+$theme_color_dark_red:      #8C4351;
+$theme_color_dark_orange:   #965027;
+$theme_color_dark_yellow:   #8F5E15;
+$theme_color_dark_gray:     #40434F;
+    
 // //
 // // Gruvbox Color Palette
 // //
