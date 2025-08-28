@@ -8,7 +8,7 @@ $time
 $character
 """
 
-palette = 'Omni'
+palette = 'Gruvbox'
 
 # Define custom colors
 [palettes.Monokai]
