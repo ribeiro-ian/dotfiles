@@ -8,9 +8,19 @@ $time
 $character
 """
 
-palette = 'Gruvbox'
+palette = 'Coffee'
 
 # Define custom colors
+[palettes.Coffee]
+red = '#ff3636'
+green = '#9dcc52'
+blue = '#6EDDD6'
+yellow = '#f7d979'
+dot = '#624f4c'
+dir = '#9dcc52'
+time = '#f77a6a'
+user = '#BA68C8'
+
 [palettes.Monokai]
 red = '#f92672'
 green = '#a6e22e'

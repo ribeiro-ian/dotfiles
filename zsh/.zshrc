@@ -4,7 +4,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Optimized plugins
 plugins=(
 	sudo
-	ubuntu
 	fzf-tab
 	git
 	zsh-autosuggestions
