@@ -8,9 +8,19 @@ $time
 $character
 """
 
-palette = 'Coffee'
+palette = 'Claude'
 
 # Define custom colors
+[palettes.Claude]
+red = '#D95C5C'
+green = '#5BAF7A'
+blue = '#7AABE0'
+yellow = '#D4943A'
+dot = '#46423E'
+dir = '#D4943A'
+time = '#DA7756'
+user = '#A584E0'
+
 [palettes.Coffee]
 red = '#ff3636'
 green = '#9dcc52'

@@ -1,5 +1,9 @@
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
+# Fast completion initialization
+mkdir -p "$HOME/.cache/zsh"
+export ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump"
+
 
 # Optimized plugins
 plugins=(
@@ -11,8 +15,6 @@ plugins=(
 	zoxide
 )
 
-# Fast completion initialization
-export ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump"
 
 autoload -Uz compinit
 if [[ -s "$ZSH_COMPDUMP" && "$ZSH_COMPDUMP" -nt "$ZSH_COMPDUMP".zwc ]]; then
@@ -37,6 +39,7 @@ ZSH_HIGHLIGHT_STYLES[precommand]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=8'
 
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -46,7 +49,7 @@ eval "$(zoxide init --cmd cd zsh)"
 alias ls='ls --color'
 alias lsa='ls -A'
 alias cd='z'
-alias logout='gnome-session-quit --logout --no-prompt'
+alias reboot-windows='sudo efibootmgr --bootnext 0000 && sudo reboot'
 
 # History settings
 HISTSIZE=5000
@@ -56,6 +59,7 @@ setopt appendhistory sharehistory hist_ignore_space
 setopt hist_ignore_all_dups hist_save_no_dups
 setopt hist_ignore_dups hist_find_no_dups
 
+export PATH="$HOME/.bin:$PATH"
 export PATH=$PATH:/home/ian/.spicetify
 
 # Keypad

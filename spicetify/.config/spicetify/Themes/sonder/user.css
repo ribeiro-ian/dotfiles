@@ -100,7 +100,7 @@
 }
 
 /* REMOVE UGLY ASF "ADD TO PLAYLIST" BUTTON */
-[aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
+/* [aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
 
 /* REMOVE OPTIONS BUTTON */
 [aria-haspopup="menu"] {display: none;}
@@ -134,10 +134,11 @@
 }
 
 /* FIX LIKE BUTTON */
-.main-nowPlayingBar-left {
+/*.main-nowPlayingBar-left {
     display: flex;
     align-items: center;
 }
+*/
 
 /* === ARTIST PAGE === */
 .EmeHQXR87mUskYK6xEde > .Bdcf5g__Rug3TGqSdbiy {

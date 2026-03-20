@@ -3,16 +3,20 @@ font-family = BlexMono Nerd Font
 font-size = 12
 
 # Window Configuration
-theme = coffee
+theme = Claude
 
-window-decoration = true
+#window-decoration = true
 window-padding-x = 12
 window-padding-y = 12
+window-width = 80
+window-height = 24
+window-decoration = false
 background-opacity = 1
 
 # Cursor Configuration
-cursor-style = underline
+cursor-style = block
 cursor-style-blink = true
+
 
 # Scrollback
 scrollback-limit = 3023
@@ -21,6 +25,8 @@ scrollback-limit = 3023
 mouse-hide-while-typing = true
 copy-on-select = false
 confirm-close-surface = false
+gtk-single-instance = true
+command = zsh -c "fastfetch; exec zsh"
 
 # Key bindings for common actions
 #keybind = ctrl+c=copy_to_clipboard
@@ -30,12 +36,3 @@ keybind = ctrl+t=new_tab
 keybind = ctrl+plus=increase_font_size:1
 keybind = ctrl+minus=decrease_font_size:1
 keybind = ctrl+zero=reset_font_size
-
-# Material 3 UI elements
-unfocused-split-opacity = 0.7
-unfocused-split-fill = #44464f
-
-# Tab configuration
-gtk-titlebar = false
-gtk-single-instance = true
-
