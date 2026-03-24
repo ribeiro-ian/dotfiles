@@ -16,11 +16,10 @@
     --os-handle-bg-active: rgba(var(--spice-rgb-selected-row), 1);
 }
 
-/* RIGHT SIDERBAR ROUNDED CORNERS FIX */
-/* .Root__right-sidebar {
-    border-radius: 8px;
-    overflow: hidden;
-} */
+/* FIX SUBTEXT COLOR INCONSISTENCY */
+* {
+	--spice-rgb-selected-row: var(--spice-rgb-subtext);
+}
 
 /* FIX RIGHT SIDER BAR TEXT COLOR */
 .IkRGajTjItEFQkRMeH6v {
@@ -78,27 +77,21 @@
     color: var(--spice-text);
 }
 
-/* FIX SEARCH BOX ICONS COLORS */
-.playlist-playlist-searchBoxContainer,
-.x-sortBox-sortDropdown,
-.x-filterBox-filterInputContainer,
-.ig17e2GN63Tgv3JeRoJF {
-    --spice-rgb-selected-row: var(--spice-subtext);
+/* .main-topBar-container > * {
+    --background-base: var(--background-highlight) !important;
+} */
+
+.playlist-playlist-actionBarBackground-background{
+    background-image: linear-gradient(
+        var(--direction-and-possibly-color-interpolation),
+        var(--background-base),
+        transparent), var(--dither);
 }
 
-/* FIX ROW HOVER/SELECTION COLOR */
-.main-trackList-trackListRow.main-trackList-selected,
-.main-trackList-trackListRow.main-trackList-selected:hover{
-	background-color: var(--spice-hover-selected-row);
+/* FIX SELECTED ROW HOVER COLOR */
+.main-trackList-trackListRow.MxoETbR0GSKhCd1hp6Np:hover {
+    background-color: rgba(var(--spice-rgb-selected-row), .5);
 }
-
-/* FIX HOVER COLOR FOR LISTS */
-.main-trackList-trackListRow:focus-within,
-.main-trackList-trackListRow:hover,
-.main-contextMenu-menuItemButton:hover {
-    background-color: var(--spice-selected-row);
-}
-
 /* REMOVE UGLY ASF "ADD TO PLAYLIST" BUTTON */
 /* [aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
 
@@ -165,14 +158,6 @@
 .e-9890-button-primary:hover .e-9890-button-primary__inner {
     background-color: var(--spice-button);
 }
-
-/* REMOVE PLAYLIST HEADER */
-/* .main-trackList-trackListHeader {
-    display: none;
-} */
-/* .main-trackList-rowSectionVariable[aria-colindex="4"] {
-    display: none;
-} */
 
 /* === CONFIG PAGE === */
 .main-dropDown-dropDown {
