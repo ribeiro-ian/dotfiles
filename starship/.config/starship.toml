@@ -1,7 +1,6 @@
 add_newline = false
 
 format = """
-$username\
 $directory\
 $fill \
 $time
@@ -10,63 +9,18 @@ $character
 
 palette = 'Claude'
 
-# Define custom colors
-[palettes.Claude]
-red = '#D95C5C'
-green = '#5BAF7A'
-blue = '#7AABE0'
-yellow = '#D4943A'
-dot = '#46423E'
-dir = '#D4943A'
-time = '#DA7756'
-user = '#A584E0'
-
-[palettes.Coffee]
-red = '#ff3636'
-green = '#9dcc52'
-blue = '#6EDDD6'
-yellow = '#f7d979'
-dot = '#624f4c'
-dir = '#9dcc52'
-time = '#f77a6a'
-user = '#BA68C8'
-
-[palettes.Monokai]
-red = '#f92672'
-green = '#a6e22e'
-blue = '#66d9ef'
-yellow = '#e6db74'
-dot = '#3e3d33'
-dir = '#a6e22e'
-time = '#e6db74'
-user = '#f92672'
-
-[palettes.Gruvbox]
-red = '#fb4934'
-green = '#b8bb26'
-blue = '#83a598'
-yellow = '#fabd2f'
-dot = '#3c3836'
-dir = '#458588'
-time = '#fabd2f'
-user = '#fe8019'
-
-[palettes.Omni]
-red = '#E96379'
-green = '#67E480'
-blue = '#78D1E1'
-yellow = '#E7DE79'
-dot = '#41414D'
-dir = '#5a4c7f'
-time = '#E7DE79'
-user = '#E89E64'
-
 [directory]
 read_only = " 󰌾"
 style = 'bold dir'
 
 [username]
-style_user = 'bold user'
+show_always = true
+format = '[$user@](bold user)'
+
+[hostname]
+ssh_only = false
+#format = '[$hostname ](bold user)'
+style = 'bold user'
 
 [time]
 disabled = false
@@ -77,11 +31,56 @@ format = '[$time]($style)'
 style = 'dot'
 symbol = '·'
 
+[character]
+success_symbol = '[>](bold green)'
+error_symbol = '[>](bold red)'
+
 [cpp]
 disabled = false
 symbol = " "
 style = 'lang'
 format = 'via [$name $version]($style)'
+
+# Define custom colors
+[palettes.Claude]
+red = '#D95C5C'
+green = '#5BAF7A'
+dot = '#46423E'
+dir = '#D4943A'
+user = '#DA7756'
+time = '#A584E0'
+
+[palettes.Coffee]
+red = '#ff3636'
+green = '#9dcc52'
+dot = '#624f4c'
+dir = '#9dcc52'
+time = '#f77a6a'
+user = '#BA68C8'
+
+[palettes.Monokai]
+red = '#f92672'
+green = '#a6e22e'
+dot = '#3e3d33'
+dir = '#a6e22e'
+time = '#e6db74'
+user = '#f92672'
+
+[palettes.Gruvbox]
+red = '#fb4934'
+green = '#b8bb26'
+dot = '#3c3836'
+dir = '#458588'
+time = '#fabd2f'
+user = '#fe8019'
+
+[palettes.Omni]
+red = '#E96379'
+green = '#67E480'
+dot = '#41414D'
+dir = '#5a4c7f'
+time = '#E7DE79'
+user = '#E89E64'
 
 # SYMBOLS
 [aws]
@@ -149,9 +148,6 @@ symbol = " "
 
 [hg_branch]
 symbol = " "
-
-[hostname]
-ssh_symbol = " "
 
 [java]
 symbol = " "
