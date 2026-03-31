@@ -4,7 +4,6 @@ export ZSH="$HOME/.oh-my-zsh"
 mkdir -p "$HOME/.cache/zsh"
 export ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump"
 
-
 # Optimized plugins
 plugins=(
 	sudo
@@ -14,7 +13,6 @@ plugins=(
 	zsh-syntax-highlighting
 	zoxide
 )
-
 
 autoload -Uz compinit
 if [[ -s "$ZSH_COMPDUMP" && "$ZSH_COMPDUMP" -nt "$ZSH_COMPDUMP".zwc ]]; then
