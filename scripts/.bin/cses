@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 NUM="${1:-0}"
 FILENAME="cses${NUM}.cpp"
 cat > "$FILENAME" << EOF
