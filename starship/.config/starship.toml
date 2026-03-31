@@ -1,85 +1,81 @@
-add_newline = false
+"$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = true
 format = """
-$directory\
+$username$hostname\
+$directory \
 $fill \
-$time
-$character
-"""
+$cmd_duration
+$character"""
 
 palette = 'Claude'
 
-[directory]
-read_only = " 󰌾"
-style = 'bold dir'
-
 [username]
 show_always = true
-format = '[$user@](bold user)'
+format = '[$user](bold user)[@](dimmed user)'
 
 [hostname]
 ssh_only = false
-#format = '[$hostname ](bold user)'
-style = 'bold user'
+format = '[$hostname](bold user)[:](dimmed user)'
 
-[time]
-disabled = false
-style = 'bold time'
-format = '[$time]($style)'
+[directory]
+read_only = " 󰌾"
+style = 'bold accent'
+format = '[$path]($style)[$read_only]($style)'
+truncation_length = 3
+truncate_to_repo = true
 
-[fill]
-style = 'dot'
-symbol = '·'
+[cmd_duration]
+min_time = 0
+format = '[took $duration](bold gray)'
+show_milliseconds = true
 
 [character]
-success_symbol = '[>](bold green)'
-error_symbol = '[>](bold red)'
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
 
-[cpp]
-disabled = false
-symbol = " "
-style = 'lang'
-format = 'via [$name $version]($style)'
+[time]
+disabled = true
+
+[fill]
+symbol = '·'
+style = 'dark'
 
 # Define custom colors
 [palettes.Claude]
+accent = '#C96642'
+user = '#A584E0'
 red = '#D95C5C'
 green = '#5BAF7A'
-dot = '#46423E'
-dir = '#D4943A'
-user = '#DA7756'
-time = '#A584E0'
+gray = '#6B6560'
+dark = '#2E2B28'
 
 [palettes.Coffee]
+accent = '#9dcc52'
 red = '#ff3636'
 green = '#9dcc52'
-dot = '#624f4c'
-dir = '#9dcc52'
-time = '#f77a6a'
+gray = '#624f4c'
 user = '#BA68C8'
 
 [palettes.Monokai]
 red = '#f92672'
 green = '#a6e22e'
-dot = '#3e3d33'
-dir = '#a6e22e'
-time = '#e6db74'
+gray = '#75715e'
+accent = '#a6e22e'
 user = '#f92672'
 
 [palettes.Gruvbox]
+accent = '#458588'
 red = '#fb4934'
 green = '#b8bb26'
-dot = '#3c3836'
-dir = '#458588'
-time = '#fabd2f'
+gray = '#928374'
 user = '#fe8019'
 
 [palettes.Omni]
 red = '#E96379'
 green = '#67E480'
-dot = '#41414D'
-dir = '#5a4c7f'
-time = '#E7DE79'
+gray = '#41414D'
+accent = '#5a4c7f'
 user = '#E89E64'
 
 # SYMBOLS

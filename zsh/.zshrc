@@ -60,7 +60,6 @@ setopt hist_ignore_all_dups hist_save_no_dups
 setopt hist_ignore_dups hist_find_no_dups
 
 export PATH="$HOME/.bin:$PATH"
-export PATH=$PATH:/home/ian/.spicetify
 
 # Keypad
 # + -  * /
