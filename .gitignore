@@ -1,1 +1,3 @@
 btop/.config/btop/*.log
+bin/.bin/spicetify
+**/OpenSubtitlesDownload.py

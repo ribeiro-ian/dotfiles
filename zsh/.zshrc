@@ -47,7 +47,7 @@ eval "$(zoxide init --cmd cd zsh)"
 alias ls='ls --color'
 alias lsa='ls -A'
 alias cd='z'
-alias reboot-windows='sudo efibootmgr --bootnext 0000 && sudo reboot'
+alias reboot-windows='sudo bootctl set-oneshot windows.conf && sudo reboot'
 
 # History settings
 HISTSIZE=5000

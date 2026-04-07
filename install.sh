@@ -48,35 +48,32 @@ pkg_install() {
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 need() {
-  local cmd="$1" pkg="${2:-$1}"
-  command -v "$cmd" &>/dev/null && return 0
+    local cmd="$1" pkg="${2:-$1}"
+    command -v "$cmd" &>/dev/null && return 0
 
-  warn "'$cmd' is not installed."
-  read -r -p "    Install '$pkg' now? [y/N] " reply
-  [[ "$reply" =~ ^[Yy|Ss]$ ]] || die "'$cmd' is required. Aborting."
-
-  pkg_install "$pkg"
-
-  command -v "$cmd" &>/dev/null || die "Installation of '$pkg' failed. Aborting."
-  ok "'$cmd' installed"
+    warn "'$cmd' is not installed."
+    pkg_install "$pkg"
+    command -v "$cmd" &>/dev/null || die "Installation of '$pkg' failed. Aborting."
+    ok "'$cmd' installed"
 }
 
 clone_or_pull() {
-  local repo="$1" dest="$2"
-  if [[ -d "$dest/.git" ]]; then
-    ok "$(basename "$dest") already cloned — pulling latest"
-    git -C "$dest" pull --ff-only --quiet
-  else
-    log "Cloning $(basename "$dest")"
-    git clone --depth=1 --quiet "$repo" "$dest"
-    ok "$(basename "$dest") cloned"
-  fi
+    local repo="$1" dest="$2"
+    if [[ -d "$dest/.git" ]]; then
+        ok "$(basename "$dest") already cloned — pulling latest"
+        git -C "$dest" pull --ff-only --quiet
+    else
+        log "Cloning $(basename "$dest")"
+        git clone --depth=1 --quiet "$repo" "$dest"
+        ok "$(basename "$dest") cloned"
+    fi
 }
 
 # ── Preflight ─────────────────────────────────────────────────────────────────
 need curl
 need git
 need stow
+need zsh
 need fzf
 
 # ── 1. Oh My Zsh ─────────────────────────────────────────────────────────────
@@ -84,11 +81,11 @@ log "Oh My Zsh"
 if [[ -d "${HOME}/.oh-my-zsh" ]]; then
   ok "Oh My Zsh already installed — skipping"
 else
-  # RUNZSH=no  → don't switch shell mid-script
-  # CHSH=no    → don't auto-chsh (do it deliberately below)
-  RUNZSH=no CHSH=no \
+    # RUNZSH=no  → don't switch shell mid-script
+    # CHSH=no    → don't auto-chsh (do it deliberately below)
+    RUNZSH=no CHSH=no \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  ok "Oh My Zsh installed"
+    ok "Oh My Zsh installed"
 fi
 
 # Use custom directory or fallback to default path
@@ -122,12 +119,10 @@ log "Zoxide"
 if command -v zoxide &>/dev/null; then
     ok "Zoxide already installed ($(zoxide --version))"
 else
-    # Try curl installer first; fall back to package manager
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-    pkg_install zoxide
     ok "Zoxide installed via curl"
-    ok "Zoxide installed via ${PKG_MANAGER}"
-    fi
+    # pkg_install zoxide
+    # ok "Zoxide installed via ${PKG_MANAGER}"
 fi
 
 # ── 4. Starship prompt ────────────────────────────────────────────────────────
@@ -135,10 +130,8 @@ log "Starship"
 if command -v starship &>/dev/null; then
     ok "Starship already installed ($(starship --version | head -1))"
 else
-  # Install system-wide to /usr/bin (requires sudo)
-    curl -sSfL \ 
-    "https://raw.githubusercontent.com/starship/starship/master/install/install.sh" \ 
-    sudo sh -s -- --bin-dir /usr/bin --yes
+    # Install system-wide to /usr/bin (requires sudo)
+    curl -sS https://starship.rs/install.sh | sh -s -- -b /usr/bin
     ok "Starship installed to /usr/bin"
 fi
 
@@ -149,16 +142,15 @@ if [[ "$SHELL" != "$ZSH_BIN" ]]; then
     read -r -p "    Change default shell to zsh now? [y/N] " reply
     if [[ "$reply" =~ ^[Yy]$ ]]; then
         # zsh must be in /etc/shells
-        grep -qxF "$ZSH_BIN" /etc/shells || echo "$ZSH_BIN" | sudo tee -a /etc/shells
-        chsh -s "$ZSH_BIN"
-        ok "Default shell changed to $ZSH_BIN"
+        chsh -s $(which zsh)
+        ok "Default shell changed to zsh"
     fi
 else
     ok "Default shell is already zsh"
 fi
 
 # ── 6. packages & utilities ───────────────────────────────────────────────────────
-packages=(ghostty mpv fzf btop fastfetch tree cmatrix cbonsai)
+packages=(ghostty mpv fzf flatpak btop fastfetch wl-clipboard tree cmatrix cbonsai)
 
 log "packages & utilities"
  
@@ -172,108 +164,20 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-#  Spotify + Spicetify setup
-log "Spotify"
-SPOTIFY_INSTALL_METHOD=""
- 
-if command -v spotify &>/dev/null; then
-    ok "Spotify already installed — skipping"
-else
-    if [[ "$PKG_MANAGER" == "pacman" ]] && command -v paru &>/dev/null; then
-        log "Installing Spotify via paru (AUR)"
-        paru -S --noconfirm spotify
-        SPOTIFY_INSTALL_METHOD="aur"
-        ok "Spotify installed via paru"
-    else
-        log "Installing Spotify via Flatpak"
-        need flatpak
-        flatpak install -y flathub com.spotify.Client
-        SPOTIFY_INSTALL_METHOD="flatpak"
-        ok "Spotify installed via Flatpak"
-    fi
-fi
- 
-# Detect install method if spotify was already installed
-if [[ -z "$SPOTIFY_INSTALL_METHOD" ]]; then
-    if [[ -d "/opt/spotify" ]]; then
-        SPOTIFY_INSTALL_METHOD="aur"
-    else
-        SPOTIFY_INSTALL_METHOD="flatpak"
-    fi
-fi
- 
-# Spicetify — official curl installer
-log "Spicetify"
-if command -v spicetify &>/dev/null; then
-    ok "Spicetify already installed ($(spicetify --version))"
-else
-    curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
-    ok "Spicetify installed"
-fi
- 
-# Spicetify Linux-specific setup
-log "Spicetify Linux setup (${SPOTIFY_INSTALL_METHOD})"
-if [[ "$SPOTIFY_INSTALL_METHOD" == "aur" ]]; then
-    # Grant write permissions to Spotify's AUR directory
-    sudo chmod a+wr /opt/spotify
-    sudo chmod a+wr -R /opt/spotify/Apps
-    ok "Permissions set for /opt/spotify"
-
-elif [[ "$SPOTIFY_INSTALL_METHOD" == "flatpak" ]]; then
-    # Detect Flatpak Spotify path
-    FLATPAK_SPOTIFY_SYSTEM="${HOME}/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-    FLATPAK_SPOTIFY_USER="/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-
-    if [[ -d "$FLATPAK_SPOTIFY_SYSTEM" ]]; then
-        SPOTIFY_PATH="$FLATPAK_SPOTIFY_SYSTEM"
-    elif [[ -d "$FLATPAK_SPOTIFY_USER" ]]; then
-        SPOTIFY_PATH="$FLATPAK_SPOTIFY_USER"
-    else
-        warn "Could not detect Flatpak Spotify path — set it manually with: spicetify config spotify_path <path>"
-        SPOTIFY_PATH=""
-    fi
-
-    if [[ -n "$SPOTIFY_PATH" ]]; then
-        spicetify config spotify_path "$SPOTIFY_PATH"
-        ok "spotify_path set to $SPOTIFY_PATH"
-    fi
-
-    # Detect prefs file
-    PREFS_SYSTEM="$HOME/.config/spotify/prefs"
-    PREFS_USER="$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
-
-    if [[ -f "$PREFS_SYSTEM" ]]; then
-        spicetify config prefs_path "$PREFS_SYSTEM"
-        ok "prefs_path set to $PREFS_SYSTEM"
-    elif [[ -f "$PREFS_USER" ]]; then
-        spicetify config prefs_path "$PREFS_USER"
-        ok "prefs_path set to $PREFS_USER"
-    else
-        warn "Could not detect Spotify prefs file — set it manually with: spicetify config prefs_path <path>"
-    fi
-
-    # Grant permissions to Flatpak Spotify directory
-    if [[ -n "$SPOTIFY_PATH" ]]; then
-        sudo chmod a+wr "$SPOTIFY_PATH"
-        sudo chmod a+wr -R "$SPOTIFY_PATH/Apps" 2>/dev/null || true
-        ok "Permissions set for $SPOTIFY_PATH"
-    fi
-fi
-
 # ── 7. Fonts ─────────────────────────────────────────────────────────────────
-FONTS=(AdwaitaMono Arimo BlexMono DepartureMono FiraMono JetBrainsMono MesloLG RobotoMono SpaceMono UbuntuMono)
+FONTS=(AdwaitaMono Arimo DepartureMono FiraMono JetBrainsMono Lilex RobotoMono UbuntuMono)
 mkdir -p ~/.fonts
 
 for font in "${FONTS[@]}"; do
-  curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip" \
+    curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip" \
     -o "/tmp/${font}.zip"
-  unzip -o "/tmp/${font}.zip" -d "${HOME}/.fonts/${font}"
-  rm "/tmp/${font}.zip"
+    unzip -o "/tmp/${font}.zip" -d "${HOME}/.fonts/${font}"
+    rm "/tmp/${font}.zip"
 done
-
 fc-cache -fv
  
 # ── 8. Rename ~/dotfiles → ~/.dotfiles ───────────────────────────────────────
+exec zsh
 log "Dotfiles directory"
 DOTFILES_SRC="${HOME}/dotfiles"
 DOTFILES_DST="${HOME}/.dotfiles"
@@ -284,18 +188,18 @@ elif [[ -d "$DOTFILES_SRC" ]]; then
     mv "$DOTFILES_SRC" "$DOTFILES_DST"
     ok "Renamed ~/dotfiles → ~/.dotfiles"
 else
-    die "~/dotfiles not found. Clone your dotfiles repo first."
+    die "~/dotfiles not found"
 fi
-
 
 # ── 9. Stow configs ───────────────────────────────────────────────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
+STOW=(bin ghostty mpv starship zsh)
 
-for folder in */; do
-    pkg="${folder%/}"  # strip trailing slash
-    stow -v --restow --adopt "$pkg"
-    ok "Stowed $pkg"
+for pkg in "${@STOW[@]}"; do
+    p="${pkg%/}"  # strip trailing slash
+    stow -v --restow --adopt "$p"
+    ok "Stowed $p"
 done
 ok "Stow done successfully"
 

@@ -1,5 +1,5 @@
 # Font Configuration
-font-family = BlexMono Nerd Font
+font-family = Lilex Nerd Font
 font-size = 12
 
 # Window Configuration
@@ -8,8 +8,8 @@ theme = Claude
 #window-decoration = true
 window-padding-x = 12
 window-padding-y = 12
-window-width = 80
-window-height = 24
+window-width = 96
+window-height = 32
 window-decoration = false
 background-opacity = 1
 
