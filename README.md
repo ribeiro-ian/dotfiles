@@ -7,6 +7,7 @@ This repository serves as a to help me setup and maintain my Linux systems. Mana
 | Package     | Description                                          |
 | ----------- | ---------------------------------------------------- |
 | `zsh`       | Zsh config with Oh My Zsh, plugins & starship prompt |
+| `btop`      | btop system monitor configuration                    |
 | `ghostty`   | Ghostty terminal configuration                       |
 | `starship`  | Starship prompt theme                                |
 | `mpv`       | MPV media player config                              |
@@ -48,10 +49,10 @@ If you prefer to set things up yourself:
 
 ```bash
 # apt
-sudo apt install git stow curl zsh fzf
+sudo apt install git stow curl zsh fzf btop
 
 # pacman
-sudo pacman -S git stow curl zsh fzf
+sudo pacman -S git stow curl zsh fzf btop
 ```
 
 ### 2. Clone
