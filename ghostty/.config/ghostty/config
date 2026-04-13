@@ -1,37 +1,37 @@
-# Font Configuration
+# ─────── Theme configuration ─────────
+theme = Claude
+
+# ─────── Font configuration ──────────
 font-family = Lilex Nerd Font
 font-size = 12
 
-# Window Configuration
-theme = Claude
-
+# ─────── Window configuration ────────
 #window-decoration = true
 window-padding-x = 12
 window-padding-y = 12
-window-width = 96
-window-height = 32
+window-width = 72
+window-height = 24
 window-decoration = false
 background-opacity = 1
 
-# Cursor Configuration
+# ─────── Cursor configuration ────────
+shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = true
 
-# Scrollback
+# ─────── Scrollback ──────────────────
 scrollback-limit = 3023
 
-# Terminal features
+# ─────── Terminal features ───────────
 mouse-hide-while-typing = true
 copy-on-select = false
 confirm-close-surface = false
-gtk-single-instance = true
-command = zsh -c "fastfetch; exec zsh"
 
-# Key bindings for common actions
-#keybind = ctrl+c=copy_to_clipboard
-#keybind = ctrl+v=paste_from_clipboard
-keybind = ctrl+shift+n=new_window
-keybind = ctrl+t=new_tab
-keybind = ctrl+plus=increase_font_size:1
-keybind = ctrl+minus=decrease_font_size:1
-keybind = ctrl+zero=reset_font_size
+# ─────── Keybinds ────────────────────
+# deletes previous word
+keybind = ctrl+backspace=text:\x17 
+
+keybind = ctrl+end=scroll_to_bottom
+keybind = ctrl+home=scroll_to_top
+keybind = ctrl+page_down=scroll_page_down
+keybind = ctrl+page_up=scroll_page_up
