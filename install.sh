@@ -194,7 +194,7 @@ fi
 # ── 9. Stow configs ───────────────────────────────────────────────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
-STOW=(bin ghostty mpv starship zsh)
+STOW=(bin btop ghostty mpv starship zsh)
 
 for pkg in "${@STOW[@]}"; do
     p="${pkg%/}"  # strip trailing slash
