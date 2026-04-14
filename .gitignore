@@ -1,3 +1,4 @@
 btop/.config/btop/*.log
 bin/.bin/spicetify
 **/OpenSubtitlesDownload.py
+spicetify/.config/spicetify/config-xpui.ini

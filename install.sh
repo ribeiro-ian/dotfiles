@@ -276,12 +276,6 @@ else
     die "~/dotfiles not found"
 fi
 
-# Spicetify symbolic links
-cd "$DOTFILES_DST"
-ln -s "${HOME}/.config/spicetify/config-xpui.ini" \
-      "$DOTFILES_DST/spicetify/.config/spicetify/"
-ln -s "${HOME}/.spicetify/spicetify" "$DOTFILES_DST/.bin/"
-
 # ── 10. Stow configs ───────────────────────────────────────────────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
@@ -294,6 +288,12 @@ ok "Stow done successfully"
 
 git restore .
 ok "Restored versioned configs"
+
+cd "$DOTFILES_DST"
+ln -s "${HOME}/.config/spicetify/config-xpui.ini" \
+      "$DOTFILES_DST/spicetify/.config/spicetify/"
+ln -s "${HOME}/.spicetify/spicetify" "$DOTFILES_DST/.bin/"
+ok "Spicetify symlinks added"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 mkdir -vp ~/.icons
