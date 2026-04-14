@@ -149,7 +149,92 @@ else
     ok "Default shell is already zsh"
 fi
 
-# ── 6. packages & utilities ───────────────────────────────────────────────────────
+# ── 6. Spotify & Spicetify setup ─────────────────────────────────────────────
+echo ""
+warn "Before continuing, please install Spotify manually and open it once (wait ~60s logged in)."
+echo -e "  ${BOLD}Spotify${RESET} → https://www.spotify.com/download/linux/"
+echo ""
+
+while true; do
+    read -r -p "$(echo -e "${CYAN}${BOLD}==>${RESET} Have you installed Spotify and ran it once? [y/N] ")" reply
+    [[ "$reply" =~ ^[Yy]([Ee][Ss])?$ ]] && break
+    warn "Take your time — the script will wait."
+done
+
+# --- Detect Spotify install method ---
+echo ""
+log "How did you install Spotify?"
+echo "  1) AUR (spotify)"
+echo "  2) Flatpak"
+read -r -p "$(echo -e "${CYAN}${BOLD}==>${RESET} Enter option [1-2]: ")" spotify_opt
+
+case "$spotify_opt" in
+    1) SPOTIFY_INSTALL_METHOD="aur" ;;
+    2) SPOTIFY_INSTALL_METHOD="flatpak" ;;
+    *) die "Invalid option." ;;
+esac
+
+# --- Install Spicetify ---
+log "Installing Spicetify"
+if command -v spicetify &>/dev/null || [[ -x "$HOME/.spicetify/spicetify" ]]; then
+    ok "Spicetify already installed"
+else
+    curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
+    ok "Spicetify installed"
+fi
+
+SPICETIFY="$HOME/.spicetify/spicetify"
+
+# --- Linux-specific setup per install method ---
+log "Spicetify Linux setup (${SPOTIFY_INSTALL_METHOD})"
+
+case "$SPOTIFY_INSTALL_METHOD" in
+    aur)
+        sudo chmod a+wr /opt/spotify
+        sudo chmod a+wr -R /opt/spotify/Apps
+        ok "Permissions set for /opt/spotify"
+        ;;
+
+    flatpak)
+        FLATPAK_SYSTEM="/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+        FLATPAK_USER="$HOME/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+
+        if [[ -d "$FLATPAK_SYSTEM" ]]; then
+            SPOTIFY_PATH="$FLATPAK_SYSTEM"
+        elif [[ -d "$FLATPAK_USER" ]]; then
+            SPOTIFY_PATH="$FLATPAK_USER"
+        else
+            warn "Could not detect Flatpak Spotify path — set manually: spicetify config spotify_path <path>"
+            SPOTIFY_PATH=""
+        fi
+
+        if [[ -n "$SPOTIFY_PATH" ]]; then
+            "$SPICETIFY" config spotify_path "$SPOTIFY_PATH"
+            sudo chmod a+wr "$SPOTIFY_PATH"
+            sudo chmod a+wr -R "$SPOTIFY_PATH/Apps" 2>/dev/null || true
+            ok "spotify_path + permissions set for $SPOTIFY_PATH"
+        fi
+
+        PREFS_SYSTEM="$HOME/.config/spotify/prefs"
+        PREFS_USER="$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
+
+        if [[ -f "$PREFS_SYSTEM" ]]; then
+            "$SPICETIFY" config prefs_path "$PREFS_SYSTEM"
+            ok "prefs_path set to $PREFS_SYSTEM"
+        elif [[ -f "$PREFS_USER" ]]; then
+            "$SPICETIFY" config prefs_path "$PREFS_USER"
+            ok "prefs_path set to $PREFS_USER"
+        else
+            warn "Could not detect prefs file — set manually: spicetify config prefs_path <path>"
+        fi
+        ;;
+esac
+
+# --- Apply Spicetify ---
+"$SPICETIFY" backup apply
+ok "Spicetify applied"
+
+# ── 7. packages & utilities ───────────────────────────────────────────────────────
 packages=(ghostty mpv fzf flatpak btop fastfetch wl-clipboard tree cmatrix cbonsai)
 
 log "packages & utilities"
@@ -164,7 +249,7 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-# ── 7. Fonts ─────────────────────────────────────────────────────────────────
+# ── 8. Fonts ─────────────────────────────────────────────────────────────────
 FONTS=(AdwaitaMono Arimo DepartureMono FiraMono JetBrainsMono Lilex RobotoMono UbuntuMono)
 mkdir -p ~/.fonts
 
@@ -176,7 +261,7 @@ for font in "${FONTS[@]}"; do
 done
 fc-cache -fv
  
-# ── 8. Rename ~/dotfiles → ~/.dotfiles ───────────────────────────────────────
+# ── 9. Rename ~/dotfiles → ~/.dotfiles ───────────────────────────────────────
 exec zsh
 log "Dotfiles directory"
 DOTFILES_SRC="${HOME}/dotfiles"
@@ -191,15 +276,19 @@ else
     die "~/dotfiles not found"
 fi
 
-# ── 9. Stow configs ───────────────────────────────────────────────────────────
+# Spicetify symbolic links
+cd "$DOTFILES_DST"
+ln -s "${HOME}/.config/spicetify/config-xpui.ini" \
+      "$DOTFILES_DST/spicetify/.config/spicetify/"
+ln -s "${HOME}/.spicetify/spicetify" "$DOTFILES_DST/.bin/"
+
+# ── 10. Stow configs ───────────────────────────────────────────────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
-STOW=(bin btop ghostty mpv starship zsh)
 
-for pkg in "${@STOW[@]}"; do
-    p="${pkg%/}"  # strip trailing slash
-    stow -v --restow --adopt "$p"
-    ok "Stowed $p"
+for pkg in */; do
+    stow -v --restow --adopt "$pkg"
+    ok "Stowed $pkg"
 done
 ok "Stow done successfully"
 
