@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# =============================================================================
+# ============================================================================
 # Dotfiles ─ change_theme.sh
-# =============================================================================
+# ============================================================================
 
-# --- Parameter validation ---
+# ────── Parameter validation ──────
 if [[ $# -lt 1 ]]; then
     echo "Error: no theme specified." >&2
     echo "Usage: $0 <theme>" >&2
@@ -17,35 +17,31 @@ if [[ $# -gt 1 ]]; then
 fi
 
 THEME="$1"
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# --- Find dotfiles directory ---
-if [[ -d "$HOME/.dotfiles" ]]; then
-    DOTFILES="$HOME/.dotfiles"
-elif [[ -d "$HOME/dotfiles" ]]; then
-    DOTFILES="$HOME/dotfiles"
-else
-    echo "Error: no dotfiles directory found at ~/.dotfiles or ~/dotfiles." >&2
-    exit 1
-fi
-
-# --- Define files and their sed expressions ---
-# Format: "file|sed_expression"
+# ────── Define files and their sed expressions ──────
+# Format: "file@sed_expression"
 declare -a TARGETS=(
-    "ghostty/.config/ghostty/config|s|(theme = ).*|\1${THEME}|"
-    ".config/spicetify/config-xpui.ini|s|marketplace|sonder|"
-    ".config/spicetify/config-xpui.ini|s|(color_scheme           = ).*|\1${THEME}|"
+    "ghostty/.config/ghostty/config@\
+    s|(theme = ).*|\1${THEME}|"
+    
+    "starship/.config/starship.toml@\
+    s|(palette = ).*|\1'${THEME}'|"
+    
+    "spicetify/.config/spicetify/config-xpui.ini@\
+    s|(color_scheme[[:space:]]*= ).*|\1${THEME}|"
 )
 
-echo "============================================="
+echo "─────────────────────────────────────────────"
 echo " Theme migration preview: '${THEME}'"
-echo "============================================="
+echo "─────────────────────────────────────────────"
 
-# --- Preview changes ---
+# ────── Preview changes ──────
 any_changes=0
 for entry in "${TARGETS[@]}"; do
-    file="${entry%%|*}"
-    expr="${entry##*|}"
-    filepath="${DIR}/${file}"
+    file="${entry%%@*}"
+    expr="${entry##*@}"
+    filepath="${DOTFILES}/${file}"
 
     if [[ ! -f "$filepath" ]]; then
         echo ""
@@ -53,7 +49,7 @@ for entry in "${TARGETS[@]}"; do
         continue
     fi
 
-    preview=$(sed -E "$expr" "$filepath" | diff "$filepath" - || true)
+    preview=$(diff <(cat "$filepath") <(sed -E "$expr" "$filepath") || true)
 
     if [[ -z "$preview" ]]; then
         echo ""
@@ -61,7 +57,7 @@ for entry in "${TARGETS[@]}"; do
     else
         echo ""
         echo "[CHANGE] ${file}:"
-        diff <(cat "$filepath") <(sed -E "$expr" "$filepath") \
+        echo "$preview" \
             | grep -E "^[<>]" \
             | sed 's/^< /  OLD: /' \
             | sed 's/^> /  NEW: /'
@@ -75,17 +71,17 @@ if [[ $any_changes -eq 0 ]]; then
     exit 0
 fi
 
-# --- Confirm ---
+# ────── Confirm ──────
 echo ""
-echo "============================================="
+echo "─────────────────────────────────────────────"
 read -rp "Apply changes? [y to confirm]: " answer
 
 if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     echo ""
     for entry in "${TARGETS[@]}"; do
-        file="${entry%%|*}"
-        expr="${entry##*|}"
-        filepath="${DIR}/${file}"
+        file="${entry%%@*}"
+        expr="${entry##*@}"
+        filepath="${DOTFILES}/${file}"
 
         [[ ! -f "$filepath" ]] && continue
 
