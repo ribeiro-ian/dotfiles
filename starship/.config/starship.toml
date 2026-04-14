@@ -8,7 +8,7 @@ $fill \
 $cmd_duration
 $character"""
 
-palette = 'Claude'
+palette = 'Gruvbox Dark Hard'
 
 [username]
 show_always = true
@@ -50,33 +50,13 @@ green = '#5BAF7A'
 gray = '#6B6560'
 dark = '#2E2B28'
 
-[palettes.Coffee]
-accent = '#9dcc52'
-red = '#ff3636'
-green = '#9dcc52'
-gray = '#624f4c'
-user = '#BA68C8'
-
-[palettes.Monokai]
-red = '#f92672'
-green = '#a6e22e'
-gray = '#75715e'
-accent = '#a6e22e'
-user = '#f92672'
-
-[palettes.Gruvbox]
-accent = '#458588'
+[palettes."Gruvbox Dark Hard"]
+accent = '#56A2FF'
+user = '#d65d0e'
 red = '#fb4934'
 green = '#b8bb26'
 gray = '#928374'
-user = '#fe8019'
-
-[palettes.Omni]
-red = '#E96379'
-green = '#67E480'
-gray = '#41414D'
-accent = '#5a4c7f'
-user = '#E89E64'
+dark = '#3c3836'
 
 # SYMBOLS
 [aws]
