@@ -290,8 +290,6 @@ git restore .
 ok "Restored versioned configs"
 
 cd "$DOTFILES_DST"
-ln -s "${HOME}/.config/spicetify/config-xpui.ini" \
-      "$DOTFILES_DST/spicetify/.config/spicetify/"
 ln -s "${HOME}/.spicetify/spicetify" "$DOTFILES_DST/.bin/"
 ok "Spicetify symlinks added"
 
