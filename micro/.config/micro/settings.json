@@ -1,0 +1,11 @@
+{
+    "colorscheme": "claude",
+    "truecolor": "on",
+    "linenumbers": true,
+    "savecursor": true,
+    "scrollmargin": 2,
+    "softwrap": true,
+    "statusformatl": "$(filename) $(modified)$(overwrite)($(line),$(col)) $(status.paste)",
+    "tabstospaces": true,
+    "trimtrailingwhitespace": true,
+}
