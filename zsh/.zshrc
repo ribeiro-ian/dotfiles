@@ -51,7 +51,7 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=8'
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.scripts:$PATH"
 
 # time function
 TIMEFMT='real	%E
@@ -62,6 +62,7 @@ sys	%S'
 alias ls='ls --color'
 alias lsa='ls -A'
 alias cd='z'
+alias vim=nvim
 alias reboot-windows='sudo bootctl set-oneshot windows.conf && sudo reboot'
 
 # Keypad
