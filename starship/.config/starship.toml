@@ -4,11 +4,27 @@ add_newline = false
 format = """
 $username$hostname\
 $directory \
-$fill \
-$cmd_duration
+$fill
 $character"""
 
-palette = 'Gruvbox Dark Hard'
+palette = 'Claude'
+
+# ─── Custom colorschemes ───
+[palettes.Claude]
+accent = '#DA7756'
+user = '#A580E0'
+red = '#D91C5C'
+green = '#1BAF7A'
+symbol = '#C9C2B8'
+dark = '#2E2B28'
+
+[palettes."Gruvbox Dark Hard"]
+accent = '#5BC2E7'
+user = '#d61d0e'
+red = '#fb4930'
+green = '#b4bb26'
+symbol = '#928370'
+dark = '#1c3836'
 
 [username]
 show_always = true
@@ -25,39 +41,17 @@ format = '[$path]($style)[$read_only]($style)'
 truncation_length = 3
 truncate_to_repo = true
 
-[cmd_duration]
-min_time = 0
-format = '[took $duration](bold gray)'
-show_milliseconds = true
-
 [character]
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
 
 [time]
 disabled = true
-
+ 
 [fill]
 symbol = '·'
 style = 'dark'
-
-# Define custom colors
-[palettes.Claude]
-accent = '#C96642'
-user = '#A584E0'
-red = '#D95C5C'
-green = '#5BAF7A'
-gray = '#6B6560'
-dark = '#2E2B28'
-
-[palettes."Gruvbox Dark Hard"]
-accent = '#56A2FF'
-user = '#d65d0e'
-red = '#fb4934'
-green = '#b8bb26'
-gray = '#928374'
-dark = '#3c3836'
-
+ 
 # SYMBOLS
 [aws]
 symbol = "  "
