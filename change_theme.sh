@@ -40,6 +40,7 @@ echo "────────────────────────�
 
 # ────── Preview changes ──────
 any_changes=0
+spicetify_change=0
 for entry in "${TARGETS[@]}"; do
   file="${entry%%@*}"
   expr="${entry##*@}"
@@ -110,10 +111,12 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     echo "[DONE] ${file}"
   done
 
-  echo "[DONE] spicetify"
-  "$HOME/.spicetify/spicetify" config current_theme sonder
-  "$HOME/.spicetify/spicetify" config color_scheme "${THEME}"
-  "$HOME/.spicetify/spicetify" apply
+  if [[ "$spicetify_change" -eq 1]]; then
+    echo "[DONE] spicetify"
+    "$HOME/.spicetify/spicetify" config current_theme sonder
+    "$HOME/.spicetify/spicetify" config color_scheme "${THEME}"
+    "$HOME/.spicetify/spicetify" apply
+  done    
 
   echo ""
   echo "Theme '${THEME}' applied successfully."

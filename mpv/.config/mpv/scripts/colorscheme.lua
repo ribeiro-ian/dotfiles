@@ -2,7 +2,7 @@
 local opt = require 'mp.options'
 local msg = require 'mp.msg'
 
-local opts = { theme = "Default" }
+local opts = { colorscheme = "Default" }
 opt.read_options(opts, "colorscheme")
 
 local palettes = {
@@ -23,7 +23,7 @@ local palettes = {
     }
 }
 
-local function expand_theme(base)
+local function expand_colorscheme(base)
     return {
         -- osc_color = base.bg,
         seekbarbg_color = base.bg,
@@ -50,8 +50,8 @@ local function expand_theme(base)
 end
 
 local function generate_colorscheme_file()
-    local base = palettes[opts.theme] or palettes["Default"]
-    local theme = expand_theme(base)
+    local base = palettes[opts.colorscheme] or palettes["Default"]
+    local colorscheme = expand_colorscheme(base)
     
     local path = mp.command_native({"expand-path", "~~/script-opts/modernz-colorscheme.conf"})
     local file = io.open(path, "w")
@@ -60,19 +60,19 @@ local function generate_colorscheme_file()
         return
     end
     
-    for key, value in pairs(theme) do
+    for key, value in pairs(colorscheme) do
         file:write(string.format("%s=%s\n", key, value))
     end
     file:close()
     
-    msg.info("Generated colorscheme: " .. opts.theme)
+    msg.info("Generated colorscheme: " .. opts.colorscheme)
 end
 
 generate_colorscheme_file()
 
-mp.register_script_message("reload-theme", function()
+mp.register_script_message("reload-colorscheme", function()
     opt.read_options(opts, "colorscheme")
     generate_colorscheme_file()
     mp.commandv("script-message", "modernz-reload")
-    mp.commandv("show-text", "Theme: " .. opts.theme, "2000")
+    mp.commandv("show-text", "Colorscheme: " .. opts.colorscheme, "2000")
 end)
