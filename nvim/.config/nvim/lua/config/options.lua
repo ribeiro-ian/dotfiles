@@ -6,5 +6,6 @@ opt.scrolloff = 8 -- lines of context
 opt.cursorline = true -- enable highlighting of the current line
 opt.expandtab = true -- use spaces instead of tabs
 opt.number = true -- print line number
-opt.tabstop = 4 -- number of spaces tabs count for
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 opt.termguicolors = true -- true color support
