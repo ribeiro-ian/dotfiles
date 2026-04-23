@@ -16,11 +16,16 @@ local palettes = {
         fg = "#EDE8E0",
         bg = "#1F1E1C"
     },
+    ["Gruvbox Dark Medium"] = {
+        accent = "#5BC2E7",
+        fg = "#EBDBB2",
+        bg = "#282828"
+    },
     ["Gruvbox Dark Hard"] = {
         accent = "#5BC2E7",
         fg = "#EBDBB2",
         bg = "#1D2021"
-    }
+    },
 }
 
 local function expand_colorscheme(base)

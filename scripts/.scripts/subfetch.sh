@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Usage: ./getsubs_folder.sh <folder> [extension]
 # Extension defaults to mkv if not provided

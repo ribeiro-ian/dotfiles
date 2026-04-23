@@ -17,9 +17,16 @@ red = '#D91C5C'
 green = '#1BAF7A'
 dark = '#2E2B28'
 
+[palettes."Gruvbox Dark Medium"]
+accent = '#5BC2E7'
+user = '#d65d0e'
+red = '#fb4930'
+green = '#b4bb26'
+dark = '#665c54'
+
 [palettes."Gruvbox Dark Hard"]
 accent = '#5BC2E7'
-user = '#d79921'
+user = '#d65d0e'
 red = '#fb4930'
 green = '#b4bb26'
 dark = '#504945'

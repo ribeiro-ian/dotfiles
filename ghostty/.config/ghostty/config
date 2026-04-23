@@ -1,5 +1,5 @@
 # ─────── Theme configuration ─────────
-theme = Claude
+theme = Gruvbox Dark Hard
 
 # ─────── Font configuration ──────────
 font-family = Lilex Nerd Font

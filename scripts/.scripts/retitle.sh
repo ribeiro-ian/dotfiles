@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Script to set metadata titles for episode files based on a text file
 # Usage: ./set-episode-titles.sh <titles.txt> <folder>

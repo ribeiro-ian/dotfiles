@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Script to apply icon theme by changing packages .desktop Icon paramete
 # Usage: ./apply_icon_theme <icon theme scalable apps path>
@@ -29,18 +29,18 @@ apply_icons() {
 
     for f in "$dir"/*.desktop; do
         [ -f "$f" ] || continue
-        icon_name=$(grep -Po '(?<=^Icon=)[^/].*' "$f" 2>/dev/null || true)
+        icon_name=$(grep -Po '(?<=^Icon=)[^/].*' "$f" 2>/dev/null | head -1 || true)
         [ -z "$icon_name" ] && continue
 
         svg="$ICON_DIR/$icon_name.svg"
         if [ -f "$svg" ]; then
-            echo "  ✓ $(basename "$f") → $icon_name.svg"
-            (( TOTAL_MATCHED++ )) || true
-            ["$DRY_RUN" = false ] && \
+            echo -e "  \033[32m✓\033[0m $(basename "$f") → $icon_name.svg"
+            ((TOTAL_MATCHED++)) || true
+            [ "$DRY_RUN" = false ] &&
                 $use_sudo sed -Ei "s|(Icon=)([^/].*)|\1$svg|" "$f"
         else
-            echo "  ✗ $(basename "$f") → no match ($icon_name)"
-            (( skipped++ )) || true
+            echo -e "  \033[31m✗\033[0m $(basename "$f") → no match ($icon_name)"
+            ((skipped++)) || true
         fi
     done
     echo "  matched: $matched | skipped: $skipped"
@@ -48,9 +48,9 @@ apply_icons() {
 
 DRY_RUN=true
 echo "=== Preview ==="
-apply_icons "$GLOBAL_DIR"        "sudo"
+apply_icons "$GLOBAL_DIR" "sudo"
 apply_icons "$FLATPAK_GLOBAL_DIR" "sudo"
-apply_icons "$FLATPAK_LOCAL_DIR"  ""
+apply_icons "$FLATPAK_LOCAL_DIR" ""
 
 if [ "$TOTAL_MATCHED" -eq 0 ]; then
     echo ""
@@ -62,9 +62,9 @@ echo ""
 read -rp "Apply changes? [y to confirm]: " answer
 if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     DRY_RUN=false
-    apply_icons "$GLOBAL_DIR"         "sudo"
+    apply_icons "$GLOBAL_DIR" "sudo"
     apply_icons "$FLATPAK_GLOBAL_DIR" "sudo"
-    apply_icons "$FLATPAK_LOCAL_DIR"  ""
+    apply_icons "$FLATPAK_LOCAL_DIR" ""
     echo "Done."
 else
     echo "Aborted."
