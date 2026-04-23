@@ -1,7 +1,7 @@
 # Claude Dark Theme — Ghostty
 # Warm charcoal backgrounds, terracotta accent
 
-background = #1A1917
+background = #1F1E1C
 foreground = #EDE8E0
 cursor-color = #E8845C
 cursor-text = #1A1917
@@ -9,7 +9,7 @@ selection-background = #EDE8E0
 selection-foreground = #2E1E15
 
 # Normal colors (0–7)
-palette = 0= #1F1E1C
+palette = 0= #262422
 palette = 1= #D95C5C
 palette = 2= #5BAF7A
 palette = 3= #D4943A
