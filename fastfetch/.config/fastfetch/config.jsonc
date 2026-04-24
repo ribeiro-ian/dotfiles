@@ -24,7 +24,8 @@
             {
             "type": "host",
             "key": " pc",
-            "keyColor": "yellow"
+            "keyColor": "yellow",
+            "format": "{name}"
         },
         {
             "type": "os",
@@ -110,6 +111,7 @@
             "type": "disk",
             "key": "{icon} disk{5}",
             "keyColor": "green",
+            "hideFS": "vfat",
             "format": "{size-used} / {size-total}  {#light_black}[{filesystem}]"
         },
         {

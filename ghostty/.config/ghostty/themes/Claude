@@ -19,11 +19,11 @@ palette = 6= #5AABA0
 palette = 7= #9A928A
 
 # Bright colors (8–15)
-palette =8= #46423E
-palette =9= #E8845C
-palette =10= #6DC48C
-palette =11= #E0AA52
-palette =12= #7AABE0
-palette =13= #BA9EF0
-palette =14= #72C4BA
-palette =15= #EDE8E0
+palette = 8= #46423E
+palette = 9= #E8845C
+palette = 10= #6DC48C
+palette = 11= #E0AA52
+palette = 12= #7AABE0
+palette = 13= #BA9EF0
+palette = 14= #72C4BA
+palette = 15= #EDE8E0
