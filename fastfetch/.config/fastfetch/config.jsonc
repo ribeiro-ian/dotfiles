@@ -4,14 +4,14 @@
     "logo": {
         "type": "small",
         "padding": {
-            "top": 4,
+            "top": 3,
             "left": 1,
             "right": 3
         }
     },
 
     "display": {
-        "key": { "width": 12 },
+        "key": { "width": 10 },
         "percent": { "type": 3 },
         "separator": ""
     },
@@ -21,28 +21,34 @@
             "type": "title",
             "format": "{#bold_red}{user-name}{#dim_white}@{#}{#bold_red}{host-name}"
         },
-            {
+        {
             "type": "host",
             "key": " pc",
             "keyColor": "yellow",
             "format": "{name}"
         },
         {
-            "type": "os",
+            "type": "command",
             "key": "󰻀 os",
             "keyColor": "yellow",
-            "format": "{pretty-name}  {#light_black}[{arch}]"
+            "text": "bash -c 'printf \"%s \\033[90m[%s]\\033[0m\\n\" \"$(. /etc/os-release && echo $PRETTY_NAME)\" \"$(uname -r)\"'"
         },
-        {
-            "type": "kernel",
-            "key": " kern",
-            "keyColor": "yellow",
-            "format": "{sysname}  {#light_black}[v{release}]"
-        },
+        // {
+        //     "type": "os",
+        //     "key": "󰻀 os",
+        //     "keyColor": "yellow",
+        //     "format": "{pretty-name} {#light_black}[{arch}]"
+        // },
+        // {
+        //     "type": "kernel",
+        //     "key": " kernel",
+        //     "keyColor": "yellow",
+        //     "format": "{sysname}  {#light_black}[v{release}]"
+        // },
         {
             "type": "packages",
             "key": "󰏗 pkgs",
-            "keyColor": "yellow",
+            "keyColor": "yellow"
         },
         // {
         //     "type": "uptime",
