@@ -89,7 +89,7 @@ fi
 
 if [[ $any_changes -eq 0 ]]; then
     echo ""
-    echo "No changes to apply. Is '${THEME}' already the active theme?"
+    echo "No changes to apply. '${THEME}' is already the active theme."
     exit 0
 fi
 
