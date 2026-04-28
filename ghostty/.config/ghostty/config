@@ -1,5 +1,5 @@
 # ─────── Theme configuration ─────────
-theme = Gruvbox Dark Medium
+theme = Claude
 
 # ─────── Font configuration ──────────
 font-family = Lilex Nerd Font
@@ -30,7 +30,6 @@ confirm-close-surface = false
 # ─────── Keybinds ────────────────────
 # deletes previous word
 #keybind = ctrl+backspace=text:\x17
-# In ~/.config/ghostty/config
 keybind = ctrl+backspace=text:\x1b\x7f
 
 keybind = ctrl+end=scroll_to_bottom
