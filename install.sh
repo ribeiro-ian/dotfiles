@@ -94,6 +94,10 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
 # ── 2. Zsh plugins ────────────────────────────────────────────────────────────
 log "Zsh plugins"
 
+clone_or_pull \
+"https://github.com/MichaelAquilina/zsh-you-should-use" \
+"${ZSH_CUSTOM}/plugins/you-should-use"
+
 # zsh autosuggestions
 clone_or_pull \
 "https://github.com/zsh-users/zsh-autosuggestions" \

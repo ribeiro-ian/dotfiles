@@ -3,9 +3,12 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Optimized plugins
 plugins=(
-	sudo
+	colored-man-pages
+	extract
 	fzf-tab
 	git
+	sudo
+	you-should-use
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	zoxide
@@ -22,15 +25,9 @@ setopt appendhistory sharehistory hist_ignore_space
 setopt hist_ignore_all_dups hist_save_no_dups
 setopt hist_ignore_dups hist_find_no_dups
 
-autoload -Uz compinit
-if [[ -s "$ZSH_COMPDUMP" && "$ZSH_COMPDUMP" -nt "$ZSH_COMPDUMP".zwc ]]; then
-    compinit -d "$ZSH_COMPDUMP"
-else
-    compinit -C -d "$ZSH_COMPDUMP"
-fi
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 # Source OMZ
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # Completion styling
