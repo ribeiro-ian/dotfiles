@@ -2,7 +2,7 @@
 theme = Claude
 
 # ─────── Font configuration ──────────
-font-family = Lilex Nerd Font
+font-family = MesloLGMDZ Nerd Font Mono
 font-size = 12
 
 # ─────── Window configuration ────────

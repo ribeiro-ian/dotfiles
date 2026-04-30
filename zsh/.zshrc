@@ -50,8 +50,12 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=8'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
+
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export PATH="$HOME/.scripts:$PATH"
+
+export EDITOR=nvim
+export VISUAL=nvim
 
 # time function
 TIMEFMT='real	%E
