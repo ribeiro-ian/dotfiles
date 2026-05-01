@@ -24,7 +24,7 @@ fi
 bin="$(dirname "$src")/a.out"
 
 if [[ ! -f "$bin" || "$src" -nt "$bin" ]]; then
-    echo "Compiling..." >&2
+    #echo "Compiling..." >&2
     g++ -O2 -Wall -Wshadow -o "$bin" "$src"
 fi
 

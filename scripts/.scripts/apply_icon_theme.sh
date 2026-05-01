@@ -35,6 +35,7 @@ apply_icons() {
         svg="$ICON_DIR/$icon_name.svg"
         if [ -f "$svg" ]; then
             echo -e "  \033[32m✓\033[0m $(basename "$f") → $icon_name.svg"
+            ((matched++)) || true
             ((TOTAL_MATCHED++)) || true
             [ "$DRY_RUN" = false ] &&
                 $use_sudo sed -Ei "s|(Icon=)([^/].*)|\1$svg|" "$f"
