@@ -7,7 +7,7 @@ $directory \
 $fill
 $character"""
 
-palette = 'Gruvbox Dark Medium'
+palette = 'Claude'
 
 # ─── Custom colorschemes ───
 [palettes.Claude]
@@ -17,15 +17,22 @@ red = '#D91C5C'
 green = '#1BAF7A'
 dark = '#2E2B28'
 
-[palettes."Gruvbox Dark Medium"]
+[palettes.Zima]
 accent = '#5BC2E7'
 user = '#d65d0e'
 red = '#CC241D'
 green = '#98971A'
 dark = '#665c54'
 
+[palettes."Gruvbox Dark Medium"]
+accent = '#468588'
+user = '#d65d0e'
+red = '#CC241D'
+green = '#98971A'
+dark = '#665c54'
+
 [palettes."Gruvbox Dark Hard"]
-accent = '#5BC2E7'
+accent = '#468588'
 user = '#d65d0e'
 red = '#CC241D'
 green = '#98971A'

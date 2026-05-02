@@ -1,11 +1,7 @@
-#!/usr/bin/env bash
-# Usage:
-#   run file.cpp
-#   run file.cpp in.txt
-#   run file.cpp in.txt out.txt
-#   run file.cpp < in.txt > out.txt  (shell redirection, works normally)
-
+#!/usr/bin/env zsh
 set -e
+
+TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 src="$1"
 input="$2"
@@ -22,16 +18,23 @@ if [[ ! -f "$src" ]]; then
 fi
 
 bin="$(dirname "$src")/a.out"
+md5file="/tmp/.$(basename "$src").md5"
+srcfile="/tmp/.$(dirname "$src" | md5sum | cut -d' ' -f1).src"
 
-if [[ ! -f "$bin" || "$src" -nt "$bin" ]]; then
-    #echo "Compiling..." >&2
-    g++ -O2 -Wall -Wshadow -o "$bin" "$src"
+current_md5=$(md5sum "$src" | cut -d' ' -f1)
+stored_md5=$(cat "$md5file" 2>/dev/null || echo "")
+stored_src=$(cat "$srcfile" 2>/dev/null || echo "")
+
+if [[ ! -f "$bin" || "$current_md5" != "$stored_md5" || "$stored_src" != "$src" ]]; then
+    printf "Compiling...\r" >&2
+    g++ -O2 -Wall -Wextra -Wsign-compare -Wconversion -std=c++17 -g -o "$bin" "$src" && echo "$current_md5" > "$md5file" && echo "$src" > "$srcfile"
+    printf "\r\033[K" >&2
 fi
 
 if [[ -n "$input" && -n "$output" ]]; then
-    time "$bin" < "$input" > "$output"
+    time $bin < $input > $output
 elif [[ -n "$input" ]]; then
-    time "$bin" < "$input"
+    time $bin < $input
 else
-    time "$bin"
+    time $bin
 fi

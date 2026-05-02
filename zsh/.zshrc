@@ -54,10 +54,8 @@ export PATH="$HOME/.scripts:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 
-# time function
-TIMEFMT='real	%E
-user	%U
-sys	%S'
+# time function for competitive programming
+TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 # Aliases
 alias ls='ls --color'

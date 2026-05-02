@@ -9,30 +9,40 @@ local palettes = {
     ["Default"] = {
         accent = "#FF8232",
         fg = "#FFFFFF",
-        bg = "#000000"
+        bg = "#000000",
+        panel = "#000000"
     },
     ["Claude"] = {
         accent = "#DA7756",
         fg = "#EDE8E0",
-        bg = "#1F1E1C"
+        bg = "#1A1917",
+        panel = "#1F1E1C"
+    },
+    ["Zima"] = {
+        accent = "#5BC2E7",
+        fg = "#EBDBB2",
+        bg = "#1d2021",
+        panel = "#282828"
     },
     ["Gruvbox Dark Medium"] = {
-        accent = "#5BC2E7",
+        accent = "#458588",
         fg = "#EBDBB2",
-        bg = "#282828"
+        bg = "#1d2021",
+        panel = "#282828"
     },
     ["Gruvbox Dark Hard"] = {
-        accent = "#5BC2E7",
+        accent = "#458588",
         fg = "#EBDBB2",
-        bg = "#1D2021"
+        bg = "#1d2021",
+        panel = "#1d2021"
     },
 }
 
 local function expand_colorscheme(base)
     return {
-        -- osc_color = base.bg,
-        seekbarbg_color = base.bg,
-        thumbnail_box_color = base.bg,
+        osc_color = base.bg,
+        seekbarbg_color = base.panel,
+        thumbnail_box_color = base.panel,
         window_title_color = base.fg,
         window_controls_color = base.fg,
         title_color = base.fg,
