@@ -4,11 +4,11 @@ add_newline = false
 format = """
 $username$hostname\
 $directory \
-$fill\
+$fill \
 $cmd_duration
 $character"""
 
-palette = 'Claude'
+palette = 'Zima'
 
 # ─── Custom colorschemes ───
 [palettes.Claude]
@@ -24,6 +24,7 @@ accent = '#5BC2E7'
 user = '#d65d0e'
 red = '#CC241D'
 green = '#98971A'
+gray = '#928374'
 dark = '#665c54'
 
 [palettes."Gruvbox Dark Medium"]
@@ -31,6 +32,7 @@ accent = '#468588'
 user = '#d65d0e'
 red = '#CC241D'
 green = '#98971A'
+gray = '#928374'
 dark = '#665c54'
 
 [palettes."Gruvbox Dark Hard"]
@@ -38,6 +40,7 @@ accent = '#468588'
 user = '#d65d0e'
 red = '#CC241D'
 green = '#98971A'
+gray = '#928374'
 dark = '#504945'
 
 [username]

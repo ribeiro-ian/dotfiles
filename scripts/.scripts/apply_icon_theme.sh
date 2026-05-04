@@ -66,6 +66,7 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     apply_icons "$FLATPAK_GLOBAL_DIR" "sudo"
     apply_icons "$FLATPAK_LOCAL_DIR" ""
     echo "Done."
+    killall cosmic-panel
 else
     echo "Aborted."
 fi

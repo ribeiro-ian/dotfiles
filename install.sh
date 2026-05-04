@@ -118,18 +118,7 @@ clone_or_pull \
 "https://github.com/Aloxaf/fzf-tab" \
 "${ZSH_CUSTOM}/plugins/fzf-tab"
 
-# ── 3. Zoxide ─────────────────────────────────────────────────────────────────
-log "Zoxide"
-if command -v zoxide &>/dev/null; then
-    ok "Zoxide already installed ($(zoxide --version))"
-else
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-    ok "Zoxide installed via curl"
-    # pkg_install zoxide
-    # ok "Zoxide installed via ${PKG_MANAGER}"
-fi
-
-# ── 4. Starship prompt ────────────────────────────────────────────────────────
+# ── 3. Starship prompt ────────────────────────────────────────────────────────
 log "Starship"
 if command -v starship &>/dev/null; then
     ok "Starship already installed ($(starship --version | head -1))"
@@ -139,7 +128,7 @@ else
     ok "Starship installed to /usr/bin"
 fi
 
-# ── 5. set Zsh as default shell ─────────────────────────────────────
+# ── 4. set Zsh as default shell ─────────────────────────────────────
 ZSH_BIN="$(command -v zsh)"
 if [[ "$SHELL" != "$ZSH_BIN" ]]; then
     warn "Your default shell is '$SHELL', not zsh."
@@ -153,7 +142,7 @@ else
     ok "Default shell is already zsh"
 fi
 
-# ── 6. Spotify & Spicetify setup ─────────────────────────────────────────────
+# ── 5. Spotify & Spicetify setup ─────────────────────────────────────────────
 echo ""
 warn "Before continuing, please install Spotify manually and open it once (wait ~60s logged in)."
 echo -e "  ${BOLD}Spotify${RESET} → https://www.spotify.com/download/linux/"
@@ -238,7 +227,7 @@ esac
 "$SPICETIFY" backup apply
 ok "Spicetify applied"
 
-# ── 7. packages & utilities ───────────────────────────────────────────────────────
+# ── 6. packages & utilities ───────────────────────────────────────────────────────
 packages=(ghostty mpv fzf flatpak btop fastfetch wl-clipboard tree cmatrix cbonsai)
 
 log "packages & utilities"
@@ -253,7 +242,7 @@ for pkg in "${packages[@]}"; do
     fi
 done
 
-# ── 8. Fonts ─────────────────────────────────────────────────────────────────
+# ── 7. Fonts ─────────────────────────────────────────────────────────────────
 FONTS=(AdwaitaMono Arimo DepartureMono FiraMono JetBrainsMono Lilex RobotoMono UbuntuMono)
 mkdir -p ~/.fonts
 
@@ -265,8 +254,8 @@ for font in "${FONTS[@]}"; do
 done
 fc-cache -fv
  
-# ── 9. Rename ~/dotfiles → ~/.dotfiles ───────────────────────────────────────
-exec zsh
+# ── 8. Rename ~/dotfiles → ~/.dotfiles ───────────────────────────────────────
+exec zsh; source ~/.zshrc
 log "Dotfiles directory"
 DOTFILES_SRC="${HOME}/dotfiles"
 DOTFILES_DST="${HOME}/.dotfiles"
@@ -280,7 +269,7 @@ else
     die "~/dotfiles not found"
 fi
 
-# ── 10. Stow configs ───────────────────────────────────────────────────────────
+# ── 9. Stow configs ───────────────────────────────────────────────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
 
@@ -294,7 +283,7 @@ git restore .
 ok "Restored versioned configs"
 
 cd "$DOTFILES_DST"
-ln -s "${HOME}/.spicetify/spicetify" "$DOTFILES_DST/.bin/"
+ln -s "${HOME}/.spicetify/spicetify" "${HOME}/.local/bin/"
 ok "Spicetify symlinks added"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
