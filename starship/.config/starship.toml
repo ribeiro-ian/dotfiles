@@ -4,7 +4,8 @@ add_newline = false
 format = """
 $username$hostname\
 $directory \
-$fill
+$fill\
+$cmd_duration
 $character"""
 
 palette = 'Claude'
@@ -15,6 +16,7 @@ accent = '#DA7756'
 user = '#A580E0'
 red = '#D91C5C'
 green = '#1BAF7A'
+gray = '#6B6560'
 dark = '#2E2B28'
 
 [palettes.Zima]
@@ -57,9 +59,13 @@ truncate_to_repo = true
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
 
-[time]
-disabled = true
- 
+[cmd_duration]
+min_time = 0
+format = '[󰚭 $duration](bold gray)'
+show_milliseconds = false
+show_notifications = true
+min_time_to_notify = 60_000
+
 [fill]
 symbol = '·'
 style = 'dark'

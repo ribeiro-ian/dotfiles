@@ -10,7 +10,6 @@ if [ $# -ne 1 ]; then
 fi
 
 ICON_DIR="$(realpath "$1")/"
-ICON_DIR="${ICON_DIR%/}/"
 GLOBAL_DIR="/usr/share/applications"
 LOCAL_DIR="$HOME/.local/share/applications"
 FLATPAK_GLOBAL_DIR="/var/lib/flatpak/exports/share/applications"
@@ -32,7 +31,7 @@ apply_icons() {
         icon_name=$(grep -Po '(?<=^Icon=)[^/].*' "$f" 2>/dev/null | head -1 || true)
         [ -z "$icon_name" ] && continue
 
-        svg="$ICON_DIR/$icon_name.svg"
+        svg="${ICON_DIR}${icon_name}.svg"
         if [ -f "$svg" ]; then
             echo -e "  \033[32m✓\033[0m $(basename "$f") → $icon_name.svg"
             ((TOTAL_MATCHED++)) || true
