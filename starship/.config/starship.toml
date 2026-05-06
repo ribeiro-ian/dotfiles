@@ -8,7 +8,7 @@ $fill \
 $cmd_duration
 $character"""
 
-palette = 'Zima'
+palette = 'Claude'
 
 # ─── Custom colorschemes ───
 [palettes.Claude]
@@ -64,10 +64,8 @@ error_symbol = '[\$](bold red)'
 
 [cmd_duration]
 min_time = 0
-format = '[󰚭 $duration](bold gray)'
 show_milliseconds = false
-show_notifications = true
-min_time_to_notify = 60_000
+format = '[󰚭 $duration](bold gray)'
 
 [fill]
 symbol = '·'

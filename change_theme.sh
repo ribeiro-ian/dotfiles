@@ -30,6 +30,9 @@ declare -a TARGETS=(
     "starship/.config/starship.toml@\
     s|(palette = ).*|\1'${THEME}'|"
 
+    "nvim/.config/nvim/lua/config/colorscheme.lua@\
+    s|(return ).*|\1\"${THEME}\"|"
+
     "mpv/.config/mpv/script-opts/colorscheme.conf@\
     s|(colorscheme=).*|\1$THEME|"
 )
@@ -71,17 +74,29 @@ done
 # Spicetify preview
 if [[ -f "$SPICETIFY_CONFIG" ]]; then
     current_scheme=$(grep -E "^color_scheme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
+    current_theme=$(grep -E "^current_theme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
 
-    if [[ "$current_scheme" == "$THEME" ]]; then
+    if [[ "$current_scheme" == "$THEME" && "$current_theme" == "Sonder" ]]; then
         echo ""
         echo "[NO CHANGE] spicetify (color_scheme already '${THEME}')"
     else
         echo ""
         echo "[CHANGE] spicetify:"
-        echo "  OLD: color_scheme = ${current_scheme}"
-        echo "  NEW: color_scheme = ${THEME}"
+
+        if [[ "$current_theme" != "Sonder" ]]; then
+            echo "  OLD: current_theme = ${current_theme}"
+            echo "  NEW: current_theme = Sonder"
+            echo " "
+        fi
+
+        if [[ "$current_scheme" != "$THEME" ]]; then
+            echo "  OLD: color_scheme = ${current_scheme}"
+            echo "  NEW: color_scheme = ${THEME}"
+        fi
         any_changes=1
+        spicetify_change=1
     fi
+
 else
     echo ""
     echo "[SKIP] spicetify config not found"
@@ -113,7 +128,7 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
 
     if [[ "$spicetify_change" -eq 1 ]]; then
         echo "[DONE] spicetify"
-        "$HOME/.spicetify/spicetify" config current_theme sonder
+        "$HOME/.spicetify/spicetify" config current_theme Sonder
         "$HOME/.spicetify/spicetify" config color_scheme "${THEME}"
         "$HOME/.spicetify/spicetify" apply
     fi

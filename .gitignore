@@ -3,6 +3,9 @@ scripts/.scripts/spicetify
 **/OpenSubtitlesDownload.py
 spicetify/.config/spicetify/config-xpui.ini
 mpv/.config/mpv/script-opts/modernz-colorscheme.conf
+mpv/.config/mpv/script-opts/colorscheme.conf
 mpv/.config/mpv/shaders/
 mpv/.config/mpv/conf.json
 mpv/.config/mpv/cred.json
+nvim/.config/nvim/lazy-lock.json
+

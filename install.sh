@@ -94,6 +94,8 @@ ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
 # ── 2. Zsh plugins ────────────────────────────────────────────────────────────
 log "Zsh plugins"
 
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh # install zoxide
+
 clone_or_pull \
 "https://github.com/MichaelAquilina/zsh-you-should-use" \
 "${ZSH_CUSTOM}/plugins/you-should-use"
@@ -281,10 +283,6 @@ ok "Stow done successfully"
 
 git restore .
 ok "Restored versioned configs"
-
-cd "$DOTFILES_DST"
-ln -s "${HOME}/.spicetify/spicetify" "${HOME}/.local/bin/"
-ok "Spicetify symlinks added"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 mkdir -vp ~/.icons
