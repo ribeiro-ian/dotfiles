@@ -4,15 +4,17 @@ This repository serves as a to help me setup and maintain my Linux systems. Mana
 
 ## Contents
 
-| Package     | Description                                          |
-| ----------- | ---------------------------------------------------- |
-| `zsh`       | Zsh config with Oh My Zsh, plugins & starship prompt |
-| `btop`      | btop system monitor configuration                    |
-| `ghostty`   | Ghostty terminal configuration                       |
-| `starship`  | Starship prompt theme                                |
-| `mpv`       | MPV media player config                              |
-| `spicetify` | Spotify customization                                |
-| `scripts`   | Personal shell scripts                               |
+| Package     | Description                            |
+| ----------- | -------------------------------------- |
+| `zsh`       | Shell with plugins                     |
+| `scripts`   | Personal shell scripts                 |
+| `ghostty`   | Terminal emulator                      |
+| `starship`  | Starship prompt theme                  |
+| `fastfetch` | Tool for fetching system information   |
+| `btop`      | Terminal resource monitor              |
+| `neovim`      | Terminal text editor                   |
+| `mpv`       | Media player                           |
+| `spicetify` | Spotify customization                  |
 
 ## Requirements
 
@@ -20,7 +22,7 @@ This repository serves as a to help me setup and maintain my Linux systems. Mana
 - `curl`
 - `stow`
 - `zsh`
-- [`fzf`](github.com/junegunn/fzf)
+- `fzf`
 
 ## Quick Install
 
@@ -36,8 +38,8 @@ The script will:
 
 - Detect your package manager (`apt`, `pacman`)
 - Install requirements
-- Install `zoxide` and `starship`
-- Install apps: `ghostty`, `mpv`, `spotify` and other utils
+- Install `zsh` and plugins
+- Install packages: `ghostty`, `mpv`, `nvim` and other utils
 - Install Nerd Fonts to `~/.fonts`
 - Rename `~/dotfiles` `~/.dotfiles` and stow all configs
 
@@ -49,10 +51,10 @@ If you prefer to set things up yourself:
 
 ```bash
 # apt
-sudo apt install git stow curl zsh fzf btop
+sudo apt install git stow curl fzf mpv neovim
 
 # pacman
-sudo pacman -S git stow curl zsh fzf btop
+sudo pacman -S git stow curl fzf mpv neovim
 ```
 
 ### 2. Clone
@@ -78,14 +80,13 @@ git clone --depth=1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # Starship
-curl -sSfL https://raw.githubusercontent.com/starship/starship/master/install/install.sh | sudo sh -s -- --bin-dir /usr/bin --yes
+curl -sS https://starship.rs/install.sh | sh
 ```
 
 ### 4. Apps
 
 - [Ghostty](github.com/ghostty-org/ghostty)
 - [Spicetify](github.com/spicetify)
-- [mpv](github.com/mpv-player/mpv)
 
 ### 5. Stow
 
