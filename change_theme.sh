@@ -22,19 +22,24 @@ SPICETIFY="$HOME/.spicetify/spicetify"
 SPICETIFY_CONFIG="$HOME/.config/spicetify/config-xpui.ini"
 
 # ────── Define files and their sed expressions ──────
-# Format: "file@sed_expression"
+# Format: "file@sed_expression@file_content"
+# file_content: content of file that does not exist yet should have.
+# Content empty ("@") for files that must already exist.
 declare -a TARGETS=(
-    "ghostty/.config/ghostty/config@\
-    s|(theme = ).*|\1${THEME}|"
+    "ghostty/.config/ghostty/theme@\
+s|(theme = ).*|\1${THEME}|@\
+theme = {$THEME}"
 
     "starship/.config/starship.toml@\
-    s|(palette = ).*|\1'${THEME}'|"
+s|(palette = ).*|\1'${THEME}'|@"
 
-    "nvim/.config/nvim/lua/config/colorscheme.lua@\
-    s|(return ).*|\1\"${THEME}\"|"
+    "neovim/.config/nvim/lua/config/colorscheme.lua@\
+s|(return ).*|\1\"${THEME}\"|@\
+return \"${THEME}\""
 
     "mpv/.config/mpv/script-opts/colorscheme.conf@\
-    s|(colorscheme=).*|\1$THEME|"
+s|(colorscheme=).*|\1${THEME}|@\
+colorscheme=${THEME}"
 )
 
 echo "─────────────────────────────────────────────"
@@ -46,12 +51,20 @@ any_changes=0
 spicetify_change=0
 for entry in "${TARGETS[@]}"; do
     file="${entry%%@*}"
-    expr="${entry##*@}"
+    rest="${entry#*@}"
+    expr="${rest%%@*}"
+    content="${rest##*@}" # empty string when third field is absent/blank
     filepath="${DOTFILES}/${file}"
 
     if [[ ! -f "$filepath" ]]; then
         echo ""
-        echo "[SKIP] File not found: ${file}"
+        if [[ -n "$content" ]]; then
+            echo "[CREATE] ${file}:"
+            echo "  NEW: ${content}"
+            any_changes=1
+        else
+            echo "[SKIP] File not found: ${file}"
+        fi
         continue
     fi
 
@@ -117,10 +130,19 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     echo ""
     for entry in "${TARGETS[@]}"; do
         file="${entry%%@*}"
-        expr="${entry##*@}"
+        rest="${entry#*@}"
+        expr="${rest%%@*}"
+        content="${rest##*@}"
         filepath="${DOTFILES}/${file}"
 
-        [[ ! -f "$filepath" ]] && continue
+        if [[ ! -f "$filepath" ]]; then
+            if [[ -n "$content" ]]; then
+                mkdir -p "$(dirname "$filepath")"
+                printf '%s\n' "$content" > "$filepath"
+                echo "[CREATED] ${file}"
+            fi
+            continue
+        fi
 
         sed -Ei "$expr" "$filepath"
         echo "[DONE] ${file}"
@@ -128,9 +150,9 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
 
     if [[ "$spicetify_change" -eq 1 ]]; then
         echo "[DONE] spicetify"
-        "$HOME/.spicetify/spicetify" config current_theme Sonder
-        "$HOME/.spicetify/spicetify" config color_scheme "${THEME}"
-        "$HOME/.spicetify/spicetify" apply
+        "$SPICETIFY" config current_theme Sonder
+        "$SPICETIFY" config color_scheme "${THEME}"
+        "$SPICETIFY" apply
     fi
 
     echo ""
