@@ -4,7 +4,7 @@ local aliases = {
 	-- add colorschemes
 }
 
-local ok, colorscheme = pcall(require, "config.theme")
+local ok, colorscheme = pcall(require, "config.colorscheme")
 local function get_colorscheme()
 	if not ok then return "tokyonight"
 	end

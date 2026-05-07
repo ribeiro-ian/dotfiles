@@ -28,7 +28,7 @@ SPICETIFY_CONFIG="$HOME/.config/spicetify/config-xpui.ini"
 declare -a TARGETS=(
     "ghostty/.config/ghostty/theme@\
 s|(theme = ).*|\1${THEME}|@\
-theme = {$THEME}"
+theme = ${THEME}"
 
     "starship/.config/starship.toml@\
 s|(palette = ).*|\1'${THEME}'|@"
