@@ -26,22 +26,11 @@ PKG_MANAGER="$(detect_pkg_manager)"
 log "Detected package manager: ${BOLD}${PKG_MANAGER}${RESET}"
 [[ "$PKG_MANAGER" == "unknown" ]] && warn "No supported package manager found — manual installs may be required."
 
-# On Arch, bootstrap paru so AUR packages are available via pkg_install
-if [[ "$PKG_MANAGER" == "pacman" ]]; then
-    if command -v paru &>/dev/null; then
-        ok "paru already installed"
-    else
-        log "Installing paru (AUR helper)"
-        sudo pacman -S --noconfirm paru
-        ok "paru installed"
-    fi
-fi
-
 pkg_install() {
     local pkg="$1"
     case "$PKG_MANAGER" in
         apt)    sudo apt-get install -y "$pkg" ;;
-        pacman) paru -S --noconfirm "$pkg" ;;
+        pacman) sudo pacman -S --noconfirm "$pkg" ;;
         *)      die "No supported package manager found. Please install '$pkg' manually." ;;
     esac
 }
@@ -62,7 +51,6 @@ need curl
 need git
 need stow
 need zsh
-need fzf
 
 # ── 1. CLI tools ────────────────
 log "CLI tools (bat, tealdeer, fd, ripgrep, eza, sd, wl-clipboard)"
@@ -106,7 +94,7 @@ else
 fi
 
 # ── 4. packages & utilities ────────────────
-packages=(ghostty mpv fzf flatpak btop fastfetch)
+packages=(ghostty mpv flatpak btop fastfetch)
 
 log "packages & utilities"
  
