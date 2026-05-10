@@ -8,48 +8,19 @@ $fill \
 $cmd_duration
 $character"""
 
-palette = 'Claude'
-
-# ─── Custom colorschemes ───
-[palettes.Claude]
-accent = '#DA7756'
-user = '#A580E0'
-red = '#D91C5C'
-green = '#1BAF7A'
-gray = '#6B6560'
-dark = '#2E2B28'
-
-[palettes.Zima]
-accent = '#5BC2E7'
-user = '#d65d0e'
-red = '#CC241D'
-green = '#98971A'
-gray = '#928374'
-dark = '#665c54'
-
-[palettes."Gruvbox Dark Medium"]
-accent = '#468588'
-user = '#d65d0e'
-red = '#CC241D'
-green = '#98971A'
-gray = '#928374'
-dark = '#665c54'
-
-[palettes."Gruvbox Dark Hard"]
-accent = '#468588'
-user = '#d65d0e'
-red = '#CC241D'
-green = '#98971A'
-gray = '#928374'
-dark = '#504945'
+palette = 'Default'
+[palettes.Default]
+accent = "255"
+sys = "253"
+gray = "245"
 
 [username]
 show_always = true
-format = '[$user](bold user)[@](dimmed user)'
+format = '[$user](bold sys)[@](dimmed prev_fg)'
 
 [hostname]
 ssh_only = false
-format = '[$hostname](bold user)[:](dimmed user)'
+format = '[$hostname](bold prev_fg)[:](dimmed prev_fg)'
 
 [directory]
 read_only = " 󰌾"
@@ -69,7 +40,7 @@ format = '[󰚭 $duration](bold gray)'
 
 [fill]
 symbol = '·'
-style = 'dark'
+style = 'bright-black'
  
 # SYMBOLS
 [aws]

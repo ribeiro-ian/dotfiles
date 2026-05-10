@@ -1,14 +1,12 @@
-# Claude Dark Theme — Ghostty
-# Warm charcoal backgrounds, terracotta accent
-
-background = #1F1E1C
-foreground = #EDE8E0
+# Claude Dark
+background   = #1F1E1C
+foreground   = #EDE8E0
 cursor-color = #E8845C
-cursor-text = #1A1917
+cursor-text  = #1A1917
 selection-background = #EDE8E0
 selection-foreground = #2E1E15
 
-# Normal colors (0–7)
+# ── Normal colors (0–7) ────────
 palette = 0= #262422
 palette = 1= #D95C5C
 palette = 2= #5BAF7A
@@ -18,12 +16,20 @@ palette = 5= #A584E0
 palette = 6= #5AABA0
 palette = 7= #9A928A
 
-# Bright colors (8–15)
-palette = 8= #46423E
-palette = 9= #E8845C
+# ── Bright colors (8–15) ────────
+palette =  8= #46423E
+palette =  9= #E8845C
 palette = 10= #6DC48C
 palette = 11= #E0AA52
 palette = 12= #7AABE0
 palette = 13= #BA9EF0
 palette = 14= #72C4BA
 palette = 15= #EDE8E0
+
+# ── Shell prompt colors ────────
+# user@host (same as 5 = purple)
+palette = 253= #A584E0
+# folders (same as 4 = blue) for fzf-tab consistency
+palette = 254= #5E90CC
+# accent color (dir)
+palette = 255= #DA7756

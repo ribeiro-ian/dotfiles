@@ -26,12 +26,12 @@ SPICETIFY_CONFIG="$HOME/.config/spicetify/config-xpui.ini"
 # file_content: content of file that does not exist yet should have.
 # Content empty ("@") for files that must already exist.
 declare -a TARGETS=(
-    "ghostty/.config/ghostty/theme@\
+    "ghostty/.config/ghostty/theme.ghostty@\
 s|(theme = ).*|\1${THEME}|@\
 theme = ${THEME}"
 
-    "starship/.config/starship.toml@\
-s|(palette = ).*|\1'${THEME}'|@"
+#    "starship/.config/starship.toml@\
+#s|(palette = ).*|\1'${THEME}'|@"
 
     "neovim/.config/nvim/lua/config/colorscheme.lua@\
 s|(return ).*|\1\"${THEME}\"|@\
@@ -152,7 +152,6 @@ if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
         echo "[DONE] spicetify"
         "$SPICETIFY" config current_theme Sonder
         "$SPICETIFY" config color_scheme "${THEME}"
-        "$SPICETIFY" apply
     fi
 
     echo ""

@@ -1,5 +1,7 @@
 # ─────── Theme configuration ─────────
-config-file = ?theme
+config-file = ?auto/theme.ghostty
+config-file = ?theme.ghostty
+palette-generate=true
 
 # ─────── Font configuration ──────────
 font-family = MesloLGMDZ Nerd Font Mono
@@ -25,9 +27,8 @@ window-height = 26
 cursor-style = block
 
 # ─────── Keybinds ────────────────────
-# deletes previous word
-keybind = ctrl+backspace=text:\x1b\x7f
 keybind = ctrl+shift+r=reload_config
+keybind = f10=text:xdg-open .\n
 
 # split
 keybind = alt+s=new_split
@@ -36,5 +37,5 @@ keybind = alt+down=goto_split:down
 keybind = alt+left=goto_split:left
 keybind = alt+right=goto_split:right
 
-# unbind
+# unbinds
 keybind = ctrl+shift+q=unbind

@@ -52,8 +52,8 @@ need git
 need stow
 need zsh
 
-# ── 1. CLI tools ────────────────
-log "CLI tools (bat, tealdeer, fd, ripgrep, eza, sd, wl-clipboard)"
+# ── 1. CLI utilities ────────────────
+log "CLI utils (bat, tealdeer, fd, ripgrep, eza, sd, wl-clipboard)"
 if command -v zoxide &>/dev/null; then
     ok "zoxide already installed"
 else
@@ -62,13 +62,9 @@ else
 fi
 
 cli_tools=(bat tealdeer fd ripgrep eza sd wl-clipboard)
-for tool in "${cli_tools[@]}"; do
-    if command -v "$tool" &>/dev/null; then
-        ok "$tool already installed"
-    else
-        pkg_install "$tool"
-        ok "$tool installed"
-    fi
+for util in "${cli_tools[@]}"; do
+    pkg_install "$util"
+    ok "$util installed"
 done
 tldr --update 2>/dev/null || warn "tldr update failed"
 ok "tldr cache populated"

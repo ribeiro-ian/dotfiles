@@ -14,7 +14,7 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 
 ## Contents
 
-| Package     | Description                            |
+| Folder      | Description                            |
 | ----------- | -------------------------------------- |
 | `zsh`       | Shell with plugins                     |
 | `scripts`   | Personal shell scripts                 |
@@ -31,7 +31,6 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 - `git`
 - `curl`
 - `stow`
-- `fzf`
 
 ## Quick Install
 
@@ -47,80 +46,9 @@ The script will:
 
 - Detect your package manager (`apt`, `pacman`)
 - Install requirements
-- Install `zsh` and plugins
+- Install `zsh`, `fzf`, `zinit` and zsh plugins
+- Install CLI utils:  `zoxide`, `eza`, `bat` and more
 - Install packages: `ghostty`, `mpv`, `nvim` and more
 - Install Nerd Fonts to `~/.fonts`
 - Rename `~/dotfiles` → `~/.dotfiles` and stow all configs
 
-## Manual Install
-
-If you prefer to set things up yourself:
-
-### 1. Requirements & Packages
-
-```bash
-# apt
-sudo apt install -y git stow curl fzf
-
-# pacman
-sudo pacman -S --noconfirm git stow curl fzf
-```
-
-### 2. Clone
-
-```bash
-git clone https://github.com/ribeiro-ian/dotfiles ~/.dotfiles
-cd ~/.dotfiles
-```
-
-### 3. Zsh
-
-```bash
-# apt
-sudo apt install -y zsh
-
-# pacman
-sudo pacman -S --noconfirm zsh
-```
-
-```bash
-# Oh My Zsh
-RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Zsh plugins
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-
-# Zoxide
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-
-# Starship
-curl -sS https://starship.rs/install.sh | sh
-```
-
-### 4. Packages
-
-```bash
-# apt
-sudo apt install -y mpv neovim fastfetch btop
-
-# pacman
-sudo pacman -S --noconfirm mpv neovim fastfetch btop ghostty spotify
-```
-
-#### Manual installation packages:
-
-- Spotify
-- [Spicetify](https://spicetify.app/docsgetting-started)
-- [Ghostty](https://ghostty.org/download)
-
-### 5. Stow
-
-```bash
-cd ~/.dotfiles
-stow --restow --adopt -v */
-git restore .
-```

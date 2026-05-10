@@ -97,4 +97,17 @@ return {
 			popupmenu = { enabled = true },
 		},
 	},
+	{
+	"brenoprata10/nvim-highlight-colors",
+	event = "BufReadPre",
+	opts = {
+		render = "virtual", -- show as a block instead of background
+		virtual_symbol = "██",
+		virtual_symbol_prefix = "",
+		virtual_symbol_suffix = " ",
+		virtual_symbol_position = "inline",
+		enable_named_colors = false,
+		enable_tailwind = true,
+	},
+}
 }

@@ -7,7 +7,9 @@ alias lsa='ls -A'
 alias l='ls -l'
 alias la='lsa -l'
 alias tree='eza --tree --icons --git-ignore'
+alias open='xdg-open'
 alias reboot-windows='sudo bootctl set-oneshot windows.conf && sudo reboot'
+
 # Global aliases
 alias -g C='| wl-copy'
 alias -g ...='../..'
@@ -19,13 +21,13 @@ export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 # ── Functions ────────────────
 
 # ── Zsh options ────────────────
 setopt interactive_comments
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 # ── History ────────────────
 HISTSIZE=10000
@@ -67,39 +69,125 @@ zi lucid wait for \
         zdharma-continuum/fast-syntax-highlighting
 
 # ── Shell integrations ────────────────
-eval "$(dircolors -b)"
+eval "$(dircolors ~/.config/dircolors)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
+# ── Keybindings ────────────────
+bindkey -e
+zi snippet OMZL::key-bindings.zsh
+
+bindkey '^F'  fzf-file-widget   # ctrl+f → fzf file
+bindkey '^[f' fzf-file-widget   # alt+f → fzf file
+
+bindkey '^E' edit-command-line # edit command line
+bindkey '^[c' capitalize-word # alt+c
+bindkey '^H' backward-kill-word
+
+# Numeric keypad
+bindkey -s "^[Ok" "+"
+bindkey -s "^[Om" "-"
+bindkey -s "^[Oj" "*"
+bindkey -s "^[Oo" "/"
+
+# ── Plugin config ────────────────
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char)
 # fzfs
 FZF_PLUGIN="${ZINIT_HOME%/zinit.git}/plugins/junegunn---fzf"
 source "${FZF_PLUGIN}/shell/key-bindings.zsh"
 source "${FZF_PLUGIN}/shell/completion.zsh"
 unset FZF_PLUGIN
 
-# ── Syntax highlight styles ────────────────
-FAST_HIGHLIGHT_STYLES[command]='fg=green,bold'
-FAST_HIGHLIGHT_STYLES[precommand]='fg=green,bold'
-FAST_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
-FAST_HIGHLIGHT_STYLES[function]='fg=yellow,bold'
-FAST_HIGHLIGHT_STYLES[alias]='fg=green,bold'
-#FAST_HIGHLIGHT_STYLES[comment]='fg=8'
-
-# ── Completions ────────────────
+# Completions
+zstyle ':fzf-tab:*' fzf-flags --bind=right:ignore
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:(cd|z):*' fzf-preview 'eza -1 --all --color=always --icons $realpath'
 
-# ── Keybindings ────────────────
-bindkey -e
-zi snippet OMZL::key-bindings.zsh
-# Edit command line
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey '^E' edit-command-line
-# Numeric keypad
-bindkey -s "^[Ok" "+"
-bindkey -s "^[Om" "-"
-bindkey -s "^[Oj" "*"
-bindkey -s "^[Oo" "/"
+# Fast Syntax Highlighting styles
+typeset -A FAST_HIGHLIGHT_STYLES
+
+#[base]
+FAST_HIGHLIGHT_STYLES[default]='none'
+FAST_HIGHLIGHT_STYLES[unknown-token]='fg=red,bold'
+FAST_HIGHLIGHT_STYLES[commandseparator]='yellow'
+FAST_HIGHLIGHT_STYLES[redirection]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[here-string-tri]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[here-string-text]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[here-string-var]='fg=cyan'
+FAST_HIGHLIGHT_STYLES[exec-descriptor]='fg=yellow,bold'
+FAST_HIGHLIGHT_STYLES[comment]='fg=245'
+FAST_HIGHLIGHT_STYLES[correct-subtle]='fg=12'
+FAST_HIGHLIGHT_STYLES[incorrect-subtle]='fg=red'
+FAST_HIGHLIGHT_STYLES[subtle-separator]='fg=green'
+FAST_HIGHLIGHT_STYLES[subtle-bg]='bg=18'
+FAST_HIGHLIGHT_STYLES[recursive-base]='none'
+
+#[command-point]
+FAST_HIGHLIGHT_STYLES[reserved-word]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[subcommand]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[suffix-alias]='fg=green,underline'
+FAST_HIGHLIGHT_STYLES[global-alias]='fg=cyan'
+FAST_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[function]='fg=yellow,bold'
+FAST_HIGHLIGHT_STYLES[command]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[precommand]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[hashed-command]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[single-sq-bracket]='fg=green'
+FAST_HIGHLIGHT_STYLES[double-sq-bracket]='fg=green'
+FAST_HIGHLIGHT_STYLES[double-paren]='fg=yellow'
+
+#[paths]
+FAST_HIGHLIGHT_STYLES[path]='fg=15,underline'
+FAST_HIGHLIGHT_STYLES[pathseparator]=''
+FAST_HIGHLIGHT_STYLES[path-to-dir]='fg=blue,bold'
+FAST_HIGHLIGHT_STYLES[globbing]='fg=blue'
+FAST_HIGHLIGHT_STYLES[globbing-ext]='fg=blue'
+
+#[brackets]
+FAST_HIGHLIGHT_STYLES[paired-bracket]='bg=blue'
+FAST_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+FAST_HIGHLIGHT_STYLES[bracket-level-2]='fg=green,bold'
+FAST_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+FAST_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow,bold'
+FAST_HIGHLIGHT_STYLES[bracket-level-5]='fg=cyan,bold'
+
+#[arguments]
+FAST_HIGHLIGHT_STYLES[single-hyphen-option]='none'
+FAST_HIGHLIGHT_STYLES[double-hyphen-option]='none'
+FAST_HIGHLIGHT_STYLES[back-quoted-argument]='none'
+FAST_HIGHLIGHT_STYLES[single-quoted-argument]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[double-quoted-argument]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=yellow'
+
+#[in-string]
+FAST_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=cyan'
+FAST_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]='fg=cyan'
+
+#[other]
+FAST_HIGHLIGHT_STYLES[variable]='none'
+FAST_HIGHLIGHT_STYLES[assign]='none'
+FAST_HIGHLIGHT_STYLES[assign-array-bracket]='fg=green'
+FAST_HIGHLIGHT_STYLES[history-expansion]='fg=blue'
+
+#[math]
+FAST_HIGHLIGHT_STYLES[mathvar]='fg=blue,bold'
+FAST_HIGHLIGHT_STYLES[mathnum]='fg=magenta'
+FAST_HIGHLIGHT_STYLES[matherr]='fg=red'
+
+#[for-loop]
+FAST_HIGHLIGHT_STYLES[forvar]='none'
+FAST_HIGHLIGHT_STYLES[fornum]='fg=magenta'
+FAST_HIGHLIGHT_STYLES[foroper]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[forsep]='fg=yellow,bold'
+
+#[case]
+FAST_HIGHLIGHT_STYLES[case-input]='fg=green'
+FAST_HIGHLIGHT_STYLES[case-parentheses]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[case-condition]='bg=blue'
+
+#[optarg]
+FAST_HIGHLIGHT_STYLES[optarg-string]='fg=yellow'
+FAST_HIGHLIGHT_STYLES[optarg-number]='fg=magenta'
