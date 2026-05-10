@@ -2,12 +2,8 @@
 
 # Script to apply icon theme by changing packages .desktop Icon paramete
 # Usage: ./apply_icon_theme <icon theme scalable apps path>
-set -euo pipefail
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <icon theme scalable apps dir>"
-    exit 1
-fi
+[ $# -ne 1 ] && echo "Usage: $0 <icon theme scalable apps dir>" && exit 1
 
 ICON_DIR="$(realpath "$1")/"
 GLOBAL_DIR="/usr/share/applications"
@@ -17,10 +13,7 @@ FLATPAK_LOCAL_DIR="$HOME/.local/share/flatpak/exports/share/applications"
 TOTAL_MATCHED=0
 TOTAL_SKIPPED=0
 
-if [ ! -d "$ICON_DIR" ]; then
-    echo "Error: '$ICON_DIR' does not exist."
-    exit 1
-fi
+[ ! -d "$ICON_DIR" ] && echo "Error: '$ICON_DIR' does not exist." && exit 1
 
 apply_icons() {
     local dir="$1"
@@ -34,12 +27,12 @@ apply_icons() {
         svg="${ICON_DIR}${icon_name}.svg"
         if [ -f "$svg" ]; then
             echo -e "  \033[32m✓\033[0m $(basename "$f") → $icon_name.svg"
-            ((TOTAL_MATCHED++)) || true
+            ((TOTAL_MATCHED++))
             [ "$DRY_RUN" = false ] &&
                 $use_sudo sed -Ei "s|(Icon=)([^/].*)|\1$svg|" "$f"
         else
             echo -e "  \033[31m✗\033[0m $(basename "$f") → no match ($icon_name)"
-            ((TOTAL_SKIPPED++)) || true
+            ((TOTAL_SKIPPED++))
         fi
     done
 }
