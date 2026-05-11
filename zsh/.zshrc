@@ -81,8 +81,8 @@ bindkey '^F'  fzf-file-widget   # ctrl+f → fzf file
 bindkey '^[f' fzf-file-widget   # alt+f → fzf file
 
 bindkey '^E' edit-command-line # edit command line
-bindkey '^[c' capitalize-word # alt+c
-bindkey '^H' backward-kill-word
+bindkey '^H' backward-kill-word # ctrl+backspace
+bindkey '^W' kill-region # del everything behind
 
 # Numeric keypad
 bindkey -s "^[Ok" "+"
@@ -91,7 +91,9 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 
 # ── Plugin config ────────────────
-ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char)
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
+
 # fzfs
 FZF_PLUGIN="${ZINIT_HOME%/zinit.git}/plugins/junegunn---fzf"
 source "${FZF_PLUGIN}/shell/key-bindings.zsh"

@@ -29,6 +29,8 @@ cursor-style = block
 # ─────── Keybinds ────────────────────
 keybind = ctrl+shift+r=reload_config
 keybind = f10=text:xdg-open .\n
+# clear buffer line
+keybind = ctrl+shift+backspace=text:\x15
 
 # split
 keybind = alt+s=new_split
