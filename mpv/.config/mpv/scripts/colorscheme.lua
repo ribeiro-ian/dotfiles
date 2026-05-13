@@ -15,19 +15,19 @@ local palettes = {
         accent = "#DA7756",
         fg = "#EDE8E0",
         bg = "#1F1E1C",
-    ["Gruvbox Dark Medium"] = {
+    ["Zima"] = {
         accent = "#5BC2E7",
         fg = "#EBDBB2",
-        bg = "#282828"
+        bg = "#1D2021"
     },
     },
     ["Gruvbox Dark Medium"] = {
-        accent = "#5BC2E7",
+        accent = "#458588",
         fg = "#EBDBB2",
         bg = "#282828"
     },
     ["Gruvbox Dark Hard"] = {
-        accent = "#5BC2E7",
+        accent = "#458588",
         fg = "#EBDBB2",
         bg = "#1D2021"
     },

@@ -57,7 +57,7 @@ zi ice as"program" pick"bin/fzf" atclone"./install --bin" atpull"%atclone"
 zi light junegunn/fzf
 
 zi light Aloxaf/fzf-tab
-zi light MichaelAquilina/zsh-you-should-use
+#zi light MichaelAquilina/zsh-you-should-use
 
 # Turbo
 zi lucid wait for \
@@ -77,9 +77,8 @@ eval "$(starship init zsh)"
 bindkey -e
 zi snippet OMZL::key-bindings.zsh
 
-bindkey '^F'  fzf-file-widget   # ctrl+f → fzf file
-bindkey '^[f' fzf-file-widget   # alt+f → fzf file
-
+bindkey '^F'  fzf-file-widget # ctrl+f runs fzf file
+bindkey '^C' send-break # break cmd exec
 bindkey '^E' edit-command-line # edit command line
 bindkey '^H' backward-kill-word # ctrl+backspace
 bindkey '^W' kill-region # del everything behind

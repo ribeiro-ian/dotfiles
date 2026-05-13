@@ -1,13 +1,13 @@
 # Gruvbox Dark Medium fork
-background   = #282828
+background   = #1D2021
 foreground   = #EBDBB2
 cursor-color = #5BC2E7
-cursor-text  = #282828
+cursor-text  = #1D2021
 selection-background = #665C54
 selection-foreground = #EBDBB2
 
 # ── Normal colors (0–7) ────────
-palette = 0= #282828
+palette = 0= #1D2021
 palette = 1= #CC241D
 palette = 2= #98971A
 palette = 3= #D79921
