@@ -20,7 +20,6 @@ local palettes = {
         fg = "#EBDBB2",
         bg = "#1D2021"
     },
-    },
     ["Gruvbox Dark Medium"] = {
         accent = "#458588",
         fg = "#EBDBB2",
