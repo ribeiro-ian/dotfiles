@@ -57,7 +57,7 @@ zi ice as"program" pick"bin/fzf" atclone"./install --bin" atpull"%atclone"
 zi light junegunn/fzf
 
 zi light Aloxaf/fzf-tab
-#zi light MichaelAquilina/zsh-you-should-use
+zi light MichaelAquilina/zsh-you-should-use
 
 # Turbo
 zi lucid wait for \
