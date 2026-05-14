@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 NUM="${1:-0}"
-FILENAME="cses${NUM}.cpp"
+FILENAME="${NUM}.cpp"
+
+if [[ -f $FILENAME ]]; then
+    echo "File already exists!"
+	echo "opening $FILENAME..."
+	code "$FILENAME"
+	exit 1
+fi
+
+
 cat > "$FILENAME" << EOF
 /*
     CSES ${NUM} - TITLE
     https://cses.fi/problemset/task/${NUM}
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-
-int main(){
-	ios_base::sync_with_stdio(0); cin.tie(0);
-
-    //code
-
-	return 0;
-}
 EOF
 code "$FILENAME"
