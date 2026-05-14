@@ -1,6 +1,3 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 # ── Aliases ────────────────
 alias cd='z'
 alias md='mkdir -p'
@@ -26,8 +23,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
-# ── Functions ────────────────
-
 # ── Zsh options ────────────────
 setopt interactive_comments
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
@@ -36,11 +31,13 @@ WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
-mkdir -p "$HOME/.cache/zsh"
 export HISTFILE="$HOME/.cache/zsh/.zsh_history"
-export ZSH_COMPDUMP="$HOME/.cache/zsh/.zcompdump"
+
 setopt append_history share_history hist_ignore_space
 setopt hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
+
+declare -A ZINIT
+ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
 
 # ── Zinit ────────────────
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -48,6 +45,17 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # ── Plugins ────────────────
+# p10k prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+() {
+  local XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/p10k"
+  zi ice depth=1
+  zi light romkatv/powerlevel10k
+}
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
 zi snippet OMZL::git.zsh
 zi snippet OMZP::git
 zi snippet OMZP::sudo
@@ -61,8 +69,6 @@ zi light junegunn/fzf
 
 zi light Aloxaf/fzf-tab
 zi light MichaelAquilina/zsh-you-should-use
-zi ice depth=1
-zi light romkatv/powerlevel10k
 
 # Turbo
 zi lucid wait for \
@@ -70,7 +76,7 @@ zi lucid wait for \
         zsh-users/zsh-autosuggestions \
     blockf \
         zsh-users/zsh-completions \
-    atinit"zicompinit; zicdreplay" \
+    atinit'zicompinit; zicdreplay' \
         zdharma-continuum/fast-syntax-highlighting
 
 # ── Shell integrations ────────────────
@@ -198,4 +204,3 @@ FAST_HIGHLIGHT_STYLES[case-condition]='bg=blue'
 FAST_HIGHLIGHT_STYLES[optarg-string]='fg=yellow'
 FAST_HIGHLIGHT_STYLES[optarg-number]='fg=magenta'
 
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
