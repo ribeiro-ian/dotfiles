@@ -1,3 +1,6 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 # ── Aliases ────────────────
 alias cd='z'
 alias md='mkdir -p'
@@ -58,6 +61,8 @@ zi light junegunn/fzf
 
 zi light Aloxaf/fzf-tab
 zi light MichaelAquilina/zsh-you-should-use
+zi ice depth=1
+zi light romkatv/powerlevel10k
 
 # Turbo
 zi lucid wait for \
@@ -71,7 +76,7 @@ zi lucid wait for \
 # ── Shell integrations ────────────────
 eval "$(dircolors ~/.config/dircolors)"
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 # ── Keybindings ────────────────
 bindkey -e
@@ -192,3 +197,5 @@ FAST_HIGHLIGHT_STYLES[case-condition]='bg=blue'
 #[optarg]
 FAST_HIGHLIGHT_STYLES[optarg-string]='fg=yellow'
 FAST_HIGHLIGHT_STYLES[optarg-number]='fg=magenta'
+
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
