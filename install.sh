@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# =============================================================================
 # Dotfiles ─ install.sh
-# =============================================================================
 
-set -euo pipefail
+set -uo pipefail
 
 # ── Colours ────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
@@ -28,11 +26,29 @@ log "Detected package manager: ${BOLD}${PKG_MANAGER}${RESET}"
 
 pkg_install() {
     local pkg="$1"
+
+    log "Installing $pkg..."
     case "$PKG_MANAGER" in
         apt)    sudo apt-get install -y "$pkg" ;;
         pacman) sudo pacman -S --noconfirm "$pkg" ;;
         *)      die "No supported package manager found. Please install '$pkg' manually." ;;
     esac
+}
+
+safe_install() {
+    local cmd="$1"
+
+    if command -v "$cmd" &>/dev/null; then
+        ok "$cmd already installed"
+        return 0
+    fi
+
+    if pkg_install "$cmd"; then
+        ok "$cmd installed"
+    else
+        warn "Failed to install $cmd"
+        FAILED_PKGS+=("$cmd")
+    fi
 }
 
 # ── Helpers ────────────────
@@ -49,11 +65,18 @@ need() {
 # ── Preflight ────────────────
 need curl
 need git
-need stow
-need zsh
 
-# ── 1. CLI utilities ────────────────
-log "CLI utils (bat, tealdeer, fd, ripgrep, eza, sd, wl-clipboard)"
+# ── Packages ────────────────
+packages=(ghostty mpv zsh stow flatpak btop fastfetch)
+
+log "Packages"
+ 
+for pkg in "${packages[@]}"; do
+    safe_install "$pkg"
+done
+
+# ── CLI tools ────────────────
+log "CLI tools (zoxide, bat, tealdeer, fd, ripgrep, eza, sd, wl-clipboard)"
 if command -v zoxide &>/dev/null; then
     ok "zoxide already installed"
 else
@@ -63,23 +86,12 @@ fi
 
 cli_tools=(bat tealdeer fd ripgrep eza sd wl-clipboard)
 for util in "${cli_tools[@]}"; do
-    pkg_install "$util"
-    ok "$util installed"
+    safe_install "$util"
 done
 tldr --update 2>/dev/null || warn "tldr update failed"
 ok "tldr cache populated"
 
-# ── 2. Starship prompt ────────────────
-log "Starship"
-if command -v starship &>/dev/null; then
-    ok "Starship already installed ($(starship --version | head -1))"
-else
-    # Install system-wide to /usr/bin (requires sudo)
-    curl -sS https://starship.rs/install.sh | sh || die "Failed to install zoxide"
-    ok "Starship installed"
-fi
-
-# ── 3. Set Zsh as default shell ─────────────────────────────────────
+# ── Set Zsh as default shell ─────────────────────────────────────
 ZSH_BIN="$(command -v zsh)"
 if [[ "$SHELL" != "$ZSH_BIN" ]]; then
     warn "Your default shell is '$SHELL', not zsh."
@@ -89,22 +101,7 @@ else
     ok "Default shell is already zsh"
 fi
 
-# ── 4. packages & utilities ────────────────
-packages=(ghostty mpv flatpak btop fastfetch)
-
-log "packages & utilities"
- 
-for pkg in "${packages[@]}"; do
-    if command -v "$pkg" &>/dev/null; then
-        ok "$pkg already installed"
-    else
-        log "Installing $pkg"
-        pkg_install "$pkg"
-        ok "$pkg installed"
-    fi
-done
-
-# ── 5. Fonts ────────────────
+# ── Fonts ────────────────
 FONTS=(AdwaitaMono Arimo DepartureMono FiraMono JetBrainsMono Meslo RobotoMono UbuntuMono)
 mkdir -p ~/.fonts
 
@@ -116,7 +113,7 @@ for font in "${FONTS[@]}"; do
 done
 fc-cache -fv 2>/dev/null || warn "fc-cache failed — you may need to run it manually"
 
-# ── 6. Rename ~/dotfiles → ~/.dotfiles ────────────────
+# ── Rename ~/dotfiles → ~/.dotfiles ────────────────
 log "Dotfiles directory"
 DOTFILES_SRC="${HOME}/dotfiles"
 DOTFILES_DST="${HOME}/.dotfiles"
@@ -130,25 +127,30 @@ else
     die "~/dotfiles not found"
 fi
 
-# ── 7. Stow configs ────────────────
+# ── Stow configs ────────────────
 log "Stowing configs"
 cd "$DOTFILES_DST"
 
 for pkg in */; do
     [ -d "$pkg" ] || continue
-    stow -v --restow --adopt "$pkg"
+    stow -v --stow --adopt "$pkg"
     ok "Stowed $pkg"
 done
 ok "Stow done successfully"
 
 git restore .
-ok "Restored versioned configs"
+ok "Restored to versioned configs"
 
 # ── Done ────────────────
 mkdir -vp ~/.icons
 
 echo ""
 echo -e "${GREEN}${BOLD}All done!${RESET}"
+if (( ${#FAILED_PKGS[@]} > 0 )); then
+    echo
+    warn "Some packages failed:"
+    printf ' - %s\n' "${FAILED_PKGS[@]}"
+fi
 echo ""
 echo -e "${CYAN}${BOLD}Important:${RESET}"
 echo -e "  If you changed your default shell to zsh, you need to"

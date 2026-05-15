@@ -19,7 +19,6 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 | `zsh`       | Shell with plugins                     |
 | `scripts`   | Personal shell scripts                 |
 | `ghostty`   | Terminal emulator                      |
-| `starship`  | Starship prompt theme                  |
 | `fastfetch` | Tool for fetching system information   |
 | `btop`      | Terminal resource monitor              |
 | `neovim`    | Terminal text editor                   |
