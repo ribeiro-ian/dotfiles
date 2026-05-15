@@ -1,21 +1,21 @@
-# ─────── Theme configuration ─────────
+# ── Theme configuration ────────
 config-file = ?auto/theme.ghostty
 config-file = ?theme.ghostty
 palette-generate=true
 
-# ─────── Font configuration ──────────
-font-family = MesloLGMDZ Nerd Font Mono
+# ── Font configuration ────────
+font-family = BlexMono Nerd Font
 font-size = 12
 
-# ─────── Terminal features ───────────
+# ── Terminal features ──────── 
 mouse-hide-while-typing = true
 confirm-close-surface = false
 unfocused-split-opacity=0.4
 
-# ─────── Shell Integration ───────────
+# ── Shell Integration ────────
 shell-integration-features = no-cursor
 
-# ─────── Window configuration ────────
+# ── Window configuration ────────
 window-decoration = none
 background-opacity = 1
 window-padding-x = 12
@@ -23,10 +23,10 @@ window-padding-y = 12
 window-width = 84
 window-height = 26
 
-# ─────── Cursor configuration ────────
+# ── Cursor configuration ────────
 cursor-style = block
 
-# ─────── Keybinds ────────────────────
+# ── Keybinds ────────
 keybind = ctrl+shift+r=reload_config
 keybind = f10=text:xdg-open .\n
 # clear buffer line
