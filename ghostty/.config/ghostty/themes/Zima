@@ -27,8 +27,6 @@ palette = 14= #8EC07C
 palette = 15= #EBDBB2
 
 # ── Shell prompt colors ────────
-# user@host (same as 5 = purple)
-palette = 253= #D65D0E
 # folders (same as 4 = blue) for fzf-tab consistency
 palette = 254= #458588
 # accent color
