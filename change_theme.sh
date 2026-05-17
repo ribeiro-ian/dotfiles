@@ -112,15 +112,10 @@ true"
 colorscheme={theme}|\
 true"
 
-    "zen/profile.ian/chrome/userChrome.css|\
-@import url\('./themes/[^\"]*\.css'\);|\
+    "zen/profile.ian/chrome/current_theme.css|\
+@import url\(.*\);|\
 @import url('./themes/{theme}.css');|\
-false"
-
-    "zen/profile.ian/chrome/userContent.css|\
-@import url\('./themes/[^\"]*\.css'\);|\
-@import url('./themes/{theme}.css');|\
-false"
+true"
 )
 
 # ────── Preview changes ──────

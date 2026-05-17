@@ -1,6 +1,6 @@
 /* ── Current Theme Import ──────────────── */
 /* Active theme palette */
-@import url('./themes/Claude.css');
+@import url('./current_theme.css');
 
 /* ── Semantic Layer ──────────────── */
 :root {

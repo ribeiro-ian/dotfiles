@@ -136,9 +136,9 @@ install_fonts() {
         if curl -#fLo "/tmp/${font}.zip" "$url"; then
             unzip -o "/tmp/${font}.zip" -d "${FONT_DIR}/${font}" &>/dev/null
             rm -f "/tmp/${font}.zip"
-            ok "$font installed"
+            ok "${font} installed"
         else
-            warn "Failed to download $font"
+            warn "Failed to download ${font}"
         fi
     done
 
