@@ -12,9 +12,9 @@ local palettes = {
         bg = "#000000"
     },
     ["Claude"] = {
-        accent = "#DA7756",
-        fg = "#EDE8E0",
-        bg = "#1A1917",
+        accent = "#C6613F",
+        fg = "#ECE6D9",
+        bg = "#1F1E1D",
     ["Zima"] = {
         accent = "#5BC2E7",
         fg = "#EBDBB2",

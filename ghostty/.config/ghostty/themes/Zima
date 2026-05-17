@@ -3,8 +3,6 @@ background   = #1D2021
 foreground   = #EBDBB2
 cursor-color = #5BC2E7
 cursor-text  = #1D2021
-selection-background = #665C54
-selection-foreground = #EBDBB2
 
 # ── Normal colors (0–7) ────────
 palette = 0= #1D2021
@@ -27,6 +25,9 @@ palette = 14= #8EC07C
 palette = 15= #EBDBB2
 
 # ── Shell prompt colors ────────
+# orange
+palette = 166= #d65d0e
+palette = 208= #fe8019
 # folders (same as 4 = blue) for fzf-tab consistency
 palette = 254= #458588
 # accent color

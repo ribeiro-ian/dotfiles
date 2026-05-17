@@ -1,33 +1,34 @@
 # Claude Dark
-background   = #1A1917
-foreground   = #EDE8E0
-cursor-color = #E8845C
-cursor-text  = #1A1917
-selection-background = #EDE8E0
-selection-foreground = #2E1E15
+background   = #1F1E1D
+foreground   = #ECE6D9
+cursor-color = #C6613F
+cursor-text  = #1F1E1D
 
 # ── Normal colors (0–7) ────────
-palette = 0= #262422
-palette = 1= #D95C5C
-palette = 2= #5BAF7A
-palette = 3= #D4943A
-palette = 4= #5E90CC
-palette = 5= #A584E0
-palette = 6= #5AABA0
-palette = 7= #9A928A
+palette = 0= #262624
+palette = 1= #CC5A5A
+palette = 2= #6A9955
+palette = 3= #D6A345
+palette = 4= #6C8FD1
+palette = 5= #C586C0
+palette = 6= #5FB8B0
+palette = 7= #A89E8C
 
 # ── Bright colors (8–15) ────────
-palette =  8= #46423E
-palette =  9= #E8845C
-palette = 10= #6DC48C
-palette = 11= #E0AA52
-palette = 12= #7AABE0
-palette = 13= #BA9EF0
-palette = 14= #72C4BA
-palette = 15= #EDE8E0
+palette =  8= #7C7568
+palette =  9= #EA7A7A
+palette = 10= #90D290
+palette = 11= #EBBF6E
+palette = 12= #8FAAE6
+palette = 13= #D19EF0
+palette = 14= #84D9D1
+palette = 15= #ECE6D9
 
 # ── Shell prompt colors ────────
+# orange
+palette = 166= #C6613F
+palette = 208= #E8845C
 # folders (same as 4 = blue) for fzf-tab consistency
-palette = 254= #5E90CC
+palette = 254= #6C8FD1
 # accent color (dir)
-palette = 255= #DA7756
+palette = 255= #C6613F

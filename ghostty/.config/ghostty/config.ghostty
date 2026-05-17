@@ -2,6 +2,7 @@
 config-file = ?auto/theme.ghostty
 config-file = ?theme.ghostty
 palette-generate=true
+selection-foreground = cell-background
 
 # ── Font configuration ────────
 font-family = BlexMono Nerd Font
@@ -11,6 +12,7 @@ font-size = 12
 mouse-hide-while-typing = true
 confirm-close-surface = false
 unfocused-split-opacity=0.4
+selection-word-chars = " \t'\"│`|:;,()[]{}<>"
 
 # ── Shell Integration ────────
 shell-integration-features = no-cursor
