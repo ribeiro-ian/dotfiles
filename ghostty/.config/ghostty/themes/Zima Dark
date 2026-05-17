@@ -1,0 +1,34 @@
+# Gruvbox fork
+background   = #1D2021
+foreground   = #EBDBB2
+cursor-color = #5BC2E7
+cursor-text  = #1D2021
+
+# ── Normal colors (0–7) ────────
+palette = 0= #1D2021
+palette = 1= #CC241D
+palette = 2= #98971A
+palette = 3= #D79921
+palette = 4= #458588
+palette = 5= #B16286
+palette = 6= #689D6A
+palette = 7= #A89984
+
+# ── Bright colors (8–15) ────────
+palette =  8= #928374
+palette =  9= #FB4934
+palette = 10= #B8BB26
+palette = 11= #FABD2F
+palette = 12= #83A598
+palette = 13= #D3869B
+palette = 14= #8EC07C
+palette = 15= #EBDBB2
+
+# ── Shell prompt colors ────────
+# orange
+palette = 166= #d65d0e
+palette = 208= #fe8019
+# folders (same as 4 = blue) for fzf-tab consistency
+palette = 254= #458588
+# accent color
+palette = 255= #5BC2E7

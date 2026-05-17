@@ -45,17 +45,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # ── Plugins ────────────────
-# p10k prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-() {
-  local XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/p10k"
-  zi ice depth=1
-  zi light romkatv/powerlevel10k
-}
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
 zi snippet OMZL::git.zsh
 zi snippet OMZP::git
 zi snippet OMZP::sudo
@@ -79,11 +68,6 @@ zi lucid wait for \
     atinit'zicompinit; zicdreplay' \
         zdharma-continuum/fast-syntax-highlighting
 
-# ── Shell integrations ────────────────
-eval "$(dircolors ~/.config/dircolors)"
-eval "$(zoxide init zsh)"
-#eval "$(starship init zsh)"
-
 # ── Keybindings ────────────────
 bindkey -e
 zi snippet OMZL::key-bindings.zsh
@@ -99,6 +83,12 @@ bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
+
+# ── Shell integrations ────────────────
+eval "$(dircolors ~/.config/dircolors)"
+eval "$(zoxide init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/ohmyposh.toml)"
+#eval "$(starship init zsh)"
 
 # ── Plugin config ────────────────
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line)

@@ -4,7 +4,7 @@
 # Foreground:  30-37 (normal) 90-97 (bright)  38;5;N (256-palette)
 # Background:  40-47 (normal) 100-107 (bright) 48;5;N (256-palette)
 #
-# Palette slots (follow active Ghostty theme):
+# Palette slots (follow actve Ghostty theme):
 #   0  black        8  bright black
 #   1  red          9  bright red
 #   2  green       10  bright green
@@ -13,6 +13,7 @@
 #   5  magenta     13  bright magenta
 #   6  cyan        14  bright cyan
 #   7  white       15  bright white (fg)
+# 166  orange
 # 255  accent
 
 COLORTERM ?*
@@ -20,7 +21,7 @@ COLORTERM ?*
 RESET     0
 NORMAL    00
 FILE      00
-DIR       01;38;5;4        # blue
+DIR       01;38;5;4     # blue
 LINK      38;5;14       # bright cyan
 EXEC      01;38;5;10    # bold bright green
 MULTIHARDLINK  00

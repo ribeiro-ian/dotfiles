@@ -118,6 +118,18 @@ install_cli_tools() {
         fi
     fi
 
+    if command -v oh-my-posh &>/dev/null; then
+        ok "oh-my-posh already installed"
+    else
+        log "Installing oh-my-posh..."
+
+        if curl -fs https://ohmyposh.dev/install.sh | bash -s; then
+            ok "oh-my-posh installed"
+        else
+            warn "Failed to install oh-my-posh"
+        fi
+    fi
+
     tldr --update 2>/dev/null || warn "tldr update failed"
     ok "tldr cache populated"
 }
@@ -190,6 +202,10 @@ stow_configs() {
     cd "$dotfiles_dst" || die "Failed to enter $dotfiles_dst"
 
     for pkg in */; do
+        if [[ "$pkg" == "zen/" ]]; then
+            warn "skip zen"
+            continue
+        fi
         [[ -d "$pkg" ]] || continue
 
         stow -v --restow --adopt "$pkg"

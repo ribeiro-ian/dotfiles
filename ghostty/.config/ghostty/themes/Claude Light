@@ -1,0 +1,33 @@
+background   = #FAF9F5
+foreground   = #33322E
+cursor-color = #C6613F
+cursor-text  = #33322E
+
+# ── Normal colors (0–7) ────────
+palette = 0= #F5F4ED
+palette = 1= #CC5A5A
+palette = 2= #6A9955
+palette = 3= #D6A345
+palette = 4= #6C8FD1
+palette = 5= #C586C0
+palette = 6= #5FB8B0
+palette = 7= #5A564C
+
+# ── Bright colors (8–15) ────────
+palette =  8= #7C7568
+palette =  9= #B04848
+palette = 10= #4F8A4F
+palette = 11= #B07E2C
+palette = 12= #4A6EAC
+palette = 13= #9A62C4
+palette = 14= #468E87
+palette = 15= #262624
+
+# ── Shell prompt colors ────────
+# orange
+palette = 166= #C6613F
+palette = 130= #A74E2E
+# folders (same as 4 = blue) for fzf-tab consistency
+palette = 254= #6C8FD1
+# accent color (dir)
+palette = 255= #C6613F

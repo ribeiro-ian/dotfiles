@@ -1,0 +1,72 @@
+version = 4
+
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+final_space = true
+
+[palettes] # Set palette via export OMP_PALLETE in .zshenv
+template = '{{ .Env.OMP_PALETTE }}'
+
+[palettes.list.Claude]
+accent = '#C6613F'
+
+[palettes.list.Zima]
+accent = '#5BC2E7'
+
+[upgrade]
+source = 'cdn'
+interval = '168h'
+auto = false
+notice = false
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+  [[blocks.segments]]
+  type = 'path'
+  style = 'plain'
+  foreground = 'p:accent'
+  template = '<b>{{ .Path }} <b>'
+    [blocks.segments.properties]
+    style = 'agnoster'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+filler = '<8><d>·<d><8>'
+
+  [[blocks.segments]]
+  type = 'executiontime'
+  style = 'plain'
+  foreground = '7'
+  template = ' 󱦟 {{ .FormattedMs }}'
+    [blocks.segments.properties]
+    threshold = 0
+    style = 'austin'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+  [[blocks.segments]]
+  type = 'text'
+  style = 'plain'
+  foreground_templates = [
+    '{{ if gt .Code 0}}red{{end}}',
+    '{{ if eq .Code 0}}green{{end}}'
+  ]
+  template = '<b>$<b>'
+
+[transient_prompt]
+foreground_templates = [
+  '{{ if gt .Code 0}}red{{end}}',
+  '{{ if eq .Code 0}}green{{end}}'
+]
+template = '<b>><b> '
+
+[secondary_prompt]
+foreground = 'white'
+template = '>> '
+
