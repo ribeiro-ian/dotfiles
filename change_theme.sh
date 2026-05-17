@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# ============================================================================
 # Dotfiles ─ change_theme.sh
-# ============================================================================
 
 # ────── Parameter validation ──────
 if [[ $# -lt 1 ]]; then
@@ -21,58 +19,46 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SPICETIFY="$HOME/.spicetify/spicetify"
 SPICETIFY_CONFIG="$HOME/.config/spicetify/config-xpui.ini"
 
-# ────── Define files and their sed expressions ──────
-# Format: "file@sed_expression@file_content"
-# file_content: content of file that does not exist yet should have.
-# Content empty ("@") for files that must already exist.
-declare -a TARGETS=(
-    "ghostty/.config/ghostty/theme.ghostty@\
-s|(theme = ).*|\1${THEME}|@\
-theme = ${THEME}"
-
-#    "starship/.config/starship.toml@\
-#s|(palette = ).*|\1'${THEME}'|@"
-
-    "neovim/.config/nvim/lua/config/colorscheme.lua@\
-s|(return ).*|\1\"${THEME}\"|@\
-return \"${THEME}\""
-
-    "mpv/.config/mpv/script-opts/colorscheme.conf@\
-s|(colorscheme=).*|\1${THEME}|@\
-colorscheme=${THEME}"
-)
-
-echo "─────────────────────────────────────────────"
-echo " Theme migration preview: '${THEME}'"
-echo "─────────────────────────────────────────────"
-
-# ────── Preview changes ──────
+# ────── Global counters ──────
 any_changes=0
 spicetify_change=0
-for entry in "${TARGETS[@]}"; do
-    file="${entry%%@*}"
-    rest="${entry#*@}"
-    expr="${rest%%@*}"
-    content="${rest##*@}" # empty string when third field is absent/blank
-    filepath="${DOTFILES}/${file}"
 
+# ────── Function to update a file ──────
+# Usage: update_file <file_path> <pattern> <template> <create_if_missing>
+update_file() {
+    local file="$1"
+    local pattern="$2"
+    local template="$3"
+    local create_if_missing="$4"
+    
+    local filepath="${DOTFILES}/${file}"
+    local replacement="${template/\{theme\}/$THEME}"
+    
+    # Check if file exists
     if [[ ! -f "$filepath" ]]; then
         echo ""
-        if [[ -n "$content" ]]; then
+        if [[ "$create_if_missing" == "true" ]]; then
             echo "[CREATE] ${file}:"
-            echo "  NEW: ${content}"
+            echo "  NEW: ${replacement}"
             any_changes=1
+            return 0  # Mark for creation, but don't create yet
         else
             echo "[SKIP] File not found: ${file}"
+            return 1
         fi
-        continue
     fi
-
-    preview=$(diff <(cat "$filepath") <(sed -E "$expr" "$filepath") || true)
-
+    
+    # Preview changes using diff
+    local temp_file=$(mktemp)
+    sed -E "s|${pattern}|${replacement}|" "$filepath" > "$temp_file"
+    
+    local preview=$(diff "$filepath" "$temp_file" 2>/dev/null || true)
+    rm -f "$temp_file"
+    
     if [[ -z "$preview" ]]; then
         echo ""
         echo "[NO CHANGE] ${file}"
+        return 1
     else
         echo ""
         echo "[CHANGE] ${file}:"
@@ -81,10 +67,73 @@ for entry in "${TARGETS[@]}"; do
             sed 's/^< /  OLD: /' |
             sed 's/^> /  NEW: /'
         any_changes=1
+        return 0
     fi
+}
+
+# ────── Function to actually apply changes ──────
+apply_file() {
+    local file="$1"
+    local pattern="$2"
+    local template="$3"
+    local create_if_missing="$4"
+    
+    local filepath="${DOTFILES}/${file}"
+    local replacement="${template/\{theme\}/$THEME}"
+    
+    if [[ ! -f "$filepath" ]]; then
+        if [[ "$create_if_missing" == "true" ]]; then
+            mkdir -p "$(dirname "$filepath")"
+            printf '%s\n' "$replacement" > "$filepath"
+            echo "[CREATED] ${file}"
+        fi
+        return
+    fi
+    
+    sed -Ei "s|${pattern}|${replacement}|" "$filepath"
+    echo "[DONE] ${file}"
+}
+
+# ────── Define all managed files ──────
+# Format: "file_path|pattern|template|create_if_missing"
+declare -a FILE_CONFIGS=(
+    "ghostty/.config/ghostty/theme.ghostty|\
+^theme = .*|\
+theme = {theme}|\
+true"
+
+    "neovim/.config/nvim/lua/config/colorscheme.lua|\
+^return .*|\
+return '{theme}'|\
+true"
+
+    "mpv/.config/mpv/script-opts/colorscheme.conf|\
+^colorscheme=.*|\
+colorscheme={theme}|\
+true"
+
+    "zen/profile.ian/chrome/userChrome.css|\
+@import url\('./themes/[^\"]*\.css'\);|\
+@import url('./themes/{theme}.css');|\
+false"
+
+    "zen/profile.ian/chrome/userContent.css|\
+@import url\('./themes/[^\"]*\.css'\);|\
+@import url('./themes/{theme}.css');|\
+false"
+)
+
+# ────── Preview changes ──────
+echo "─────────────────────────────────────────────"
+echo " Theme migration preview: '${THEME}'"
+echo "─────────────────────────────────────────────"
+
+for config in "${FILE_CONFIGS[@]}"; do
+    IFS='|' read -r file pattern template create <<< "$config"
+    update_file "$file" "$pattern" "$template" "$create"
 done
 
-# Spicetify preview
+# ────── Spicetify preview ──────
 if [[ -f "$SPICETIFY_CONFIG" ]]; then
     current_scheme=$(grep -E "^color_scheme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
     current_theme=$(grep -E "^current_theme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
@@ -109,55 +158,42 @@ if [[ -f "$SPICETIFY_CONFIG" ]]; then
         any_changes=1
         spicetify_change=1
     fi
-
 else
     echo ""
     echo "[SKIP] spicetify config not found"
 fi
 
+# ────── Check if any changes ──────
 if [[ $any_changes -eq 0 ]]; then
     echo ""
     echo "No changes to apply. '${THEME}' is already the active theme."
     exit 0
 fi
 
-# ────── Confirm ──────
+# ────── Confirmation ──────
 echo ""
 echo "─────────────────────────────────────────────"
 read -rp "Apply changes? [y to confirm]: " answer
 
-if [[ "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
-    echo ""
-    for entry in "${TARGETS[@]}"; do
-        file="${entry%%@*}"
-        rest="${entry#*@}"
-        expr="${rest%%@*}"
-        content="${rest##*@}"
-        filepath="${DOTFILES}/${file}"
-
-        if [[ ! -f "$filepath" ]]; then
-            if [[ -n "$content" ]]; then
-                mkdir -p "$(dirname "$filepath")"
-                printf '%s\n' "$content" > "$filepath"
-                echo "[CREATED] ${file}"
-            fi
-            continue
-        fi
-
-        sed -Ei "$expr" "$filepath"
-        echo "[DONE] ${file}"
-    done
-
-    if [[ "$spicetify_change" -eq 1 ]]; then
-        echo "[DONE] spicetify"
-        "$SPICETIFY" config current_theme Sonder
-        "$SPICETIFY" config color_scheme "${THEME}"
-    fi
-
-    echo ""
-    echo "Theme '${THEME}' applied successfully."
-else
+if [[ ! "$answer" =~ ^[Yy]([Ee][Ss])?$ ]]; then
     echo ""
     echo "Aborted. No files were modified."
     exit 0
 fi
+
+# ────── Apply changes ──────
+echo ""
+for config in "${FILE_CONFIGS[@]}"; do
+    IFS='|' read -r file pattern template create <<< "$config"
+    apply_file "$file" "$pattern" "$template" "$create"
+done
+
+# ────── Apply spicetify changes ──────
+if [[ "$spicetify_change" -eq 1 ]]; then
+    echo "[DONE] spicetify"
+    "$SPICETIFY" config current_theme Sonder
+    "$SPICETIFY" config color_scheme "${THEME}"
+fi
+
+echo ""
+echo "Theme '${THEME}' applied successfully."

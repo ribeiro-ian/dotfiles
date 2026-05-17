@@ -1,0 +1,132 @@
+/* ── Current Theme Import ──────────────── */
+/* Active theme palette */
+@import url('./themes/Claude.css');
+
+/* ── Semantic Layer ──────────────── */
+* {
+  /* Backgrounds */
+  --theme-bg: var(--bg0_h);
+  --theme-bg-sec: var(--bg0);
+  --theme-bg-hover: var(--bg4);
+
+  --theme-surface: var(--bg1);
+  --theme-surface-alt: var(--bg2);
+
+  /* Foregrounds */
+  --theme-fg-hover: var(--fg0);
+  --theme-fg: var(--fg1);
+  --theme-fg-sec: var(--fg2);
+  --theme-fg-muted: var(--fg3);
+  --theme-fg-disabled: var(--fg4);
+
+  /* Borders */
+  --theme-border: var(--gray);
+
+  /* Accent */
+  --theme-accent: var(--accent);
+  --theme-accent-active: var(--accent-active);
+  --theme-accent-hover: var(--accent-hover);
+
+  /* State Colors */
+  --theme-red: var(--red);
+  --theme-orange: var(--orange);
+  --theme-yellow: var(--yellow);
+  --theme-green: var(--green);
+  --theme-aqua: var(--aqua);
+  --theme-blue: var(--blue);
+  --theme-purple: var(--purple);
+}
+
+/* ── Firefox About Pages ──────────────── */
+
+@-moz-document url-prefix("about:") {
+  * {
+    /* base */
+    --zen-colors-tertiary: var(--theme-surface) !important;
+    --background-color-canvas: var(--theme-bg) !important;
+    --background-color-box: var(--theme-surface) !important;
+    --background-color-box-info: var(--theme-surface-alt) !important;
+
+    --text-color: var(--theme-fg) !important;
+    --text-color-deemphasized: var(--theme-fg-muted) !important;
+
+    --border-color: color-mix(
+      in srgb,
+      var(--theme-gray) 70%,
+      transparent
+    ) !important;
+
+    /* accent */
+    --color-accent-primary: var(--theme-accent) !important;
+    --color-accent-primary-hover: var(--accent-hover) !important;
+    --color-accent-primary-active: var(--accent-active) !important;
+
+    --text-color-accent-primary: var(--theme-bg) !important;
+    --text-color-accent-primary-selected: var(--theme-fg) !important;
+
+    /* buttons */
+    --button-background-color: var(--theme-surface) !important;
+    --button-background-color-hover: var(--theme-bg-hover) !important;
+    --button-background-color-active: var(--theme-surface-alt) !important;
+
+    --button-text-color: var(--theme-fg) !important;
+    --button-text-color-hover: var(--theme-fg-hover) !important;
+    --button-text-color-active: var(--theme-fg-alt) !important;
+
+    /* inputs */
+    --input-background-color: var(--theme-surface) !important;
+
+    /* cards */
+    --card-background-color: var(--theme-surface) !important;
+    --card-border-color: color-mix(
+      in srgb,
+      var(--gray) 50%,
+      transparent
+    ) !important;
+
+    /* links */
+    --link-color: var(--theme-accent) !important;
+    --link-color-hover: var(--theme-accent-active) !important;
+    --link-color-active: var(--theme-accent-active) !important;
+
+    /* misc */
+    --focus-outline-color: var(--theme-accent) !important;
+
+    /* alternating rows */
+    --table-row-background-color: var(--theme-bg-alt);
+    --table-row-background-color-alternate: var(--theme-surface-alt);
+
+    /* hovered rows */
+    --background-color-list-item-hover: var(--theme-bg-hover) !important;
+    --text-color-list-item-hover: var(--theme-fg-hover) !important;
+
+    /* selected rows */
+    --color-accent-primary-selected: var(--theme-accent-active) !important;
+
+    --text-color-accent-primary-selected: var(--theme-fg-alt) !important;
+  }
+
+  body,
+  html {
+    background: var(--theme-bg) !important;
+    color: var(--theme-fg) !important;
+  }
+
+  input,
+  textarea,
+  select {
+    background: var(--theme-surface) !important;
+    color: var(--theme-fg) !important;
+    border-color: var(--theme-border) !important;
+  }
+
+  button {
+    border-radius: 8px !important;
+  }
+
+  code,
+  pre {
+    background: var(--theme-surface-alt) !important;
+    color: var(--theme-fg) !important;
+  }
+}
