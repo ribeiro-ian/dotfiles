@@ -1,4 +1,4 @@
-# Gruvbox
+# Gruvbox fork
 background   = #F9F5D7
 foreground   = #3C3836
 cursor-color = #5BC2E7
@@ -24,11 +24,7 @@ palette = 13= #8F3F71
 palette = 14= #427B58
 palette = 15= #3C3836
 
-# ── Shell prompt colors ────────
-# orange
+# ── Extra colors ────────
 palette = 166= #D65d0E
 palette = 130= #AF3A03
-# folders (same as 4 = blue) for fzf-tab consistency
 palette = 254= #458588
-# accent color
-palette = 255= #5BC2E7

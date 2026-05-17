@@ -1,4 +1,3 @@
-# Claude Dark
 background   = #1F1E1D
 foreground   = #ECE6D9
 cursor-color = #C6613F
@@ -24,11 +23,7 @@ palette = 13= #D19EF0
 palette = 14= #84D9D1
 palette = 15= #ECE6D9
 
-# ── Shell prompt colors ────────
-# orange
+# ── Extra colors ────────
 palette = 166= #C6613F
 palette = 208= #E8845C
-# folders (same as 4 = blue) for fzf-tab consistency
 palette = 254= #6C8FD1
-# accent color (dir)
-palette = 255= #C6613F

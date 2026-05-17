@@ -24,11 +24,7 @@ palette = 13= #D3869B
 palette = 14= #8EC07C
 palette = 15= #EBDBB2
 
-# ── Shell prompt colors ────────
-# orange
+# ── Extra colors ────────
 palette = 166= #d65d0e
 palette = 208= #fe8019
-# folders (same as 4 = blue) for fzf-tab consistency
 palette = 254= #458588
-# accent color
-palette = 255= #5BC2E7
