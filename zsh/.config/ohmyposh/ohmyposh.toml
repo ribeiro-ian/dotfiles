@@ -1,6 +1,7 @@
 version = 4
 
-console_title_template = '{{ .Shell }} in {{ .Folder }}'
+console_title_template = 'in {{ .Folder }}'
+shell_integration = true
 final_space = true
 
 [palettes] # Set palette via export OMP_PALLETE in .zshenv
@@ -44,7 +45,7 @@ newline = true
 [[blocks]]
 type = 'prompt'
 alignment = 'right'
-filler = '<8><d>·<d><8>'
+overflow = 'hide'
 
   [[blocks.segments]]
   type = 'executiontime'
@@ -52,7 +53,7 @@ filler = '<8><d>·<d><8>'
   foreground = '7'
   template = ' 󱦟 {{ .FormattedMs }}'
     [blocks.segments.properties]
-    threshold = 0
+    threshold = 5000 # 5s
     style = 'austin'
 
 [[blocks]]
