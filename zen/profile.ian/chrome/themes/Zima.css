@@ -33,8 +33,6 @@
     /* Colors */
     --accent-hover: #96D3E9; /* softer accent */
     --accent-active: #1BA7DA; /* deeper accent */
-
-    color-scheme: dark;
   }
 }
 
@@ -59,7 +57,5 @@
     /* Accent variations */
     --accent-hover: #1BA7DA; /* softer accent */
     --accent-active: #96D3E9; /* deeper accent */
-
-    color-scheme: light;
   }
 }
