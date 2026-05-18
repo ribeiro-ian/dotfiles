@@ -27,9 +27,19 @@ newline = true
   type = 'path'
   style = 'plain'
   foreground = 'p:accent'
-  template = '<b>{{ .Path }} <b>'
+  template = '<b>{{ if .Segments.Git.RepoName }}{{ .Segments.Git.RepoName }}{{ if .Segments.Git.RelativeDir }}/{{ .Format .Segments.Git.RelativeDir }}{{ end }}{{ else }}{{ .Path }}{{ end }} </b>'
+  [blocks.segments.properties]
+    style = 'agnoster_full'
+    max_depth = 3
+
+  [[blocks.segments]]
+  type = 'git'
+  style = 'plain'
+  foreground = 'transparent'
+  background = 'transparent'
+  template = ''
     [blocks.segments.properties]
-    style = 'agnoster'
+    fetch_status = false
 
 [[blocks]]
 type = 'prompt'
