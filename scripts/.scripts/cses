@@ -4,17 +4,17 @@ FILENAME="${NUM}.cpp"
 
 if [[ -f $FILENAME ]]; then
     echo "File already exists!"
-	echo "opening $FILENAME..."
-	code "$FILENAME"
-	exit 1
+    echo "opening $FILENAME..."
+    code "$FILENAME"
+    exit 1
 fi
 
+printf '%s\n' \
+    '/*' \
+    "	CSES ${NUM} - TITLE" \
+    "	https://cses.fi/problemset/task/${NUM}" \
+    '*/' \
+    '' \
+    > "$FILENAME"
 
-cat > "$FILENAME" << EOF
-/*
-    CSES ${NUM} - TITLE
-    https://cses.fi/problemset/task/${NUM}
-*/
-
-EOF
 code "$FILENAME"

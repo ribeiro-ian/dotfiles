@@ -53,7 +53,7 @@
   --sidebar-text-color: var(--theme-fg) !important;
   
   /* Panels / Popups */
-  --arrowpanel-background: var(--theme-surface) !important;
+  --arrowpanel-background: var(--theme-bg-sec) !important;
   --arrowpanel-color: var(--theme-fg) !important;
   --menuitem-icon-fill: var(--arrowpanel-color) !important;
   --panel-color: var(--arrowpanel-color) !important;

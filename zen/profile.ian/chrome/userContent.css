@@ -10,7 +10,7 @@
   --theme-bg-hover: var(--bg4);
 
   --theme-surface: var(--bg1);
-  --theme-surface-alt: var(--bg2);
+  --theme-surface-sec: var(--bg2);
 
   /* Foregrounds */
   --theme-fg-hover: var(--fg0);
@@ -45,7 +45,7 @@
     --zen-colors-tertiary: var(--theme-surface) !important;
     --background-color-canvas: var(--theme-bg) !important;
     --background-color-box: var(--theme-surface) !important;
-    --background-color-box-info: var(--theme-surface-alt) !important;
+    --background-color-box-info: var(--theme-surface-sec) !important;
 
     --text-color: var(--theme-fg) !important;
     --text-color-deemphasized: var(--theme-fg-muted) !important;
@@ -67,7 +67,7 @@
     /* buttons */
     --button-background-color: var(--theme-surface) !important;
     --button-background-color-hover: var(--theme-bg-hover) !important;
-    --button-background-color-active: var(--theme-surface-alt) !important;
+    --button-background-color-active: var(--theme-surface-sec) !important;
 
     --button-text-color: var(--theme-fg) !important;
     --button-text-color-hover: var(--theme-fg-hover) !important;
@@ -93,8 +93,8 @@
     --focus-outline-color: var(--theme-accent) !important;
 
     /* alternating rows */
-    --table-row-background-color: var(--theme-bg-alt);
-    --table-row-background-color-alternate: var(--theme-surface-alt);
+    --table-row-background-color: var(--theme-bg-sec);
+    --table-row-background-color-alternate: var(--theme-surface);
 
     /* hovered rows */
     --background-color-list-item-hover: var(--theme-bg-hover) !important;
@@ -126,7 +126,7 @@
 
   code,
   pre {
-    background: var(--theme-surface-alt) !important;
+    background: var(--theme-surface-sec) !important;
     color: var(--theme-fg) !important;
   }
 }
