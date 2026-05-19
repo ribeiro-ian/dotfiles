@@ -16,4 +16,7 @@
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', 'Droid Sans Mono', monospace",
   "terminal.integrated.fontFamily": "'BlexMono Nerd Font', monospace",
   "workbench.colorTheme": "Claude Dark",
+  "terminal.integrated.drawBoldTextInBrightColors": false,
+  "editor.snippetSuggestions": "top",
+  "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
 }
