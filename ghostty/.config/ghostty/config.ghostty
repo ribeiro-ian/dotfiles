@@ -26,7 +26,8 @@ window-width = 84
 window-height = 26
 
 # ── Cursor configuration ────────
-cursor-style = block
+cursor-style = bar
+adjust-cursor-thickness = 1
 
 # ── Keybinds ────────
 keybind = ctrl+shift+r=reload_config

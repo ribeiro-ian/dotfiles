@@ -16,8 +16,11 @@
         "when": "!debuggersAvailable"
     },
     {
-        "key": "f5",
-        "command": "code-runner.run"
+      "key": "f5",
+      "command": "workbench.action.terminal.sendSequence",
+      "args": {
+          "text": "run ${file} "
+      }
     },
     {
         "key": "shift+alt+r",

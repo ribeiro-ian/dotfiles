@@ -28,6 +28,9 @@ newline = true
   type = 'path'
   style = 'plain'
   foreground = 'p:accent'
+  foreground_templates = [
+    '{{ if eq .Env.TERM_PROGRAM "vscode" }}blue{{ end }}'
+  ]
   template = '<b>{{ if .Segments.Git.RepoName }}{{ .Segments.Git.RepoName }}{{ if .Segments.Git.RelativeDir }}/{{ .Format .Segments.Git.RelativeDir }}{{ end }}{{ else }}{{ .Path }}{{ end }} </b>'
   [blocks.segments.properties]
     style = 'agnoster_full'
