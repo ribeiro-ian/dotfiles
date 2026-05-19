@@ -1,6 +1,6 @@
 version = 4
 
-console_title_template = 'in {{ .Folder }}'
+console_title_template = '{{ if eq .Folder .Env.USER }}home{{ else }}{{ .PWD }}{{end}} ─ {{ .Env.TERM_PROGRAM }}'
 shell_integration = true
 final_space = true
 

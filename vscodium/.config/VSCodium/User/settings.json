@@ -1,0 +1,31 @@
+{
+  "settingsSync.ignoredSettings": [
+    "editor.fontFamily",
+    "workbench.colorTheme",
+    "terminal.integrated.fontFamily",
+    "terminal.integrated.fontSize"
+  ],
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "C_Cpp.autocompleteAddParentheses": true,
+  "editor.snippetSuggestions": "top",
+  "terminal.integrated.stickyScroll.enabled": false,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "workbench.iconTheme": "mc-dp-icons",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.panel.defaultLocation": "right",
+  "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', monospace",
+  "editor.minimap.enabled": false,
+  "files.autoSave": "afterDelay",
+  "settingsSync.ignoredExtensions": [
+    "github.github-vscode-theme",
+    "zhangcy.claude-themes-by-zhangcy",
+    "jdinhlife.gruvbox",
+    "akamud.vscode-theme-onelight"
+  ],
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "workbench.editor.empty.hint": "hidden",
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.colorTheme": "Claude Dark",
+}
