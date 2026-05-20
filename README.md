@@ -16,14 +16,16 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 
 | Folder      | Description                            |
 | ----------- | -------------------------------------- |
-| `zsh`       | Shell with plugins                     |
-| `scripts`   | Personal shell scripts                 |
-| `ghostty`   | Terminal emulator                      |
 | `fastfetch` | Tool for fetching system information   |
+| `ghostty`   | Terminal emulator                      |
 | `btop`      | Terminal resource monitor              |
 | `neovim`    | Terminal text editor                   |
 | `mpv`       | Media player                           |
+| `scripts`   | Personal shell scripts                 |
 | `spicetify` | Spotify customization                  |
+| `vscodium`  | VSCode with no microslop               |
+| `zen`       | Firefox-based browser                  |
+| `zsh`       | Shell with plugins                     |
 
 ## Requirements
 
@@ -36,7 +38,7 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 Clone and run the install script it handles everything automatically:
 
 ```bash
-git clone https://github.com/ribeiro-ian/dotfiles ~/.dotfiles
+git clone https://github.com/old/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
@@ -45,9 +47,8 @@ The script will:
 
 - Detect your package manager (`apt`, `pacman`)
 - Install requirements
-- Install `zsh`, `fzf`, `zinit` and zsh plugins
+- Install `zsh`, `zinit`, `fzf`, `oh-my-posh` and more zsh plugins
 - Install CLI utils:  `zoxide`, `eza`, `bat` and more
-- Install packages: `ghostty`, `mpv`, `nvim` and more
+- Install packages: `ghostty`, `mpv`, `neovim` and more
 - Install Nerd Fonts to `~/.fonts`
 - Rename `~/dotfiles` → `~/.dotfiles` and stow all configs
-

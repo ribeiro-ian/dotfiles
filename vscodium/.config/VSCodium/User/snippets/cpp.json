@@ -58,7 +58,7 @@
 		"description": "Competitive Programming exercises default init with test cases",
 	},
   "Problem info": {
-    "prefix": "header",
+    "prefix": "problem",
     "body": [
       "/*",
       " * Contest : ${2:contest}",
