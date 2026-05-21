@@ -27,6 +27,7 @@
 }
 
 /* Siderbar items */
+.main-yourLibraryX-filterArea *, [class^="main-home"] * {--background-tinted-base: var(--surface); }
 [role="gridcell"] > * { background-color: unset !important; }
 [role="gridcell"] { border-radius: 8px !important; }
 /* REMOVE WINDOW CONTROL BUTTONS */
