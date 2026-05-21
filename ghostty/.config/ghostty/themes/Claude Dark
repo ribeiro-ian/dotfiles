@@ -1,29 +1,29 @@
-background   = #1F1E1D
-foreground   = #ECE6D9
-cursor-color = #C6613F
-cursor-text  = #1F1E1D
+background   = #1A1A18
+foreground   = #E8E4DC
+cursor-color = #D97757
+cursor-text  = #1A1A18
 
 # ── Normal colors (0–7) ────────
 palette = 0= #262624
-palette = 1= #CC5A5A
-palette = 2= #6A9955
-palette = 3= #D6A345
-palette = 4= #6C8FD1
-palette = 5= #C586C0
-palette = 6= #5FB8B0
-palette = 7= #A89E8C
+palette = 1= #F28B82
+palette = 2= #7EC699
+palette = 3= #E8C47C
+palette = 4= #7CACE8
+palette = 5= #C49BE8
+palette = 6= #7CE8D4
+palette = 7= #E8E4DC
 
 # ── Bright colors (8–15) ────────
 palette =  8= #7C7568
-palette =  9= #EA7A7A
-palette = 10= #90D290
-palette = 11= #EBBF6E
-palette = 12= #8FAAE6
-palette = 13= #D19EF0
-palette = 14= #84D9D1
-palette = 15= #ECE6D9
+palette =  9= #F28B82
+palette = 10= #7EC699
+palette = 11= #E8C47C
+palette = 12= #7CACE8
+palette = 13= #C49BE8
+palette = 14= #7CE8D4
+palette = 15= #FDFBF7
 
 # ── Extra colors ────────
-palette = 166= #C6613F
-palette = 208= #E8845C
-palette = 254= #6C8FD1
+palette = 166= #D97757
+palette = 208= #D97757
+palette = 254= #7CACE8

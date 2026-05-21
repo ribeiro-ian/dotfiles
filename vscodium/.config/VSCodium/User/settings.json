@@ -1,4 +1,6 @@
 {
+  "editor.tokenColorCustomizations": {
+  },
   "workbench.secondarySideBar.defaultVisibility": "hidden",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "workbench.iconTheme": "mc-dp-icons",
@@ -15,8 +17,9 @@
   "editor.cursorBlinking": "smooth",
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', 'Droid Sans Mono', monospace",
   "terminal.integrated.fontFamily": "'BlexMono Nerd Font', monospace",
-  "terminal.integrated.drawBoldTextInBrightColors": false,
   "editor.snippetSuggestions": "top",
   "editor.inlayHints.enabled": "off",
+  "workbench.shadows": false,
+  "terminal.integrated.drawBoldTextInBrightColors": false,
   "workbench.colorTheme": "Claude Dark"
 }
