@@ -1,33 +1,50 @@
 /* === REQUIRES OLD LIKE BUTTON EXTENSION === */
 
-:root {
-	--spice-tab-active: unset !important;
+/* FIX DEFAULT SPICETIFY COLOR VARIABLES */
+[class^="encore"]{
+  --background-tinted-base: unset !important;
+  --background-tinted-highlight: unset !important;
+  --background-elevated-base: var(--bg)
 }
 
+* {
+  --accent: var(--spice-button-active);
+  --bg: var(--spice-main);
+  --surface: var(--spice-main-elevated);
+  
+  --background-tinted-base: color-mix(in srgb, var(--accent) 20%, transparent);
+  --background-tinted-highlight: color-mix(in srgb, var(--accent) 25%, transparent);
+  --accent-active: var(--background-tinted-base);
+  --accent-active-hover: var(--background-tinted-highlight);
+  
+  --spice-rgb-selected-row: var(--spice-rgb-subtext);
+  --spice-tab-active: var(--spice-highlight-elevated);
+  --text-subdued: var(--spice-subtext) !important;
+  /* --spice-tab-active: unset !important; */
+}
+.Root__right-sidebar {
+  --background-elevated-base: var(--surface);
+}
+
+/* Siderbar items */
+[role="gridcell"] > * { background-color: unset !important; }
+[role="gridcell"] { border-radius: 8px !important; }
 /* REMOVE WINDOW CONTROL BUTTONS */
 .CCIGxtpAreSdwWRo14FE, .B9lb86gGqGGFcSZZ95bA {width: unset;}
 .OPsY6bKl1_FfA8jFpq1V, .B9lb86gGqGGFcSZZ95bA, .Kgjmt7IX5samBYUpbkBu {display: none;}
 
 /* IMPROVE SCROLLBAR */
 .os-theme-spotify.os-scrollbar {
-    --os-size: 8px;
-    --os-handle-bg: rgba(var(--spice-rgb-selected-row), .1);
-    --os-handle-bg-hover: rgba(var(--spice-rgb-selected-row), .5);
-    --os-handle-bg-active: rgba(var(--spice-rgb-selected-row), 1);
-}
-
-/* FIX SUBTEXT COLOR INCONSISTENCY */
-* {
-	--spice-rgb-selected-row: var(--spice-rgb-subtext);
+  --os-size: 8px;
+  --os-handle-bg: rgba(var(--spice-rgb-selected-row), .1);
+  --os-handle-bg-hover: rgba(var(--spice-rgb-selected-row), .5);
+  --os-handle-bg-active: rgba(var(--spice-rgb-selected-row), 1);
 }
 
 /* FIX RIGHT SIDER BAR TEXT COLOR */
-.IkRGajTjItEFQkRMeH6v {
-    --text-subdued: var(--spice-subtext);
-}
 .E08D6ucrHuPJYzzGO7HG{
-    border-radius: 8px;
-    overflow: hidden;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 /* IMPROVE QUEUE TAB TOP SHADOW */
@@ -44,14 +61,7 @@
 
 /* FIX FRIENDS TAB TEXT COLOR */
 .OemaZktMXaRcYQ5bcfLZ {
-    --spice-rgb-selected-row: var(--spice-rgb-text) !important;
-}
-
-/* FIX DEFAULT SPICETIFY COLOR VARIABLES */
-.encore-dark-theme, .encore-dark-theme .encore-base-set {
-    --background-tinted-base: var(--spice-highlight-elevated);
-    --background-tinted-highlight: rgba(255, 255, 255, 0.1);
-    --background-elevated-base: var(--spice-main);
+  --spice-rgb-selected-row: var(--spice-rgb-text) !important;
 }
 
 /* FIX GRADIENT */
@@ -70,96 +80,90 @@
 .Bdcf5g__Rug3TGqSdbiy ~ .contentSpacing {
     --background-base: ;
     background: var(--background-base);
+  --spice-rgb-selected-row: var(--spice-rgb-text) !important;
 }
 
 /* FIX PLAYLIST DESC COLOR */
 .playlist-playlist-whiteOpacity {
-    color: var(--spice-text);
+  color: var(--spice-text);
 }
 
-/* .main-topBar-container > * {
-    --background-base: var(--background-highlight) !important;
-} */
-
-.playlist-playlist-actionBarBackground-background{
-    background-image: linear-gradient(
-        var(--direction-and-possibly-color-interpolation),
-        var(--background-base),
-        transparent), var(--dither);
+/* PLAYLIST/ALBUM HEADER */
+.main-topBar-background {
+  background: color-mix(in srgb, var(--surface) 88%, #fff) !important;
 }
+.Ltz8hFoxXpck1XAk {
+  background: color-mix(in srgb, var(--spice-subtext) 5%, transparent) !important;
+  backdrop-filter: blur(12px);
+}
+
 
 /* FIX SELECTED ROW HOVER COLOR */
-.main-trackList-trackListRow.MxoETbR0GSKhCd1hp6Np:hover {
-    background-color: rgba(var(--spice-rgb-selected-row), .5);
-}
-/* REMOVE UGLY ASF "ADD TO PLAYLIST" BUTTON */
-/* [aria-label="Add to playlist"], [aria-label="Add to Liked Songs"] {display: none;}
+[aria-selected="true"] > div { background-color: var(--accent-active) !important; }
+[aria-selected="true"] > div:hover { background-color: var(--accent-active-hover) !important; }
 
 /* REMOVE OPTIONS BUTTON */
 [aria-haspopup="menu"] {display: none;}
 
 /* FIX PLAYBAR TRACK INFO COLOR */
 .main-trackInfo-artists {
-    text-shadow: none !important;
-    color: var(--spice-text) !important;
-    --text-subdued: var(--spice-text);
+  text-shadow: none !important;
+  color: var(--spice-text) !important;
 }
 
 /* PLAYBAR TRACK PROGRESS COLORED */
-.playback-bar .x-progressBar-progressBarBg {
-    --fg-color: var(--spice-button);
+.playback-bar .x-progressBar-progressBarBg, .x-progressBar-fillColor {
+  --fg-color: var(--accent);
 }
 .progress-bar {
-    --fg-color: var(--spice-subtext);
+  --fg-color: var(--spice-subtext);
 }
 
 /* COLOR PLAYBAR PAUSE/PLAY BUTTON */
 [data-testid="control-button-playpause"] {
-    --spice-text: var(--spice-button-active);
+  --spice-text: var(--accent);
 }
 [data-testid="control-button-playpause"]:hover > * {
-    background-color: var(--spice-button-active) !important;
+  background-color: var(--accent) !important;
 }
 
 /* FIX PLAYBAR BUTTONS COLOR */
 .main-genericButton-button {
-    color: var(--spice-subtext);
+  color: var(--spice-subtext);
 }
-
-/* FIX LIKE BUTTON */
-/*.main-nowPlayingBar-left {
-    display: flex;
-    align-items: center;
-}
-*/
 
 /* === ARTIST PAGE === */
 .EmeHQXR87mUskYK6xEde > .Bdcf5g__Rug3TGqSdbiy {
-    background-image: none;
+  background-image: none;
 }
 .artist-popularTrackList-seeMore {
-    --spice-rgb-selected-row: var(--spice-subtext);
+  --spice-rgb-selected-row: var(--spice-subtext);
 }
 
 /* MISC */
 .main-entityHeader-metaDataText{
-    --spice-rgb-selected-row: var(--spice-rgb-text) !important;
+  --spice-rgb-selected-row: var(--spice-rgb-text) !important;
 }
 
 #context-menu svg svg{
-    color: var(--text-subdued);
+  color: var(--text-subdued);
 }
 
 .main-trackCreditsModal-container{
-    background-color: var(--spice-main-elevated);
-    border-radius: 8px;
+  background-color: var(--spice-main-elevated);
+  border-radius: 8px;
 }
 
 .e-9890-button-primary:hover .e-9890-button-primary__inner {
-    background-color: var(--spice-button);
+  background-color: var(--accent);
+}
+
+/* === SPICETIFY === */
+.main-topBar-container a {
+  background-color: var(--surface);
 }
 
 /* === CONFIG PAGE === */
 .main-dropDown-dropDown {
-    color: var(--spice-subtext);
+  color: var(--spice-subtext);
 }

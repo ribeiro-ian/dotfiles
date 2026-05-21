@@ -10,7 +10,7 @@ template = '{{ .Env.OMP_PALETTE }}'
 [palettes.list.Claude]
 accent = '#D97757'
 
-[palettes.list.Zima]
+[palettes.list.Gruvzima]
 accent = '#5BC2E7'
 
 [upgrade]

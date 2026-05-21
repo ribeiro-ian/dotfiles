@@ -13,6 +13,8 @@ mpv/.config/mpv/script-opts/colorscheme.conf
 mpv/.config/mpv/shaders/
 mpv/.config/mpv/*.json
 
+vscodium/.config/VSCodium/User/settings.json
+
 zen/profile.ian/chrome/current_theme.css
 
 zsh/.config/fsh/*.zsh

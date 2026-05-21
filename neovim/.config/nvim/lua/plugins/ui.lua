@@ -1,7 +1,7 @@
 -- Colorscheme aliases map: alias => nvim colorscheme
 local aliases = {
 	["Claude"] = "token",
-	["Zima"] = "gruvbox"
+	["Gruvzima"] = "gruvbox"
 	-- add colorschemes
 }
 
@@ -17,7 +17,7 @@ return {
 	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 	{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} }, -- Default
 	{ "ThorstenRhau/token", lazy = false, priority = 1000 }, -- Claude color palette
-	{"ellisonleao/gruvbox.nvim", lazy = false, priority = 100 },
+	{ "ellisonleao/gruvbox.nvim", lazy = false, priority = 100 },
 
 	-- ──── Load Current Colorscheme ────
 	-- Plugin to load current colorscheme after all colorschemes loaded

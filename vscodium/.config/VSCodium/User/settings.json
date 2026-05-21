@@ -1,8 +1,12 @@
 {
+  "colorize.enable_search_variables": false,
+  "colorize.hide_current_line_decorations": false,
+  "colorize.include": ["**/*"],
+  "colorize.colorized_colors": ["HEXA", "RGB", "HSL", "ARGB"],
+  "colorize.colorized_variables": ["CSS", "LESS", "SASS", "STYLUS"],
   "editor.tokenColorCustomizations": {
   },
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "terminal.integrated.enableMultiLinePasteWarning": false,
   "workbench.iconTheme": "mc-dp-icons",
   "workbench.panel.defaultLocation": "right",
   "editor.minimap.enabled": false,
@@ -21,5 +25,7 @@
   "editor.inlayHints.enabled": "off",
   "workbench.shadows": false,
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "workbench.colorTheme": "Claude Dark"
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Claude Dark",
+  "workbench.preferredLightColorTheme": "Solarized Light",
 }
