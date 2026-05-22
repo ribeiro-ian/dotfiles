@@ -46,6 +46,7 @@
   --zen-main-browser-background: var(--theme-bg) !important;
   --zen-branding-dark: var(--theme-bg) !important;
   --zen-branding-paper: var(--theme-fg) !important;
+  --zen-toolbar-element-bg: color-mix(in srgb,var(--theme-accent) 10%, transparent) !important;
   
   --toolbar-color: var(--theme-fg) !important;
   --toolbar-field-color: var(--theme-fg) !important;
