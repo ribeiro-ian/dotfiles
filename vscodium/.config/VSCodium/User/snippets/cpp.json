@@ -60,11 +60,11 @@
   "Problem info": {
     "prefix": "problem",
     "body": [
-      "/*",
+      "/**",
       " * Contest : ${2:contest}",
       " * Problem : ${3:problem}",
       " * Link    : ${1:url}",
-      " * Time    : ${4:O(?)}",
+      " * Time    : ${4:O(???)}",
       " */",
       "$0"
     ],

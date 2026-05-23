@@ -426,14 +426,6 @@
         "foreground": "#4E8B62"
       }
     },
-      {
-      "name": "Method name",
-      "scope": "entity.name.function.member",
-      "settings": {
-        "fontStyle": "",
-        "foreground": "#4A9E8A"
-      }
-    },
     {
       "name": "Function argument",
       "scope": "variable.parameter",

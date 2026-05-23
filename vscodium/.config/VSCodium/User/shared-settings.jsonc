@@ -1,9 +1,13 @@
 {
+  // Shared settings
   "colorize.enable_search_variables": false,
   "colorize.hide_current_line_decorations": false,
   "colorize.include": ["**/*"],
   "colorize.colorized_colors": ["HEXA", "RGB", "HSL", "ARGB"],
   "colorize.colorized_variables": ["CSS", "LESS", "SASS", "STYLUS"],
+  "clangd.arguments": [
+    "--header-insertion=never"
+  ],
   "window.autoDetectColorScheme": true,
   "workbench.preferredDarkColorTheme": "Monokai",
   "workbench.preferredLightColorTheme": "Solarized Light",
@@ -23,9 +27,10 @@
   "editor.detectIndentation": false,
   "editor.cursorBlinking": "smooth",
   "editor.snippetSuggestions": "top",
-  "editor.inlayHints.enabled": "on",
   "editor.tabSize": 2,
   "editor.cursorSurroundingLines": 8,
   "editor.padding.top": 8,
-  "files.autoSave": "afterDelay"
+  "files.autoSave": "afterDelay",
+
+  // Local settings
 }

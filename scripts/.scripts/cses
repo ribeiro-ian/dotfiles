@@ -10,11 +10,11 @@ if [[ -f $FILENAME ]]; then
 fi
 
 printf '%s\n' \
-    '/*'\
-    " * Contest : CSES "\
+    '/**'\
+    " * Contest : CSES Problem Set"\
     " * Problem : ${NUM} - TITLE"\
     " * Link    : https://cses.fi/problemset/task/${NUM}"\
-    " * Time    : O(?)"\
+    " * Time    : O(???)"\
     ' */'\
     '' \
     > "$FILENAME"

@@ -427,14 +427,6 @@
       }
     },
     {
-      "name": "Method name",
-      "scope": "entity.name.function.member",
-      "settings": {
-        "fontStyle": "",
-        "foreground": "#7CE8D4"
-      }
-    },
-    {
       "name": "Function argument",
       "scope": "variable.parameter",
       "settings": {

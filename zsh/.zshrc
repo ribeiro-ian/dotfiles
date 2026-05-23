@@ -40,6 +40,7 @@ setopt hist_ignore_all_dups hist_save_no_dups hist_find_no_dups
 declare -A ZINIT
 ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/.zcompdump"
 
+fpath=(~/.cache/zsh/completions $fpath) # add custom completions
 # ── Zinit ────────────────
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [[ ! -d $ZINIT_HOME/.git ]] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
