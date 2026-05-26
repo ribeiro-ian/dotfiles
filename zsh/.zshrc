@@ -21,7 +21,6 @@ alias -g .....='../../../..'
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.scripts:$PATH"
 export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
 
 # ── Zsh options ────────────────

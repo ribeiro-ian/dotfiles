@@ -15,10 +15,10 @@ trap 'echo; warn "Installation interrupted"' INT TERM
 
 # ── Package manager ────────────────
 detect_pkg_manager() {
-    if command -v apt-get &>/dev/null; then echo "apt"
-    elif command -v pacman &>/dev/null; then echo "pacman"
-    else echo "unknown"
-    fi
+  if command -v apt-get &>/dev/null; then echo "apt"
+  elif command -v pacman &>/dev/null; then echo "pacman"
+  else echo "unknown"
+  fi
 }
 
 FAILED_PKGS=()
@@ -30,219 +30,248 @@ log "Detected package manager: ${BOLD}${PKG_MANAGER}${RESET}"
 sudo -v || die "Failed to authenticate with sudo"
 
 while true; do
-    sudo -n true
-    sleep 240
-    kill -0 "$$" || exit
+  sudo -n true
+  sleep 240
+  kill -0 "$$" || exit
 done 2>/dev/null &
 
 # ── Package mappings ────────────────
 pkg_name() {
-    local pkg="$1"
+  local pkg="$1"
 
-    case "$PKG_MANAGER:$pkg" in
-        apt:fd) echo "fd-find" ;;
-        *) echo "$pkg" ;;
-    esac
+  case "$PKG_MANAGER:$pkg" in
+    apt:fd) echo "fd-find" ;;
+    *) echo "$pkg" ;;
+  esac
 }
 
 pkg_install() {
-    local cmd="$1" pkg
-    pkg="$(pkg_name "$cmd")"
+  local cmd="$1" pkg
+  pkg="$(pkg_name "$cmd")"
 
-    log "Installing $cmd ($pkg)..."
-    case "$PKG_MANAGER" in
-        apt)    sudo apt-get install -y "$pkg" ;;
-        pacman) sudo pacman -S --noconfirm "$pkg" ;;
-        *)      warn "No supported package manager found. Please install '$pkg' manually." ;;
-    esac
-    return $?
+  log "Installing $cmd ($pkg)..."
+  case "$PKG_MANAGER" in
+    apt)    sudo apt-get install -y "$pkg" ;;
+    pacman) sudo pacman -S --noconfirm "$pkg" ;;
+    *)      warn "No supported package manager found. Please install '$pkg' manually." ;;
+  esac
+  return $?
 }
 
 install() {
-    local cmd="$1"
+  local cmd="$1"
 
-    if command -v "$cmd" &>/dev/null; then
-        ok "$cmd already installed"
-        return 0
-    fi
+  if command -v "$cmd" &>/dev/null; then
+    ok "$cmd already installed"
+    return 0
+  fi
 
-    if pkg_install "$cmd"; then
-        ok "$cmd installed"
-    else
-        warn "Failed to install $cmd"
-        FAILED_PKGS+=("$cmd")
-        return 1
-    fi
+  if pkg_install "$cmd"; then
+    ok "$cmd installed"
+  else
+    warn "Failed to install $cmd"
+    FAILED_PKGS+=("$cmd")
+    return 1
+  fi
 }
 
 install_group() {
-    local required="$1"
-    local title="$2"
-    shift 2
+  local required="$1"
+  local title="$2"
+  shift 2
 
-    log "$title"
+  log "$title"
 
-    for pkg in "$@"; do
-        if ! install "$pkg" && [[ "$required" == "true" ]]; then
-            die "Failed to install required package: $pkg"
-        fi
-    done
+  for pkg in "$@"; do
+    if ! install "$pkg" && [[ "$required" == "true" ]]; then
+      die "Failed to install required package: $pkg"
+    fi
+  done
 }
 
 # ── Install packages ────────────────
 install_packages() {
-    [[ "$PKG_MANAGER" == "apt" ]] && sudo apt-get update
+  [[ "$PKG_MANAGER" == "apt" ]] && sudo apt-get update
 
-    core_packages=(curl git unzip zsh stow)
-    extra_packages=(ghostty mpv flatpak btop fastfetch)
+  core_packages=(curl git unzip zsh stow)
+  extra_packages=(ghostty vscodium mpv flatpak btop fastfetch)
 
-    install_group true "Core packages" "${core_packages[@]}"
-    install_group false "Extra packages" "${extra_packages[@]}"
+  install_group true "Core packages" "${core_packages[@]}"
+  install_group false "Extra packages" "${extra_packages[@]}"
+}
+
+# ── VSCodium Extensions ────────────────
+install_codium_extensions() {
+  log "Installing VSCodium extensions"
+
+  if ! command -v codium &>/dev/null; then
+    warn "VSCodium not found in PATH, skipping extensions."
+    return
+  fi
+
+  local dotfiles_dir="${HOME}/.dotfiles"
+  local ext_list="${dotfiles_dir}/vscodium/.vscode-oss/extensions/extensions.txt"
+
+  if [[ -f "$ext_list" ]]; then
+    while IFS= read -r ext; do
+      [[ -z "$ext" || "$ext" == \#* ]] && continue
+
+      log "Installing extension: $ext"
+      codium --install-extension "$ext" --force &>/dev/null
+    done < "$ext_list"
+    ok "Marketplace extensions installed"
+  else
+    warn "extensions.txt not found at $ext_list"
+  fi
 }
 
 # ── CLI tools ────────────────
 install_cli_tools() {
-    cli_tools=(bat tealdeer fd ripgrep eza sd wl-clipboard)
+  cli_tools=(bat tealdeer fd ripgrep eza sd wl-clipboard)
 
-    install_group false "CLI tools" "${cli_tools[@]}"
+  install_group false "CLI tools" "${cli_tools[@]}"
 
-    if command -v zoxide &>/dev/null; then
-        ok "zoxide already installed"
+  if command -v zoxide &>/dev/null; then
+    ok "zoxide already installed"
+  else
+    log "Installing zoxide..."
+
+    if curl -#sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh; then
+      ok "zoxide installed"
     else
-        log "Installing zoxide..."
-
-        if curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh; then
-            ok "zoxide installed"
-        else
-            warn "Failed to install zoxide"
-        fi
+      warn "Failed to install zoxide"
     fi
+  fi
 
-    if command -v oh-my-posh &>/dev/null; then
-        ok "oh-my-posh already installed"
+  if command -v oh-my-posh &>/dev/null; then
+    ok "oh-my-posh already installed"
+  else
+    log "Installing oh-my-posh..."
+
+    if curl -#fs https://ohmyposh.dev/install.sh | bash -s; then
+      ok "oh-my-posh installed"
     else
-        log "Installing oh-my-posh..."
-
-        if curl -fs https://ohmyposh.dev/install.sh | bash -s; then
-            ok "oh-my-posh installed"
-        else
-            warn "Failed to install oh-my-posh"
-        fi
+      warn "Failed to install oh-my-posh"
     fi
+  fi
 
-    tldr --update 2>/dev/null || warn "tldr update failed"
-    ok "tldr cache populated"
+  tldr --update 2>/dev/null || warn "tldr update failed"
+  ok "tldr cache populated"
 }
 
 # ── Fonts ────────────────
 install_fonts() {
-    FONT_DIR="${XDG_DATA_HOME:-$HOME}/.fonts"
-    mkdir -p "$FONT_DIR"
+  FONT_DIR="${XDG_DATA_HOME:-$HOME}/.fonts"
+  mkdir -p "$FONT_DIR"
 
-    log "Installing fonts"
-    FONTS=(Arimo CascadiaMono FiraMono IBMPlexMono JetBrainsMono Meslo)
-    for font in "${FONTS[@]}"; do
-        local url
-        url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
+  log "Installing fonts"
+  FONTS=(Arimo CascadiaMono FiraMono IBMPlexMono JetBrainsMono Meslo Noto)
+  for font in "${FONTS[@]}"; do
+    local url
+    url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
 
-        if curl -#fLo "/tmp/${font}.zip" "$url"; then
-            unzip -o "/tmp/${font}.zip" -d "${FONT_DIR}/${font}" &>/dev/null
-            rm -f "/tmp/${font}.zip"
-            ok "${font} installed"
-        else
-            warn "Failed to download ${font}"
-        fi
-    done
+    if curl -#fLo "/tmp/${font}.zip" "$url"; then
+      unzip -o "/tmp/${font}.zip" -d "${FONT_DIR}/${font}" &>/dev/null
+      rm -f "/tmp/${font}.zip"
+      ok "${font} installed"
+    else
+      warn "Failed to download ${font}"
+    fi
+  done
 
-    fc-cache -fv "$FONT_DIR" &>/dev/null ||
-        warn "fc-cache failed"
+  fc-cache -fv "$FONT_DIR" &>/dev/null ||
+    warn "fc-cache failed"
 }
 
 # ── Zsh ────────────────
 setup_shell() {
-    local zsh_bin
+  local zsh_bin
 
-    zsh_bin="$(command -v zsh)"
+  zsh_bin="$(command -v zsh)"
 
-    if [[ "$SHELL" == "$zsh_bin" ]]; then
-        ok "Default shell is already zsh"
-        return
-    fi
+  if [[ "$SHELL" == "$zsh_bin" ]]; then
+    ok "Default shell is already zsh"
+    return
+  fi
 
-    warn "Your default shell is '$SHELL', not zsh."
+  warn "Your default shell is '$SHELL', not zsh."
 
-    if chsh -s "$zsh_bin"; then
-        ok "Default shell changed to zsh"
-    else
-        warn "Failed to change shell"
-    fi
+  if chsh -s "$zsh_bin"; then
+    ok "Default shell changed to zsh"
+  else
+    warn "Failed to change shell"
+  fi
+}
+
+# ── Dotfiles ────────────────
+prepare_dotfiles_dir() {
+  local dotfiles_src="${HOME}/dotfiles"
+  local dotfiles_dst="${HOME}/.dotfiles"
+
+  log "Checking dotfiles directory"
+
+  if [[ -d "$dotfiles_dst" ]]; then
+    ok "~/.dotfiles already exists"
+  elif [[ -d "$dotfiles_src" ]]; then
+    mv "$dotfiles_src" "$dotfiles_dst"
+    ok "Renamed ~/dotfiles → ~/.dotfiles"
+  else
+    die "Neither ~/dotfiles nor ~/.dotfiles found"
+  fi
 }
 
 # ── Dotfiles ────────────────
 stow_configs() {
-    local dotfiles_src
-    local dotfiles_dst
+  local dotfiles_dst="${HOME}/.dotfiles"
 
-    dotfiles_src="${HOME}/dotfiles"
-    dotfiles_dst="${HOME}/.dotfiles"
+  log "Stowing configs"
 
-    log "Dotfiles directory"
+  cd "$dotfiles_dst" || die "Failed to enter $dotfiles_dst"
 
-    if [[ -d "$dotfiles_dst" ]]; then
-        ok "~/.dotfiles already exists — skipping rename"
-    elif [[ -d "$dotfiles_src" ]]; then
-        mv "$dotfiles_src" "$dotfiles_dst"
-        ok "Renamed ~/dotfiles → ~/.dotfiles"
-    else
-        die "~/dotfiles not found"
+  for pkg in */; do
+    if [[ "$pkg" == "zen/" ]]; then
+      warn "Skipping zen (handled manually)"
+      continue
     fi
+    [[ -d "$pkg" ]] || continue
 
-    log "Stowing configs"
+    stow -v --restow --adopt "$pkg"
+    ok "Stowed $pkg"
+  done
 
-    cd "$dotfiles_dst" || die "Failed to enter $dotfiles_dst"
-
-    for pkg in */; do
-        if [[ "$pkg" == "zen/" ]]; then
-            warn "skip zen"
-            continue
-        fi
-        [[ -d "$pkg" ]] || continue
-
-        stow -v --restow --adopt "$pkg"
-        ok "Stowed $pkg"
-    done
-
-    git restore .
-    ok "Restored to versioned configs"
+  git restore .
+  ok "Restored to versioned configs"
 }
 
 # ── Run installation ────────────────
 main() {
-    install_packages
-    install_cli_tools
-    install_fonts
-    setup_shell
-    stow_configs
+  prepare_dotfiles_dir
+  install_packages
+  install_cli_tools
+  install_fonts
+  install_codium_extensions
+  setup_shell
+  stow_configs
 
-    mkdir -p ~/.icons
+  mkdir -p ~/.icons
 
-    echo
-    echo -e "${GREEN}${BOLD}All done!${RESET}"
+  echo
+  echo -e "${GREEN}${BOLD}All done!${RESET}"
 
-    if (( ${#FAILED_PKGS[@]} > 0 )); then
-        echo
-        warn "Some packages failed:"
-        printf ' - %s\n' "${FAILED_PKGS[@]}"
-    fi
+  if (( ${#FAILED_PKGS[@]} > 0 )); then
+    echo
+    warn "Some packages failed:"
+    printf ' - %s\n' "${FAILED_PKGS[@]}"
+  fi
 
-    echo
-    echo -e "${CYAN}${BOLD}Important:${RESET}"
-    echo -e "  If you changed your default shell to zsh,"
-    echo -e "  log out and log back in for the change to take effect."
-    echo
-    echo -e "  Or start zsh immediately with:"
-    echo -e "  ${BOLD}exec zsh${RESET}"
-    echo
+  echo
+  echo -e "${CYAN}${BOLD}Important:${RESET}"
+  echo -e "  If you changed your default shell to zsh,"
+  echo -e "  log out and log back in for the change to take effect."
+  echo
+  echo -e "  Or start zsh immediately with:"
+  echo -e "  ${BOLD}exec zsh${RESET}"
+  echo
 }
 
 main
