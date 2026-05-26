@@ -7,19 +7,19 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Backgrounds */
-    --bg-0_h: #1D2021; /* main background */
-    --bg-0:   #282828; /* secondary background */
-    --bg-1:   #3C3836; /* surface background */
-    --bg-2:   #504945; /* active surface */
-    --bg-3:   #665C54; /* elevated components */
-    --bg-4:   #7C6F64; /* hover */
+    --bg0_h: #1D2021; /* main background */
+    --bg0:   #282828; /* secondary background */
+    --bg1:   #3C3836; /* surface background */
+    --bg2:   #504945; /* active surface */
+    --bg3:   #665C54; /* elevated components */
+    --bg4:   #7C6F64; /* hover */
 
     /* Foregrounds */
-    --fg-0: #FBF1C7;   /* strongest foreground */
-    --fg-1: #EBDBB2;   /* primary */
-    --fg-2: #D5C4A1;   /* secondary */
-    --fg-3: #BDAE93;   /* muted text */
-    --fg-4: #A89984;   /* subtle/disabled text */
+    --fg0:  #FBF1C7;   /* strongest foreground */
+    --fg1:  #EBDBB2;   /* primary */
+    --fg2:  #D5C4A1;   /* secondary */
+    --fg3:  #BDAE93;   /* muted text */
+    --fg4:  #A89984;   /* subtle/disabled text */
 
     /* Accent variations */
     --accent-hover:  #8ADEF5;
@@ -41,19 +41,19 @@
 @media (prefers-color-scheme: light) {
   :root {
     /* Backgrounds */
-    --bg-0_h: #F9F5D7; /* main background */
-    --bg-0:   #FBF1C7; /* secondary background */
-    --bg-1:   #EBDBB2; /* surface background */
-    --bg-2:   #D5C4A1; /* active surface */
-    --bg-3:   #BDAE93; /* elevated components */
-    --bg-4:   #A89984; /* hover */
+    --bg0_h: #F9F5D7; /* main background */
+    --bg0:   #FBF1C7; /* secondary background */
+    --bg1:   #EBDBB2; /* surface background */
+    --bg2:   #D5C4A1; /* active surface */
+    --bg3:   #BDAE93; /* elevated components */
+    --bg4:   #A89984; /* hover */
 
     /* Foregrounds */
-    --fg-0: #282828;   /* strongest foreground */
-    --fg-1: #3C3836;   /* primary */
-    --fg-2: #504945;   /* secondary */
-    --fg-3: #665C54;   /* muted text */
-    --fg-4: #7C6F64;   /* subtle/disabled text */
+    --fg0:  #282828;   /* strongest foreground */
+    --fg1:  #3C3836;   /* primary */
+    --fg2:  #504945;   /* secondary */
+    --fg3:  #665C54;   /* muted text */
+    --fg4:  #7C6F64;   /* subtle/disabled text */
 
     /* Accent variations */
     --accent-hover:  #3AA9CE;
