@@ -16,7 +16,4 @@ mpv/.config/mpv/*.json
 vscodium/.config/VSCodium/User/settings.json
 *.vsix
 
-zen/profile.ian/chrome/current_theme.css
-
-zsh/.config/fsh/*.zsh
-zsh/.config/fsh/*.zwc
+zen/.config/zen/profile.ian/chrome/current_theme.css
