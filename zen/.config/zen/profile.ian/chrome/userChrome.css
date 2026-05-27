@@ -5,12 +5,12 @@
 /* ── Semantic Layer ──────────────── */
 :root {
   /* Backgrounds */
-  --theme-bg: var(--bg0_h) !important; /* main application background */
-  --theme-bg-sec: var(--bg1) !important; /* secondary background */
-  --theme-bg-hover: var(--bg4) !important; /* hover/interactive background */
+  --theme-bg: var(--bg0) !important; /* main application background */
+  --theme-bg-sec: var(--bg2) !important; /* secondary background */
+  --theme-bg-hover: var(--bg5) !important; /* hover/interactive background */
 
-  --theme-surface: var(--bg2) !important; /* cards, panels, urlbar */
-  --theme-surface-alt: var(--bg3) !important; /* elevated/hovered surfaces */
+  --theme-surface: var(--bg3) !important; /* cards, panels, urlbar */
+  --theme-surface-alt: var(--bg4) !important; /* elevated/hovered surfaces */
 
   /* Foregrounds */
   --theme-fg: var(--fg1) !important; /* primary text/icons */
@@ -46,23 +46,23 @@
   --zen-main-browser-background: var(--theme-bg) !important;
   --zen-branding-dark: var(--theme-bg) !important;
   --zen-branding-paper: var(--theme-fg) !important;
-  --zen-toolbar-element-bg: color-mix(in srgb,var(--theme-accent) 10%, transparent) !important;
-  
+  --zen-toolbar-element-bg: oklch(from var(--theme-accent) l c h / 8%) !important;;
+
   --toolbar-color: var(--theme-fg) !important;
   --toolbar-field-color: var(--theme-fg) !important;
   --toolbar-field-focus-color: var(--theme-fg) !important;
   --sidebar-text-color: var(--theme-fg) !important;
-  
+
   /* Panels / Popups */
   --arrowpanel-background: var(--theme-bg-sec) !important;
   --arrowpanel-color: var(--theme-fg) !important;
   --menuitem-icon-fill: var(--arrowpanel-color) !important;
   --panel-color: var(--arrowpanel-color) !important;
   /* Custom theme panel icons fg */
-  panelmultiview image { 
+  panelmultiview image {
     fill: var(--theme-fg) !important;
   }
-  
+
   /* New Tab */
   /* --newtab-text-primary-color: var(--theme-fg) !important;
   --newtab-background-color: var(--theme-bg) !important; */
@@ -76,7 +76,7 @@
   .urlbarView-url {
     color: var(--theme-fg-muted) !important;
   }
-  
+
   /* Mods */
   --better-findbar-background-color: var(--theme-surface) !important;
   findbar {

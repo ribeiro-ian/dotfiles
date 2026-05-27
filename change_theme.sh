@@ -33,12 +33,12 @@ update_file() {
   local pattern="$3"
   local template="$4"
   local create_if_missing="$5"
-  
+
   local filepath="${base_dir}/${file}"
-  
+
   # Primeiro substitui {theme} no template
   local replacement=$(echo "$template" | sed "s/{theme}/$THEME/g")
-  
+
   if [[ ! -f "$filepath" ]]; then
     echo ""
     if [[ "$create_if_missing" == "true" ]]; then
@@ -51,16 +51,16 @@ update_file() {
       return 1
     fi
   fi
-  
+
   # Pega a linha atual
   local current_line=$(grep -E "$pattern" "$filepath" | head -1)
-  
+
   if [[ -z "$current_line" ]]; then
     echo ""
     echo "[SKIP] Pattern not found in ${file}"
     return 1
   fi
-  
+
   if [[ "$current_line" == "$replacement" ]]; then
     echo ""
     echo "[NO CHANGE] ${file}"
@@ -82,12 +82,12 @@ apply_file() {
   local pattern="$3"
   local template="$4"
   local create_if_missing="$5"
-  
+
   local filepath="${base_dir}/${file}"
-  
+
   # Primeiro substitui {theme} no template
   local replacement=$(echo "$template" | sed "s/{theme}/$THEME/g")
-  
+
   if [[ ! -f "$filepath" ]]; then
     if [[ "$create_if_missing" == "true" ]]; then
       mkdir -p "$(dirname "$filepath")"
@@ -96,7 +96,7 @@ apply_file() {
     fi
     return
   fi
-  
+
   # Substitui a linha que começa com o pattern
   sed -i "/$pattern/c\\$replacement" "$filepath"
   echo "[DONE] ${file}"
@@ -104,6 +104,7 @@ apply_file() {
 
 # ────── Define all managed files ──────
 declare -a FILE_CONFIGS=(
+  "DOT|vesktop/.config/vesktop/themes/current_theme.css|@import url|@import url('./{theme}.css');|true"
   "DOT|ghostty/.config/ghostty/theme.ghostty|^theme =|theme = dark:{theme} Dark, light:{theme} Light|true"
   "DOT|neovim/.config/nvim/lua/config/colorscheme.lua|^return|return '{theme}'|true"
   "DOT|mpv/.config/mpv/script-opts/colorscheme.conf|^colorscheme=|colorscheme={theme}|true"
@@ -137,25 +138,15 @@ done
 # ────── Spicetify preview ──────
 if [[ -f "$SPICETIFY_CONFIG" ]]; then
   current_scheme=$(grep -E "^color_scheme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
-  current_theme=$(grep -E "^current_theme" "$SPICETIFY_CONFIG" | sed 's/.*= *//')
 
-  if [[ "$current_scheme" == "$THEME" && "$current_theme" == "Sonder" ]]; then
+  if [[ "$current_scheme" == "$THEME" ]]; then
     echo ""
     echo "[NO CHANGE] spicetify (color_scheme already '${THEME}')"
   else
     echo ""
     echo "[CHANGE] spicetify:"
-
-    if [[ "$current_theme" != "Sonder" ]]; then
-      echo "  OLD: current_theme = ${current_theme}"
-      echo "  NEW: current_theme = Sonder"
-      echo " "
-    fi
-
-    if [[ "$current_scheme" != "$THEME" ]]; then
-      echo "  OLD: color_scheme = ${current_scheme}"
-      echo "  NEW: color_scheme = ${THEME}"
-    fi
+    echo "  OLD: color_scheme = ${current_scheme}"
+    echo "  NEW: color_scheme = ${THEME}"
     any_changes=1
     spicetify_change=1
   fi
@@ -193,7 +184,6 @@ done
 # ────── Apply spicetify changes ──────
 if [[ "$spicetify_change" -eq 1 ]]; then
   echo "[DONE] spicetify"
-  "$SPICETIFY" config current_theme Sonder
   "$SPICETIFY" config color_scheme "${THEME}"
 fi
 

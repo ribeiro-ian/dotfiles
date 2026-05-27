@@ -14,18 +14,20 @@ My personal dotfiles for setting up and maintaining Linux systems. Managed with 
 
 ## Contents
 
-| Folder      | Description                            |
-| ----------- | -------------------------------------- |
-| `fastfetch` | Tool for fetching system information   |
-| `ghostty`   | Terminal emulator                      |
-| `btop`      | Terminal resource monitor              |
-| `neovim`    | Terminal text editor                   |
-| `mpv`       | Media player                           |
-| `scripts`   | Personal shell scripts                 |
-| `spicetify` | Spotify customization                  |
-| `vscodium`  | VSCode with no microslop               |
-| `zen`       | Firefox-based browser                  |
-| `zsh`       | Shell with plugins                     |
+| Folder      | Description                             |
+| ----------- | --------------------------------------- |
+| `btop`      | Terminal resource monitor               |
+| `fastfetch` | Tool for fetching system info           |
+| `ghostty`   | Terminal emulator                       |
+| `mpv`       | Media player                            |
+| `neovim`    | Terminal text editor                    |
+| `ohmyposh`  | Shell prompt engine                     |
+| `scripts`   | Personal shell scripts                  |
+| `spicetify` | Spotify customization                   |
+| `vesktop`   | Enhanced Discord desktop app            |
+| `vscodium`  | VSCode with no microslop                |
+| `zen`       | Firefox-based browser                   |
+| `zsh`       | Shell with plugins                      |
 
 ## Requirements
 

@@ -5,12 +5,12 @@
 /* ── Semantic Layer ──────────────── */
 * {
   /* Backgrounds */
-  --theme-bg: var(--bg0_h);
-  --theme-bg-sec: var(--bg0);
-  --theme-bg-hover: var(--bg4);
+  --theme-bg: var(--bg0);
+  --theme-bg-sec: var(--bg1);
+  --theme-bg-hover: var(--bg5);
 
-  --theme-surface: var(--bg1);
-  --theme-surface-sec: var(--bg2);
+  --theme-surface: var(--bg2);
+  --theme-surface-sec: var(--bg3);
 
   /* Foregrounds */
   --theme-fg-hover: var(--fg0);
@@ -50,11 +50,7 @@
     --text-color: var(--theme-fg) !important;
     --text-color-deemphasized: var(--theme-fg-muted) !important;
 
-    --border-color: color-mix(
-      in srgb,
-      var(--theme-gray) 70%,
-      transparent
-    ) !important;
+    --border-color: oklch(from var(--theme-gray) l c h / 70%) !important;
 
     /* accent */
     --color-accent-primary: var(--theme-accent) !important;
@@ -78,11 +74,7 @@
 
     /* cards */
     --card-background-color: var(--theme-surface) !important;
-    --card-border-color: color-mix(
-      in srgb,
-      var(--gray) 50%,
-      transparent
-    ) !important;
+    --card-border-color: oklch(from var(--theme-gray) l c h / 50%) !important;
 
     /* links */
     --link-color: var(--theme-accent) !important;

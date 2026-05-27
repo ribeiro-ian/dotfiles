@@ -2,9 +2,9 @@
   // Shared settings
   "colorize.enable_search_variables": false,
   "colorize.hide_current_line_decorations": false,
-  "colorize.include": ["**/*"],
   "colorize.colorized_colors": ["HEXA", "RGB", "HSL", "ARGB"],
   "colorize.colorized_variables": ["CSS", "LESS", "SASS", "STYLUS"],
+  "colorize.languages": [ "yaml", "html", "css", "ini", "json" ],
   "clangd.arguments": [
     "--header-insertion=never"
   ],
@@ -24,6 +24,7 @@
   "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', 'Droid Sans Mono', monospace",
   "editor.minimap.enabled": false,
   "editor.smoothScrolling": true,
+  "editor.renderWhitespace": "boundary",
   "editor.detectIndentation": false,
   "editor.cursorBlinking": "smooth",
   "editor.snippetSuggestions": "top",
@@ -31,6 +32,9 @@
   "editor.cursorSurroundingLines": 8,
   "editor.padding.top": 8,
   "files.autoSave": "afterDelay",
+  "files.trimTrailingWhitespace": true,
+  "markdown.preview.scrollEditorWithPreview": false,
+  "markdown.preview.scrollPreviewWithEditor": false,
 
   // Local settings
 }
