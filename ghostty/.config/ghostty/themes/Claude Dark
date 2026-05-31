@@ -1,3 +1,4 @@
+# ── Claude Dark ────────
 background   = #1A1A18
 foreground   = #E8E4DC
 cursor-color = #D97757
@@ -21,7 +22,7 @@ palette = 11= #E8C47C
 palette = 12= #7CACE8
 palette = 13= #C49BE8
 palette = 14= #7CE8D4
-palette = 15= #FDFBF7
+palette = 15= #E8E4DC
 
 # ── Extra colors ────────
 palette = 166= #D97757

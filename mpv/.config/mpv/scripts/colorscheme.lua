@@ -1,35 +1,26 @@
--- scripts/colorscheme.lua
 local opt = require 'mp.options'
 local msg = require 'mp.msg'
 
 local opts = { colorscheme = "Default" }
 opt.read_options(opts, "colorscheme")
 
-local palettes = {
-    ["Default"] = {
-        accent = "#FF8232",
-        fg = "#FFFFFF",
-        bg = "#000000"
-    },
-    ["Claude"] = {
-        accent = "#D97757",
-        fg = "#E8E4DC",
-        bg = "#1A1A18",
-    ["Gruvzima"] = {
-        accent = "#5BC2E7",
-        fg = "#EBDBB2",
-        bg = "#1D2021"
-    },
-    ["Gruvbox Dark Medium"] = {
-        accent = "#458588",
-        fg = "#EBDBB2",
-        bg = "#282828"
-    },
-    ["Gruvbox Dark Hard"] = {
-        accent = "#458588",
-        fg = "#EBDBB2",
-        bg = "#1D2021"
-    },
+local colorschemes = {
+  ["Default"] = {
+    accent = "#FF8232",
+    fg     = "#FFFFFF",
+    bg     = "#000000"
+  },
+  -- Colorschemes
+  ["Claude"] = {
+    accent = "#D97757",
+    fg     = "#E8E4DC",
+    bg     = "#1A1A18",
+  },
+  ["Gruvzima"] = {
+    accent = "#5BC2E7",
+    fg     = "#EBDBB2",
+    bg     = "#1D2021"
+  },
 }
 
 local function expand_colorscheme(base)
@@ -59,21 +50,21 @@ local function expand_colorscheme(base)
 end
 
 local function generate_colorscheme_file()
-    local base = palettes[opts.colorscheme] or palettes["Default"]
+    local base = colorschemes[opts.colorscheme] or colorschemes["Default"]
     local colorscheme = expand_colorscheme(base)
-    
+
     local path = mp.command_native({"expand-path", "~~/script-opts/modernz-colorscheme.conf"})
     local file = io.open(path, "w")
     if not file then
         msg.error("Failed to write colorscheme file")
         return
     end
-    
+
     for key, value in pairs(colorscheme) do
         file:write(string.format("%s=%s\n", key, value))
     end
     file:close()
-    
+
     msg.info("Generated colorscheme: " .. opts.colorscheme)
 end
 

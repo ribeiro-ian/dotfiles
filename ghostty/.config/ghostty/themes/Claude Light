@@ -1,3 +1,4 @@
+# ── Claude Light ────────
 background   = #FCFAF5
 foreground   = #2F2F2D
 cursor-color = #D97757
@@ -21,7 +22,7 @@ palette = 11= #B88F4A
 palette = 12= #4A6E9E
 palette = 13= #8B67A6
 palette = 14= #4A9E8A
-palette = 15= #1A1A18
+palette = 15= #2F2F2D
 
 # ── Extra colors ────────
 palette = 166= #D97757
