@@ -229,7 +229,7 @@
     "peekViewTitleDescription.foreground": "#7C7568",
 
     "gitDecoration.addedResourceForeground": "#7EC699",
-    "gitDecoration.modifiedResourceForeground": "#E8C47C",
+    "gitDecoration.modifiedResourceForeground": "#7CACE8",
     "gitDecoration.deletedResourceForeground": "#F28B82",
     "gitDecoration.untrackedResourceForeground": "#7EC699",
     "gitDecoration.ignoredResourceForeground": "#7C7568",
