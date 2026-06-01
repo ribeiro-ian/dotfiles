@@ -1,4 +1,4 @@
-# Gruvzima Light
+# ── Gruvzima Light ────────
 background   = #F9F5D7
 foreground   = #3C3836
 cursor-color = #5BC2E7
@@ -27,4 +27,4 @@ palette = 15= #3C3836
 # ── Extra colors ────────
 palette = 166= #AF3A03
 palette = 208= #AF3A03
-palette = 254= #5BC2E7
+palette = 254= #076678

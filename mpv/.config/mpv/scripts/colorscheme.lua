@@ -11,15 +11,15 @@ local colorschemes = {
     bg     = "#000000"
   },
   -- Colorschemes
+  ["Gruvzima"] = {
+    accent = "#5BC2E7",
+    fg     = "#EBDBB2",
+    bg     = "#1D2021",
+  },
   ["Claude"] = {
     accent = "#D97757",
     fg     = "#E8E4DC",
     bg     = "#1A1A18",
-  },
-  ["Gruvzima"] = {
-    accent = "#5BC2E7",
-    fg     = "#EBDBB2",
-    bg     = "#1D2021"
   },
 }
 
